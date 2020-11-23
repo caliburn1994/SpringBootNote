@@ -1,0 +1,20 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- ref: https://mybatis.org/generator/quickstart.html -->
+        <context id="dsql" targetRuntime="MyBatis3DynamicSql">
+    <jdbcConnection
+                driverClass="com.mysql.cj.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/mydb"
+                userId="user"
+                password="userpass" />
+
+        <javaModelGenerator targetPackage="${generate_path}" targetProject="src/main/java"/>
+
+        <javaClientGenerator targetPackage="${generate_path}" targetProject="src/main/java" type="MIXEDMAPPER"/>
+
+        <table tableName="city" />
+        <table tableName="user" />
+    </context>
+</generatorConfiguration>
