@@ -38,8 +38,16 @@ destroy:
 
 
 
+installJava:
+	curl -s "https://get.sdkman.io" | bash
+	source "$HOME/.sdkman/bin/sdkman-init.sh"
+	sdk version
+	sdk install java
+
 groupId := icu.kyakya
 module_name := mybatis
+gradle_prefix := cd $(ROOT_DIR) && $(ROOT_DIR)/gradlew
+generate_path := $(groupId).orm
 
 initJavaProject:
 	# https://github.com/mybatis/spring-boot-starter/wiki/Quick-Start
@@ -52,20 +60,14 @@ initJavaProject:
 		   -d baseDir=$(module_name) \
 		   | tar -xzvf - -C $(shell dirname $(ROOT_DIR))
 
-
-GRADLEW_PREFIX := cd $(ROOT_DIR) && $(ROOT_DIR)/gradlew
-generate_path := $(groupId).orm
-installJava:
-	curl -s "https://get.sdkman.io" | bash
-	source "$HOME/.sdkman/bin/sdkman-init.sh"
-	sdk version
-	sdk install java
-
-test2222:
-	cp -r $(INIT_DIR)/mybatis $(ROOT_DIR)/src/test/resources
-	$(GRADLEW_PREFIX) cleanTest test --tests "icu.kyakya.orm.generate.run_dynamicSQL"
-
-
-test3333:
+	sed -i "/dependencies/ a \\\tcompile 'org.mybatis.generator:mybatis-generator-core:1.4.0'" $(ROOT_DIR)/build.gradle
 	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_dynamicSql_Template.xml > $(INIT_DIR)/mybatis/generatorConfig_dynamicSql.xml
 	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_simple_Template.xml > $(INIT_DIR)/mybatis/generatorConfig_simple.xml
+
+	cp $(INIT_DIR)/app/GenerateJavaCode.java $(ROOT_DIR)/src/test/java
+	cp -r $(INIT_DIR)/mybatis $(ROOT_DIR)/src/test/resources
+	$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_dynamicSQL"
+	#$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_simple"
+
+
+
