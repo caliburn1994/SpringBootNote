@@ -1,10 +1,15 @@
+SHELL := /bin/bash
+PATH := $(HOME)/.sdkman/candidates/java/current/bin:$(PATH)
+
+
 MYSQL_PORT := 3306
 MYSQL_USER := user
 MYSQL_PASSWORD := userpass
 MYSQL_DB := mydb
 CONTAINER_NAME := mysqld
-INIT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+INIT_DIR := $(CURDIR)
 ROOT_DIR := $(shell dirname $(INIT_DIR))
+
 
 # run background
 #DAEMON_MODE := -d
@@ -40,13 +45,14 @@ destroy:
 
 installJava:
 	curl -s "https://get.sdkman.io" | bash
-	source "$HOME/.sdkman/bin/sdkman-init.sh"
+	source "$(HOME)/.sdkman/bin/sdkman-init.sh"
 	sdk version
-	sdk install java
+	sdk install java 11.0.3.hs-adpt
+	sdk home java 11.0.3.hs-adpt
 
 groupId := icu.kyakya
-module_name := mybatis
-gradle_prefix := cd $(ROOT_DIR) && $(ROOT_DIR)/gradlew
+module_name := $(notdir $(ROOT_DIR))
+gradle_prefix := cd $(ROOT_DIR) ; $(ROOT_DIR)/gradlew
 generate_path := $(groupId).orm
 
 initJavaProject:
@@ -59,15 +65,20 @@ initJavaProject:
 		   -d dependencies=lombok,devtools,configuration-processor,mysql,mybatis,testcontainers \
 		   -d baseDir=$(module_name) \
 		   | tar -xzvf - -C $(shell dirname $(ROOT_DIR))
-
+	sleep 3
 	sed -i "/dependencies/ a \\\tcompile 'org.mybatis.generator:mybatis-generator-core:1.4.0'" $(ROOT_DIR)/build.gradle
-	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_dynamicSql_Template.xml > $(INIT_DIR)/mybatis/generatorConfig_dynamicSql.xml
-	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_simple_Template.xml > $(INIT_DIR)/mybatis/generatorConfig_simple.xml
+	mkdir -p $(ROOT_DIR)/src/test/resources/mybatis/
+	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_dynamicSql_Template.xml > $(ROOT_DIR)/src/test/resources/mybatis/generatorConfig_dynamicSql.xml
+	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_simple_Template.xml > $(ROOT_DIR)/src/test/resources/mybatis/generatorConfig_simple.xml
 
 	cp $(INIT_DIR)/app/GenerateJavaCode.java $(ROOT_DIR)/src/test/java
-	cp -r $(INIT_DIR)/mybatis $(ROOT_DIR)/src/test/resources
-	$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_dynamicSQL"
+	$(gradle_prefix) build
+	#$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_dynamicSQL"
 	#$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_simple"
 
 
+
+
+deleteAllFile:
+	cd .. ; rm -rf `ls -aI "init"`
 
