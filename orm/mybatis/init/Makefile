@@ -22,7 +22,7 @@ MYSQL_VERSION := 8.0.22
 include test.mk
 
 
-init:
+initDocker:
 	mkdir -p "$(INIT_DIR)/MySQL/config"
 	chmod 777 MySQL
 	docker run $(DAEMON_MODE) \
@@ -72,8 +72,8 @@ initJavaProject:
 	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_simple_Template.xml > $(ROOT_DIR)/src/test/resources/mybatis/generatorConfig_simple.xml
 
 	cp $(INIT_DIR)/app/GenerateJavaCode.java $(ROOT_DIR)/src/test/java
-	$(gradle_prefix) build
-	#$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_dynamicSQL"
+	$(gradle_prefix) build --exclude-task test
+	$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_dynamicSQL"
 	#$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_simple"
 
 
