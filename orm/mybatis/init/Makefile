@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-PATH := $(HOME)/.sdkman/candidates/java/current/bin:$(PATH)
+PATH := $(shell dirname $(shell which java)):$(PATH)
 
 
 MYSQL_PORT := 3306
@@ -42,13 +42,6 @@ destroy:
 	docker container rm $(CONTAINER_NAME)
 
 
-
-installJava:
-	curl -s "https://get.sdkman.io" | bash
-	source "$(HOME)/.sdkman/bin/sdkman-init.sh"
-	sdk version
-	sdk install java 11.0.3.hs-adpt
-	sdk home java 11.0.3.hs-adpt
 
 groupId := icu.kyakya
 module_name := $(notdir $(ROOT_DIR))
