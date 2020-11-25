@@ -17,7 +17,7 @@ initJavaProject:
 		   -d dependencies=lombok,devtools,configuration-processor,h2,jooq,testcontainers \
 		   -d baseDir=$(module_name) \
 		   | tar -xzvf - -C $(shell dirname $(ROOT_DIR))
-	sleep 3
+	sleep 2
 	$(gradle_prefix) build
 
 
