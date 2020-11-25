@@ -12,9 +12,9 @@
                 <property name="nullCatalogMeansCurrent" value="true" />
             </jdbcConnection>
 
-        <javaModelGenerator targetPackage="${generate_path}" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="${generate_path}.model" targetProject="src/main/java"/>
 
-        <javaClientGenerator targetPackage="${generate_path}" targetProject="src/main/java" type="MIXEDMAPPER"/>
+        <javaClientGenerator targetPackage="${generate_path}.client" targetProject="src/main/java" type="MIXEDMAPPER"/>
 
             <!--   ref: http://mybatis.org/generator/usage/mysql.html         -->
             <table tableName="%"/>

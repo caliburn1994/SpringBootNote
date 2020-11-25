@@ -46,7 +46,7 @@ destroy:
 groupId := icu.kyakya.orm
 module_name := $(notdir $(ROOT_DIR))
 gradle_prefix := cd $(ROOT_DIR) ; $(ROOT_DIR)/gradlew
-generate_path := $(groupId).orm
+generate_path := $(groupId).module_name
 
 xml_file_path := $(ROOT_DIR)/src/test/resources/mybatis
 
