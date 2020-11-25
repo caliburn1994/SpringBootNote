@@ -74,5 +74,5 @@ generateMybatisCode:
 
 
 reset:
-	cd .. ; rm -rf `ls -aI "init"`
+	git reset --hard && git clean -dfx
 
