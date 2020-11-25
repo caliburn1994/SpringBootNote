@@ -1,4 +1,4 @@
-package icu.kyakya.orm;
+package mybatis;
 
 import org.junit.jupiter.api.Test;
 import org.mybatis.generator.api.MyBatisGenerator;
