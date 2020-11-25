@@ -24,7 +24,6 @@ include test.mk
 
 
 initDocker:
-	mkdir -p "$(INIT_DIR)/MySQL/config"
 	chmod 777 MySQL
 	docker run $(DAEMON_MODE) \
     -p $(MYSQL_PORT):3306 \
@@ -49,6 +48,8 @@ module_name := $(notdir $(ROOT_DIR))
 gradle_prefix := cd $(ROOT_DIR) ; $(ROOT_DIR)/gradlew
 generate_path := $(groupId).orm
 
+xml_file_path := $(ROOT_DIR)/src/test/resources/mybatis
+
 initJavaProject:
 	# https://github.com/mybatis/spring-boot-starter/wiki/Quick-Start
 	curl -s https://start.spring.io/starter.tgz\
@@ -59,18 +60,15 @@ initJavaProject:
 		   -d dependencies=lombok,devtools,configuration-processor,mysql,mybatis,testcontainers \
 		   -d baseDir=$(module_name) \
 		   | tar -xzvf - -C $(shell dirname $(ROOT_DIR))
-	sleep 3
+	sleep 2
+
+	generate_path=$(generate_path) envsubst < $(xml_file_path)/generatorConfig_dynamicSql.xml | tee $(xml_file_path)/generatorConfig_dynamicSql.xml
+	generate_path=$(generate_path) envsubst < $(xml_file_path)/generatorConfig_simple.xml > tee $(xml_file_path)/generatorConfig_simple.xml
+
 	sed -i "/dependencies/ a \\\tcompile 'org.mybatis.generator:mybatis-generator-core:1.4.0'" $(ROOT_DIR)/build.gradle
-	mkdir -p $(ROOT_DIR)/src/test/resources/mybatis/
-	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_dynamicSql_Template.xml > $(ROOT_DIR)/src/test/resources/mybatis/generatorConfig_dynamicSql.xml
-	generate_path=$(generate_path) envsubst < $(INIT_DIR)/mybatis/generatorConfig_simple_Template.xml > $(ROOT_DIR)/src/test/resources/mybatis/generatorConfig_simple.xml
-
-	cp $(INIT_DIR)/app/GenerateJavaCode.java $(ROOT_DIR)/src/test/java
 	$(gradle_prefix) build --exclude-task test
-	$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_dynamicSQL"
+	$(gradle_prefix) cleanTest test --tests "mybatis.GenerateJavaCode.run_dynamicSQL"
 	#$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_simple"
-
-
 
 
 reset:
