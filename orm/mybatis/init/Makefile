@@ -1,6 +1,5 @@
 SHELL := /bin/bash
-PATH := $(shell dirname $(shell which java)):$(PATH)
-
+PATH := $(shell dirname $(shell which java)):/home/xiaojie/.sdkman/candidates/java/current/bin:$(PATH)
 INIT_DIR := $(CURDIR)
 ROOT_DIR := $(shell dirname $(INIT_DIR))
 
@@ -46,7 +45,7 @@ destroy:
 groupId := icu.kyakya.orm
 module_name := $(notdir $(ROOT_DIR))
 gradle_prefix := cd $(ROOT_DIR) ; $(ROOT_DIR)/gradlew
-generate_path := $(groupId).module_name
+generate_path := $(groupId).$(module_name)
 
 xml_file_path := $(ROOT_DIR)/src/test/resources/mybatis
 
