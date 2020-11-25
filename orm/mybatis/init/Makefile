@@ -43,7 +43,7 @@ destroy:
 
 
 
-groupId := icu.kyakya.pom
+groupId := icu.kyakya.orm
 module_name := $(notdir $(ROOT_DIR))
 gradle_prefix := cd $(ROOT_DIR) ; $(ROOT_DIR)/gradlew
 generate_path := $(groupId).orm
