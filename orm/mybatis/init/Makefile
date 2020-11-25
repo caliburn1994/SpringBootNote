@@ -1,14 +1,15 @@
 SHELL := /bin/bash
 PATH := $(shell dirname $(shell which java)):$(PATH)
 
+INIT_DIR := $(CURDIR)
+ROOT_DIR := $(shell dirname $(INIT_DIR))
+
 
 MYSQL_PORT := 3306
 MYSQL_USER := user
 MYSQL_PASSWORD := userpass
 MYSQL_DB := mydb
 CONTAINER_NAME := mysqld
-INIT_DIR := $(CURDIR)
-ROOT_DIR := $(shell dirname $(INIT_DIR))
 
 
 # run background
@@ -72,6 +73,6 @@ initJavaProject:
 
 
 
-deleteAllFile:
+reset:
 	cd .. ; rm -rf `ls -aI "init"`
 
