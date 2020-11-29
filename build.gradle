@@ -6,19 +6,22 @@
  */
 
 
-plugins{
+plugins {
     id 'java'
 }
 
-// https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper
-wrapper {
-    gradleVersion = '6.7.1'
-}
 
-// https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Javadoc.html
-javadoc {
-    source = sourceSets.main.allJava
-    classpath = configurations.compile
-    failOnError = false
-}
+allprojects {
 
+    // https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper
+    wrapper {
+        gradleVersion = '6.7.1'
+    }
+
+    // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Javadoc.html
+    javadoc {
+        source = sourceSets.main.allJava
+//        classpath = configurations.compile
+        failOnError = false
+    }
+}
