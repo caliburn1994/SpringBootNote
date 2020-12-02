@@ -22,3 +22,7 @@ rootProject.name = 'root'
 file("${rootDir}/orm").eachDirMatch(~/.*/) {
     include "orm:${it.name}"
 }
+
+file("${rootDir}/web").eachDirMatch(~/.*/) {
+    include "web:${it.name}"
+}
