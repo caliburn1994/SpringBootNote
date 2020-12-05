@@ -60,18 +60,3 @@ initJavaProject:
 		   -d baseDir=$(module_name) \
 		   | tar -xzvf - -C $(shell dirname $(ROOT_DIR))
 	sleep 2
-
-	generate_path=$(generate_path) envsubst < $(xml_file_path)/generatorConfig_dynamicSql.xml | tee $(xml_file_path)/generatorConfig_dynamicSql.xml
-	generate_path=$(generate_path) envsubst < $(xml_file_path)/generatorConfig_simple.xml | tee $(xml_file_path)/generatorConfig_simple.xml
-
-	sed -i "/dependencies/ a \\\tcompile 'org.mybatis.generator:mybatis-generator-core:1.4.0'" $(ROOT_DIR)/build.gradle
-	$(gradle_prefix) build --exclude-task test
-
-generateMybatisCode:
-	$(gradle_prefix) cleanTest test --tests "mybatis.GenerateJavaCode.run_dynamicSQL"
-	#$(gradle_prefix) cleanTest test --tests "GenerateJavaCode.run_simple"
-
-
-reset:
-	git reset --hard && git clean -dfx
-
