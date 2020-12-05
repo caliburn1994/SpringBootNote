@@ -1,9 +1,9 @@
-package icu.kyakya.orm.mybatis.config;
+package icu.kyakya.orm.mybatis.mybatis.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -11,9 +11,9 @@ import org.testcontainers.containers.MySQLContainer;
 
 import javax.sql.DataSource;
 
-@Configuration
+@TestConfiguration
 @Slf4j
-public class DbConfig {
+public class DbTestConfig {
 
     @Profile({"h2"})
     @Bean(name = "dataSource")
@@ -26,7 +26,7 @@ public class DbConfig {
                 .build();
     }
 
-    @Profile({"mysql"})
+    @Profile({"docker_mysql"})
     @Bean(name = "dataSource")
     public DataSource dataSource() {
         log.info("[kyakya] 初始化MySQL数据库");

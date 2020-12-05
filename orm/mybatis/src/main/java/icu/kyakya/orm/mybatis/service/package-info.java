@@ -1,0 +1,1 @@
+package icu.kyakya.orm.mybatis.service;

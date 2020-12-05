@@ -1,4 +1,4 @@
-package icu.kyakya.orm.mybatis.config;
+package icu.kyakya.orm.mybatis.mybatis.config;
 
 import org.testcontainers.containers.MySQLContainer;
 
@@ -7,10 +7,11 @@ import org.testcontainers.containers.MySQLContainer;
  * created date : 2020-10-21
  */
 public class MySQLBuilder {
-    public static MySQLContainer<?> container = null;
 
-    public static MySQLContainer<?> buildMySQLContainer() {
-        if (container==null) {
+    private static MySQLContainer<?> container = null;
+
+    static MySQLContainer<?> buildMySQLContainer() {
+        if (container == null) {
             container = new MySQLContainer<>("mysql:5.7.16")
                     .withInitScript("mvn/db/mysql/scripts/all_schemas.sql")
                     .withCommand("--character-set-server=utf8 " + //utf8
@@ -24,7 +25,7 @@ public class MySQLBuilder {
         return container;
     }
 
-    public static void close(){
+    public static void close() {
         if (container != null) {
             container.close();
         }
