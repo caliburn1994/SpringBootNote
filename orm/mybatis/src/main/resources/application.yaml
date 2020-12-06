@@ -1,5 +1,6 @@
 spring:
   profiles.active: develop
+group: icu.kyakya.orm.mybatis
 
 ---
 
@@ -16,7 +17,7 @@ spring:
 ---
 spring:
   config:
-    activate.on-profile: prod
+    activate.on-profile: prod # todo demo
   datasource:
     url: jdbc:mysql://localhost/test
     username: dbuser
@@ -29,5 +30,5 @@ spring:
     activate.on-profile: generator
 mybatis:
   generator:
-    modelTargetPackage: icu.kyakya.orm.mybatis.domain
-    clientTargetPackage: icu.kyakya.orm.mybatis.mapper
+    modelTargetPackage: ${group}.domain
+    clientTargetPackage: ${group}.mapper

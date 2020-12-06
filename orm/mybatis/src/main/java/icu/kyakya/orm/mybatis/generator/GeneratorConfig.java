@@ -8,6 +8,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+/**
+ * <pre>
+ * @value How-to-use :
+ * - https://docs.spring.io/spring-framework/docs/5.2.9.RELEASE/spring-framework-reference/core.html#expressions
+ * - https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#expressions
+ * </pre>
+ */
 @Profile("generator")
 @Configuration
 @Slf4j
@@ -43,8 +50,9 @@ public class GeneratorConfig {
         return jdbcConnectionConfiguration;
     }
 
+
     @Value("${mybatis.generator.modelTargetPackage}")
-    private String ModelTargetPackage = "icu.kyakya.orm.mybatis.mapper";
+    private String ModelTargetPackage;
 
     @Bean
     public JavaModelGeneratorConfiguration javaModelGenerator() {
@@ -55,7 +63,7 @@ public class GeneratorConfig {
     }
 
     @Value("${mybatis.generator.clientTargetPackage}")
-    private String ClientTargetPackage = "icu.kyakya.orm.mybatis.domain";
+    private String ClientTargetPackage;
 
     @Bean
     public JavaClientGeneratorConfiguration javaClientGenerator() {
@@ -84,8 +92,8 @@ public class GeneratorConfig {
     }
 
 
-//    @Value("${mybatis.generator.tables}")
-//    private String[] tables;
+    @Value("${mybatis.generator.tables}")
+    private String[] tables;
 
     private void setTables(Context context) {
         TableConfiguration tableCfg = new TableConfiguration(context);
