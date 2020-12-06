@@ -32,3 +32,4 @@ mybatis:
   generator:
     modelTargetPackage: ${group}.domain
     clientTargetPackage: ${group}.mapper
+#    tables: user,city   # 默认情况下，是创建所有非系统的表格对应的Mapper，如需单独制定时，可以使用该字段

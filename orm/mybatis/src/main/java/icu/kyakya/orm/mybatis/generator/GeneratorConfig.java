@@ -1,12 +1,16 @@
 package icu.kyakya.orm.mybatis.generator;
 
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.generator.config.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+
+import java.util.Optional;
 
 /**
  * <pre>
@@ -20,21 +24,23 @@ import org.springframework.context.annotation.Profile;
 @Slf4j
 public class GeneratorConfig {
 
+    @Configuration
+    @ConfigurationProperties(prefix = "mybatis.generator")
+    @Data
+    static class Config {
+        private String modelTargetPackage;
+        private String clientTargetPackage;
+        @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
+        private Optional<String[]> tables=Optional.empty();
+    }
 
-    @Value("${spring.datasource.url}")
-    String url;
-
-    @Value("${spring.datasource.username}")
-    private String username;
-
-    @Value("${spring.datasource.password}")
-    private String password;
-
-    @Value("${spring.datasource.driver-class-name}")
-    private String driverClassName;
 
     @Bean
-    public JDBCConnectionConfiguration jdbcConnection() {
+    public JDBCConnectionConfiguration jdbcConnection(
+            @Value("${spring.datasource.url}") String url,
+            @Value("${spring.datasource.username}") String username,
+            @Value("${spring.datasource.password}") String password,
+            @Value("${spring.datasource.driver-class-name}") String driverClassName) {
         log.info("[url]: {} [username]:{} [password]:{} [driver class name]:{}", url, username, password, driverClassName);
 
         JDBCConnectionConfiguration jdbcConnectionConfiguration = new JDBCConnectionConfiguration();
@@ -51,25 +57,19 @@ public class GeneratorConfig {
     }
 
 
-    @Value("${mybatis.generator.modelTargetPackage}")
-    private String ModelTargetPackage;
-
     @Bean
-    public JavaModelGeneratorConfiguration javaModelGenerator() {
+    public JavaModelGeneratorConfiguration javaModelGenerator(Config config) {
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
         javaModelGeneratorConfiguration.setTargetProject("src/main/java");
-        javaModelGeneratorConfiguration.setTargetPackage(ModelTargetPackage);
+        javaModelGeneratorConfiguration.setTargetPackage(config.modelTargetPackage);
         return javaModelGeneratorConfiguration;
     }
 
-    @Value("${mybatis.generator.clientTargetPackage}")
-    private String ClientTargetPackage;
-
     @Bean
-    public JavaClientGeneratorConfiguration javaClientGenerator() {
+    public JavaClientGeneratorConfiguration javaClientGenerator(Config config) {
         JavaClientGeneratorConfiguration javaModelGeneratorConfiguration = new JavaClientGeneratorConfiguration();
         javaModelGeneratorConfiguration.setTargetProject("src/main/java");
-        javaModelGeneratorConfiguration.setTargetPackage(ClientTargetPackage);
+        javaModelGeneratorConfiguration.setTargetPackage(config.clientTargetPackage);
         javaModelGeneratorConfiguration.setConfigurationType("MIXEDMAPPER");
         return javaModelGeneratorConfiguration;
     }
@@ -78,7 +78,8 @@ public class GeneratorConfig {
     @Bean
     Context context(JDBCConnectionConfiguration jdbcConnectionConfiguration
             , JavaModelGeneratorConfiguration javaModelGeneratorConfiguration
-            , JavaClientGeneratorConfiguration javaClientGeneratorConfiguration) {
+            , JavaClientGeneratorConfiguration javaClientGeneratorConfiguration
+            , Config config) {
         Context context = new Context(ModelType.CONDITIONAL);
         context.setId("dsql");
         context.setTargetRuntime("MyBatis3DynamicSql");
@@ -86,21 +87,25 @@ public class GeneratorConfig {
         context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
         context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
         context.setJavaClientGeneratorConfiguration(javaClientGeneratorConfiguration);
-        setTables(context);
+        setTables(context, config);
 
         return context;
     }
 
 
-    @Value("${mybatis.generator.tables}")
-    private String[] tables;
-
-    private void setTables(Context context) {
-        TableConfiguration tableCfg = new TableConfiguration(context);
-
-//        if (ArrayUtils.isEmptytables)
-        tableCfg.setTableName("%");
-        context.addTableConfiguration(tableCfg);
+    private void setTables(Context context, Config config) {
+        config.tables.ifPresentOrElse(
+                tables -> {
+                    for (String table : tables) {
+                        TableConfiguration tableCfg = new TableConfiguration(context);
+                        tableCfg.setTableName(String.valueOf(table));
+                        context.addTableConfiguration(tableCfg);
+                    }
+                }, () -> {
+                    TableConfiguration tableCfg = new TableConfiguration(context);
+                    tableCfg.setTableName("%");
+                    context.addTableConfiguration(tableCfg);
+                });
     }
 
 }
