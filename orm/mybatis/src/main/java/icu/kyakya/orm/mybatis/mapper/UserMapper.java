@@ -17,7 +17,6 @@ import org.mybatis.dynamic.sql.update.UpdateModel;
 import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
-import org.springframework.stereotype.Repository;
 
 import javax.annotation.Generated;
 import java.util.Collection;
@@ -31,7 +30,6 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
  * todo demo
  */
 @Mapper
-@Repository
 public interface UserMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-06T00:39:00.025767+09:00", comments="Source Table: user")
     BasicColumn[] selectList = BasicColumn.columnList(userId, name, cityId);

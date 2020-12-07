@@ -1,16 +1,16 @@
-package icu.kyakya.orm.mybatis.config;
+package icu.kyakya.orm.mybatis;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
-@Configuration
+@SpringBootApplication
 @MapperScan("icu.kyakya.orm.mybatis.mapper")
 public class MybatisConfig {
 
