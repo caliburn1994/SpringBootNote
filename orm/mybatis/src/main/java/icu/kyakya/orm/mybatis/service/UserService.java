@@ -30,7 +30,6 @@ public class UserService {
 
 
     public boolean isTokyo(Integer id) throws Exception {
-
         Integer cityId = userMapper.selectByPrimaryKey(id)
                 .map(User::getCityId)
                 .orElseThrow(() -> new Exception("User Not found"));
