@@ -1,0 +1,9 @@
+pluginManagement {
+    repositories {
+        // to pick from local .m2
+        mavenLocal()
+        // for remote
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+}
+rootProject.name = 'mybatis'
