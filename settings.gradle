@@ -8,14 +8,14 @@
  */
 // sample: https://github.com/spring-projects/spring-boot/blob/master/settings.gradle
 // doc: https://docs.gradle.org/current/dsl/org.gradle.api.initialization.Settings.html
-pluginManagement {
-    repositories {
-        mavenLocal()
-        jcenter()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+//pluginManagement {
+//    repositories {
+//        mavenLocal()
+//        jcenter()
+//        mavenCentral()
+//        gradlePluginPortal()
+//    }
+//}
 rootProject.name = 'root'
 
 

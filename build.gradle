@@ -11,7 +11,24 @@ plugins {
 }
 
 
+//allprojects {
 allprojects {
+
+    task printProjName  {
+        doLast {
+            println ">> " + project.name
+            println ">> " + wrapper.gradleVersion
+        }
+
+    }
+
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+
 
     // https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper
     wrapper {
@@ -24,4 +41,5 @@ allprojects {
 //        classpath = configurations.compile
         failOnError = false
     }
+
 }

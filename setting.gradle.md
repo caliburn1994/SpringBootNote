@@ -19,7 +19,7 @@
 
 > One of the purposes of the `Settings` object is to allow you to declare the projects which are to be included in the build. You add projects to the build using the [`Settings.include(java.lang.String[])`](https://docs.gradle.org/current/dsl/org.gradle.api.initialization.Settings.html#org.gradle.api.initialization.Settings:include(java.lang.String[])) method. There is always a root project included in a build. It is added automatically when the `Settings` object is created. The root project's name defaults to the name of the directory containing the settings file. The root project's project directory defaults to the directory containing the settings file.
 
-`Settings` 对象的一个目的，是让你可以声明构建<u>所需要</u><sup> included</sup>的项目。通过
+`Settings` 对象目的对峙之一，是让你可以声明构建<u>所需要</u><sup> included</sup>的项目。通过
 
 ```groovy
 Settings.include(java.lang.String[])
