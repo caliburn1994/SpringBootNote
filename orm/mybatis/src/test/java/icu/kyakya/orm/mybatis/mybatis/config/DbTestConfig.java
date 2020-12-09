@@ -22,7 +22,6 @@ public class DbTestConfig {
         return new EmbeddedDatabaseBuilder()
                 .setName("testdb")
                 .setType(EmbeddedDatabaseType.H2)
-                .addScripts("/mvn/db/h2/code_master.sql", "/mvn/db/h2/others_schemas.sql")
                 .build();
     }
 

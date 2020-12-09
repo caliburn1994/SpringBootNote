@@ -1,5 +1,5 @@
 spring:
-  profiles.active: develop
+  profiles.active: develop,h2
 group: icu.kyakya.orm.mybatis
 
 ---
@@ -8,12 +8,6 @@ group: icu.kyakya.orm.mybatis
 spring:
   config:
     activate.on-profile: develop
-  datasource:
-    url: jdbc:mysql://localhost:3306/mydb
-    username: user
-    password: userpass
-    driver-class-name: com.mysql.jdbc.Driver
-
 logging:
   level:
     icu.kyakya.orm.mybatis.mapper: debug
@@ -21,12 +15,6 @@ logging:
 spring:
   config:
     activate.on-profile: prod # todo demo
-  datasource:
-    url: jdbc:mysql://localhost/test
-    username: dbuser
-    password: dbpass
-    driver-class-name: com.mysql.jdbc.Driver
-
 logging:
   level:
     icu.kyakya.orm.mybatis.mapper: info
@@ -39,3 +27,14 @@ mybatis:
     modelTargetPackage: ${group}.domain
     clientTargetPackage: ${group}.mapper
 #    tables: user,city   # 默认情况下，是创建所有非系统的表格对应的Mapper，如需单独制定时，可以使用该字段
+
+
+---
+spring:
+  config:
+    activate.on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost/test
+    username: dbuser
+    password: dbpass
+    driver-class-name: com.mysql.jdbc.Driver

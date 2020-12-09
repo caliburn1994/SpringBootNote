@@ -5,12 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import javax.annotation.Resource;
 
 @SpringBootTest
-@ActiveProfiles({"develop"})
 @Slf4j
 class MapperTest {
 
