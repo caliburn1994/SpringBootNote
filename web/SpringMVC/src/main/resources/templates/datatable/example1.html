@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--  datatable  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+</head>
+<body>
+<table id="example" class="display" style="width:50%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+</table>
+<script th:inline="javascript">
+    // ...
+    var context = /*[[@{/}]]*/''
+    // ...
+
+
+    $(document).ready(function () {
+
+
+
+
+        $('#example').DataTable({
+            ajax: context+'res/datatable/arrays.txt'
+        });
+    });
+</script>
+</body>
+</html>
