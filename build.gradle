@@ -8,19 +8,27 @@
 
 plugins {
     id 'java'
+    id("java-library")
 }
 
 
-//allprojects {
 allprojects {
 
-    task printProjName  {
+    // 指定并安装对应版本的JDK
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(15))
+        }
+    }
+
+    task printProjName {
         doLast {
+//            dependsOn 'wrapper'
             println ">> " + project.name
             println ">> " + wrapper.gradleVersion
         }
-
     }
+
 
     repositories {
         mavenLocal()
