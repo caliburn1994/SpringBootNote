@@ -17,7 +17,7 @@ initJavaProject:
 		   -d name=$(module_name) \
 		   -d artifactId=$(module_name) \
 		   -d groupId=$(groupId) \
-		   -d dependencies=lombok,devtools,configuration-processor,testcontainers,web \
+		   -d dependencies=lombok,devtools,configuration-processor,testcontainers,web,thymeleaf \
 		   -d baseDir=$(module_name) \
 		   | tar -xzvf - -C $(shell dirname $(ROOT_DIR))
 	sleep 2
