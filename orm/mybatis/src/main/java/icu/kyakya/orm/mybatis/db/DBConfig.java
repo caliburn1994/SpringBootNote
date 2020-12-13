@@ -1,10 +1,12 @@
 package icu.kyakya.orm.mybatis.db;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -12,15 +14,20 @@ import javax.sql.DataSource;
 @Slf4j
 public class DBConfig {
 
-    @Profile({"h2"})
-    @Bean(name = "dataSource")
-    public static DataSource h2DataSource() {
-        log.info("[kyakya] 初始化H2内存数据库");
-        return DataSourceBuilder.create()
-                .url("jdbc:h2:file:~/h2test.db")
-                .username("")
-                .password("")
-                .build();
+    @Bean
+    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource);
+        return sessionFactory.getObject();
+    }
+
+    @Bean
+    JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
 }
