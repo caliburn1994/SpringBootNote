@@ -13,6 +13,15 @@ plugins {
 
 
 allprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    idea {
+        module {
+            downloadJavadoc = true
+            downloadSources = true
+        }
+    }
 
     // 指定并安装对应版本的JDK
     java {
@@ -21,11 +30,14 @@ allprojects {
         }
     }
 
-    task printProjName {
+    // 测试适配成功与否
+    task isConfigure(dependsOn: 'properties') {
         doLast {
-//            dependsOn 'wrapper'
-            println ">> " + project.name
-            println ">> " + wrapper.gradleVersion
+            println ">> custom properties"
+            println ">> project name: " + project.name
+            println ">> gradle version: " + wrapper.gradleVersion
+            println ">> download Javadoc: " + idea.module.isDownloadJavadoc()
+            println ">> download Source: " + idea.module.isDownloadSources()
         }
     }
 
