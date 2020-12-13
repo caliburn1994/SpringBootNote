@@ -6,7 +6,6 @@ import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.internal.DefaultShellCallback;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +23,7 @@ public class MyBatisGenerator {
         this.context = context;
     }
 
-    private Context context;
+    private final Context context;
 
     public void run() throws InvalidConfigurationException, InterruptedException, SQLException, IOException {
         List<String> warnings = new ArrayList<String>();

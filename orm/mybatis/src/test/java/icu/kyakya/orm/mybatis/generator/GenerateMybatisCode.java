@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 @SpringBootTest
 @ActiveProfiles({"develop", "h2", "generator"})
-class GenerateMybatisCodeTest {
+class GenerateMybatisCode {
 
     @Autowired
     MyBatisGenerator generator;

@@ -1,7 +1,6 @@
 package icu.kyakya.orm.mybatis.service;
 
 import icu.kyakya.orm.mybatis.domain.User;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,10 @@ class UserServiceTest {
     @Test
     void test() throws Exception {
         int insert = userService.insert(new User());
-        Assert.assertEquals(1, insert);
+        Assertions.assertEquals(1, insert);
 
         User user = userService.selectByPrimaryKey(1);
-        Assert.assertNotNull(user);
+        Assertions.assertNotNull(user);
     }
 
     @Test
