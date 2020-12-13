@@ -13,12 +13,11 @@
 <table id="example" class="display" style="width:50%">
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
+        <th>name</th>
+        <th>gender</th>
+        <th>height</th>
         <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>createTime</th>
     </tr>
     </thead>
 </table>
@@ -29,7 +28,14 @@
 
     $(document).ready(function () {
         $('#example').DataTable({
-            ajax: context+'res/datatable/arrays.txt'
+            ajax: context + '/datatable/example2_data',
+            processing: true,
+            columns: [
+                {"data": "name"},
+                {"data": "gender"},
+                {"data": "height"},
+                {"data": "createTime"}
+            ]
         });
     });
 </script>
