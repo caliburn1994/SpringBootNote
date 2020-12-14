@@ -1,11 +1,18 @@
 package icu.kyakya.orm.mybatis.service;
 
-import icu.kyakya.orm.mybatis.domain.City;
 import icu.kyakya.orm.mybatis.domain.User;
 import icu.kyakya.orm.mybatis.mapper.CityMapper;
 import icu.kyakya.orm.mybatis.mapper.UserMapper;
+import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static icu.kyakya.orm.mybatis.mapper.UserDynamicSqlSupport.user;
+import static org.mybatis.dynamic.sql.select.SelectDSL.select;
 
 @Service
 public class UserService {
@@ -28,17 +35,29 @@ public class UserService {
                 .orElseThrow(() -> new Exception("User Not found"));
     }
 
+    public List<User> selectAllOrInit() {
+        List<User> users = selectAll();
+        if (users.size() == 0) {
+            IntStream.range(0, 30).forEach(i -> {
+                User u = new User();
+                u.setName("u" + i);
+                u.setGender("xx");
+                u.setHeight(180 - i);
+                u.setCreateTime(new Date());
+                insert(u);
+            });
+            users = selectAll();
+        }
 
-    public boolean isTokyo(Integer id) throws Exception {
-        Integer cityId = userMapper.selectByPrimaryKey(id)
-                .map(User::getCityId)
-                .orElseThrow(() -> new Exception("User Not found"));
+        return users;
+    }
 
-
-        String cityName = cityMapper.selectByPrimaryKey(cityId).map(City::getName)
-                .orElseThrow(() -> new Exception("City Not found"));
-
-        return "tokyo".equals(cityName);
+    private List<User> selectAll() {
+        List<User> users = userMapper.selectMany
+                (select(user.allColumns()).from(user)
+                        .where().build()
+                        .render(RenderingStrategies.MYBATIS3));
+        return users;
     }
 
 
