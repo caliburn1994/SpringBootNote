@@ -15,9 +15,17 @@ plugins {
 allprojects {
     apply plugin: 'eclipse'
     apply plugin: 'idea'
+    apply plugin: 'eclipse'
 
+    // 下载源码
     idea {
         module {
+            downloadJavadoc = true
+            downloadSources = true
+        }
+    }
+    eclipse {
+        classpath {
             downloadJavadoc = true
             downloadSources = true
         }
