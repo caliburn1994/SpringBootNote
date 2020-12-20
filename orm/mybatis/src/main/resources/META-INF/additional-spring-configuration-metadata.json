@@ -9,6 +9,16 @@
       "name": "group",
       "type": "java.lang.String",
       "description": "Description for group."
+    },
+    {
+      "name": "mybatis.custom.dbType",
+      "type": "java.lang.String",
+      "description": "数据库类型"
+    },
+    {
+      "name": "mybatis.custom.appType",
+      "type": "java.lang.String",
+      "description": "模块类型：开发模式、产品模式"
     }
   ]
 }

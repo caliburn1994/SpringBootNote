@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @SpringBootTest
-@ActiveProfiles({"develop", "h2", "generator"})
+@ActiveProfiles({"generator"})
 class GenerateMybatisCode {
 
     @Autowired

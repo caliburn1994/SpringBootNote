@@ -5,8 +5,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import java.util.List;
 
 @SpringBootTest
+@ActiveProfiles({"h2","dev"})
 class UserServiceTest {
 
     @Autowired
@@ -21,15 +25,20 @@ class UserServiceTest {
         Assertions.assertNotNull(user);
     }
 
-    @Test
-    void exception() {
-        Assertions.assertThrows(Exception.class, () -> userService.selectByPrimaryKey(99999));
-    }
-
-
+    /**
+     * session
+     */
     @Test
     void session() throws Exception {
         userService.insert(new User());
         userService.printOneSession();
     }
+
+    @Test
+    public void selectAll(){
+        List<User> users = userService.selectAllOrInit();
+        users.forEach(System.out::println);
+    }
+
+
 }

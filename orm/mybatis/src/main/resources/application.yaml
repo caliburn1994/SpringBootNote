@@ -1,24 +1,5 @@
-spring:
-  profiles.active: develop,h2
 group: icu.kyakya.orm.mybatis
 
----
-
-# https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-use-yaml-for-external-properties
-spring:
-  config:
-    activate.on-profile: develop
-logging:
-  level:
-    icu.kyakya.orm.mybatis.mapper: debug
----
-spring:
-  config:
-    activate.on-profile: prod # todo demo
-logging:
-  level:
-    icu.kyakya.orm.mybatis.mapper: info
----
 spring:
   config:
     activate.on-profile: generator
@@ -26,27 +7,4 @@ mybatis:
   generator:
     modelTargetPackage: ${group}.domain
     clientTargetPackage: ${group}.mapper
-#    tables: user,city   # 默认情况下，是创建所有非系统的表格对应的Mapper，如需单独制定时，可以使用该字段
-
-
----
-spring:
-  config:
-    activate.on-profile: mysql
-  datasource:
-    url: jdbc:mysql://localhost/test
-    username: dbuser
-    password: dbpass
-    driver-class-name: com.mysql.jdbc.Driver
-
----
-spring:
-  config:
-    activate.on-profile: h2
-  datasource:
-    platform: h2
-    url: jdbc:h2:file:~/h2test.db
-    driver-class-name: org.h2.Driver
-    username:
-    password:
-    initialization-mode: always  # 初始化表格 https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-initialize-a-database-using-spring-jdbc
+    tables: user,city   # 默认情况下，是创建所有非系统的表格对应的Mapper，如需单独制定时，可以使用该字段

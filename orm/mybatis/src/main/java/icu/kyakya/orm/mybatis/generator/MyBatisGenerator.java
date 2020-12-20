@@ -26,14 +26,14 @@ public class MyBatisGenerator {
     private final Context context;
 
     public void run() throws InvalidConfigurationException, InterruptedException, SQLException, IOException {
-        List<String> warnings = new ArrayList<String>();
+        List<String> warnings = new ArrayList<>();
         boolean overwrite = true;
         Configuration config = new Configuration();
 
         config.addContext(context);
 
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
-        org.mybatis.generator.api.MyBatisGenerator myBatisGenerator = null;
+        org.mybatis.generator.api.MyBatisGenerator myBatisGenerator;
         try {
             myBatisGenerator = new org.mybatis.generator.api.MyBatisGenerator(config, callback, warnings);
         } catch (InvalidConfigurationException e) {

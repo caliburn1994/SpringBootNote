@@ -4,9 +4,11 @@ import icu.kyakya.orm.mybatis.domain.User;
 import icu.kyakya.orm.mybatis.mapper.CityMapper;
 import icu.kyakya.orm.mybatis.mapper.UserMapper;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -17,10 +19,10 @@ import static org.mybatis.dynamic.sql.select.SelectDSL.select;
 @Service
 public class UserService {
 
-    private UserMapper userMapper;
-    private CityMapper cityMapper;
+    private final UserMapper userMapper;
+    private final CityMapper cityMapper;
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+
     public UserService(UserMapper userMapper, CityMapper cityMapper) {
         this.userMapper = userMapper;
         this.cityMapper = cityMapper;
@@ -35,6 +37,7 @@ public class UserService {
                 .orElseThrow(() -> new Exception("User Not found"));
     }
 
+    @Transactional
     public List<User> selectAllOrInit() {
         List<User> users = selectAll();
         if (users.size() == 0) {
@@ -52,12 +55,16 @@ public class UserService {
         return users;
     }
 
-    private List<User> selectAll() {
-        List<User> users = userMapper.selectMany
+    @Autowired
+    DataSource dataSource;
+
+    public List<User> selectAll() {
+        DataSource dataSource = this.dataSource;
+
+        return userMapper.selectMany
                 (select(user.allColumns()).from(user)
                         .where().build()
                         .render(RenderingStrategies.MYBATIS3));
-        return users;
     }
 
 
