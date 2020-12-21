@@ -2,3 +2,9 @@ server:
   port: 8080
   servlet:
     context-path: /web
+
+# 开发时，禁止缓存，方便常看页面更新
+# https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/howto.html#howto-hotswapping
+spring:
+  thymeleaf:
+    cache: false
