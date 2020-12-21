@@ -1,13 +1,12 @@
 package icu.kyakya.SpringMVC.model;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Page<T> {
 
@@ -18,6 +17,7 @@ public class Page<T> {
     private List<T> data;
     private int recordsFiltered;
     private int recordsTotal;
+    @NotNull //校验器 todo
     private int draw;
 
 }
