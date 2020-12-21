@@ -40,6 +40,9 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compileOnly 'org.testcontainers:junit-jupiter'
+
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
 }
 
 dependencyManagement {

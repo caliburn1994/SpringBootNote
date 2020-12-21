@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static icu.kyakya.orm.mybatis.mapper.UserDynamicSqlSupport.user;
 import static org.mybatis.dynamic.sql.select.SelectDSL.select;
@@ -39,20 +37,7 @@ public class UserService {
 
     @Transactional
     public List<User> selectAllOrInit() {
-        List<User> users = selectAll();
-        if (users.size() == 0) {
-            IntStream.range(0, 30).forEach(i -> {
-                User u = new User();
-                u.setName("u" + i);
-                u.setGender("xx");
-                u.setHeight(180 - i);
-                u.setCreateTime(new Date());
-                insert(u);
-            });
-            users = selectAll();
-        }
-
-        return users;
+        return selectAll();
     }
 
     @Autowired

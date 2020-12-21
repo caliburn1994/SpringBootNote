@@ -1,4 +1,4 @@
-package icu.kyakya.orm.mybatis.config;
+package icu.kyakya.orm.mybatis.config.Aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
