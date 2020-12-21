@@ -36,7 +36,8 @@ dependencyManagement {
 		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
 	}
 }
-
+// todo 如何与server进行 https、数字签名等通信
+// todo 如何与wiremock进行 https、数字签名等通信
 test {
 	useJUnitPlatform()
 }
