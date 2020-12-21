@@ -1,4 +1,4 @@
-package icu.kyakya.orm.mybatis.db;
+package icu.kyakya.orm.mybatis.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
