@@ -40,12 +40,7 @@ public class UserService {
         return selectAll();
     }
 
-    @Autowired
-    DataSource dataSource;
-
     public List<User> selectAll() {
-        DataSource dataSource = this.dataSource;
-
         return userMapper.selectMany
                 (select(user.allColumns()).from(user)
                         .where().build()
@@ -57,5 +52,16 @@ public class UserService {
     public void printOneSession() throws Exception {
         selectByPrimaryKey(1);
         selectByPrimaryKey(1);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    public void insertTsTest(User user) throws Exception {
+        boolean hasError = true;
+        userMapper.insert(user);
+        //noinspection ConstantConditions
+        if (hasError) {
+            throw new Exception("test transaction");
+        }
+        userMapper.insert(user);
     }
 }
