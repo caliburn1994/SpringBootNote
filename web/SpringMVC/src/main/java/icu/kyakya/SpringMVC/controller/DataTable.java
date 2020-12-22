@@ -12,19 +12,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/datatable")
 @XSlf4j
-public class DataTableController {
+public class DataTable {
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public ModelAndView staticPage(@PathVariable String name) {
-        log.entry("/datatable/", name);
         return new ModelAndView("datatable/" + name);
     }
 
@@ -32,23 +28,17 @@ public class DataTableController {
     @Autowired
     UserService userService;
 
+    /**
+     * ref: https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
+     */
     @ResponseBody
     @RequestMapping(value = "/example2_data") //produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public Page<User> example2(Model model) throws JsonProcessingException {
-        List<User> list = new ArrayList<>();
-        IntStream.range(0, 30).forEach(i -> {
-            User user = new User();
-            user.setName("user" + i);
-            user.setGender("xx");
-            user.setHeight(180 - i);
-            user.setCreateTime(new Date());
-            list.add(user);
-        });
+        List<User> users = userService.selectAllOrInit();
+
 
         //https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
-        return new Page<>(list);
-//        ObjectMapper mapper = new ObjectMapper();
-//        model.addAttribute("employeeList", mapper.writeValueAsString(list));
+        return new Page<>(users);
     }
 
 //    @RequestMapping("/index")
@@ -63,7 +53,7 @@ public class DataTableController {
 //    }
 
     @ModelAttribute
-    public void commonModelAttribute(ModelMap modelMap){
+    public void commonModelAttribute(ModelMap modelMap) {
         //todo 若干个controller共同的ModelAttribute，此处存储静态信息。
     }
 }

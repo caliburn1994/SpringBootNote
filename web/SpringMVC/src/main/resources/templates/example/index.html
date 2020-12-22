@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<p th:utext="${message}"></p>
+<p th:utext="${message2}"></p>
+
+<form action="#" th:action="@{/example/submit}" th:object="${example}" method="post">
+    <p>controller传进来的数据: <input type="text" th:field="*{field1}"/></p>
+    <p>校验器（最大为30）: <input type="text" th:field="*{field2}"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+
+
+</body>
+</html>
