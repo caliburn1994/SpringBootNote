@@ -5,6 +5,7 @@ server:
 
 # 开发时，禁止缓存，方便常看页面更新
 # https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/howto.html#howto-hotswapping
-spring:
-  thymeleaf:
-    cache: false
+spring.thymeleaf.cache: false
+
+logging.level:
+  icu.kyakya.orm.mybatis.mapper: debug
