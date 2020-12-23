@@ -59,8 +59,8 @@ public class Example {
 
         bindingResult.getAllErrors().forEach(err -> log.warn(err.getDefaultMessage()));
 
-        redirectAttributes.addFlashAttribute(example); //todo flash vs no flash
-        return "redirect:/example/index2"; //todo
+        redirectAttributes.addFlashAttribute(example);
+        return "redirect:/example/index2";
     }
 
 
@@ -77,9 +77,7 @@ public class Example {
 
     private void printModelMap(ModelMap modelMap) {
         log.info("ModelMap拥有以下内容:");
-        modelMap.forEach((k, v) -> {
-            log.info("[key]:{} [value]:{}", k, v);
-        });
+        modelMap.forEach((k, v) -> log.info("[key]:{} [value]:{}", k, v));
     }
 
 }
