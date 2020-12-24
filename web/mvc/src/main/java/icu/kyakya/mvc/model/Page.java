@@ -1,4 +1,4 @@
-package icu.kyakya.SpringMVC.model;
+package icu.kyakya.mvc.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

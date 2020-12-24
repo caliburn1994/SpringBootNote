@@ -1,7 +1,7 @@
-package icu.kyakya.SpringMVC.controller;
+package icu.kyakya.mvc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import icu.kyakya.SpringMVC.model.Page;
+import icu.kyakya.mvc.model.Page;
 import icu.kyakya.orm.mybatis.domain.User;
 import icu.kyakya.orm.mybatis.service.UserService;
 import lombok.extern.slf4j.XSlf4j;

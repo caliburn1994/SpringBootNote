@@ -1,4 +1,4 @@
-package icu.kyakya.SpringMVC.controller;
+package icu.kyakya.mvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
