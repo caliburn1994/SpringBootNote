@@ -11,7 +11,9 @@ import org.springframework.context.annotation.PropertySources;
         @PropertySource("/mybatis/application-${mybatis.custom.dbType}.properties"),
         @PropertySource("/mybatis/application-${mybatis.custom.appType}.properties"),
 })
-@EnableAspectJAutoProxy //todo
+// 启动CGLIB proxyTargetClass = true
+// https://www.baeldung.com/cglib
+@EnableAspectJAutoProxy
 public class MybatisConfig {
 
 }
