@@ -9,3 +9,7 @@ spring.thymeleaf.cache: false
 
 logging.level:
   icu.kyakya.orm.mybatis.mapper: debug
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
