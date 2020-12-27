@@ -7,8 +7,8 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @EnableWebMvc
 @Configuration
@@ -44,13 +44,16 @@ public class WebConfig implements WebMvcConfigurer {
         return bean;
     }
 
+    /**
+     *  分析lang=xx，并查找对应的资源
+     */
     @Bean
     public LocaleResolver localeResolver() {
-        return new CookieLocaleResolver();
+        return new SessionLocaleResolver();
     }
 
     /**
-     *  国家位置
+     *  http://127.0.0.1:[port]/[controller]?lang=zh
      */
     @Bean
     public LocaleChangeInterceptor localeInterceptor() {
