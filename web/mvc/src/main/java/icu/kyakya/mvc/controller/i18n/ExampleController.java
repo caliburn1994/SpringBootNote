@@ -1,9 +1,6 @@
 package icu.kyakya.mvc.controller.i18n;
 
-import icu.kyakya.mvc.model.i18n.ExampleModel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.BindResult;
-import org.springframework.context.MessageSource;
+import icu.kyakya.mvc.model.i18n.I18nModel;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.Locale;
 
 /**
  * https://spring.io/guides/gs/testing-web/
@@ -21,18 +17,15 @@ import java.util.Locale;
 @RequestMapping("/i18n")
 public class ExampleController {
 
-    @Autowired
-    private MessageSource messageSource;
-
     @RequestMapping("/index")
     public String page(Model model){
-        model.addAttribute("example",new ExampleModel());
+        model.addAttribute("example",new I18nModel());
         return "/i18n/index";
     }
 
     @ResponseBody
     @RequestMapping(value = "/validate",produces = MediaType.TEXT_PLAIN_VALUE+";charset=UTF-8")
-    public String validate(@Valid ExampleModel exampleModel, BindingResult result){
+    public String validate(@Valid I18nModel i18nModel, BindingResult result){
         return result.getAllErrors().get(0).getDefaultMessage();
     }
 
