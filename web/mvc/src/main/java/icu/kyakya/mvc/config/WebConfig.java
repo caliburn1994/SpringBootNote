@@ -37,6 +37,10 @@ public class WebConfig implements WebMvcConfigurer {
         return messageSource;
     }
 
+    /**
+     * 可参考 https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#validation-beanvalidation
+     * 配置后,使用setValidationMessageSource，便可以在annotation的 message变量中使用对应资源
+     */
     @Bean
     public LocalValidatorFactoryBean getValidator() {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
