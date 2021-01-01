@@ -69,8 +69,10 @@ public class ExampleController {
         return "redirect:/example/index2";
     }
 
+    private final String redirectString = "testAddAttribute";
+
     @GetMapping("/index2")
-    public String index2(ModelMap modelMap, @ModelAttribute("example") ExampleModel example) {
+    public String getRedirectObjectFromSession(ModelMap modelMap, @ModelAttribute("example") ExampleModel example) {
         log.info("[index2] 获得跳转数据，将进行打印");
         printModelMap(modelMap);
 
@@ -82,10 +84,10 @@ public class ExampleController {
 
 
     @PostMapping(value = "/submit",params = {"redirect"})
-    public String redirectExample( @ModelAttribute("example") ExampleModel example, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String getRedirectStringFromRequest(@ModelAttribute("example") ExampleModel example, RedirectAttributes redirectAttributes){
         log.info("[跳转按钮]");
 
-        redirectAttributes.addAttribute("testAddAttribute", "哈哈哈");
+        redirectAttributes.addAttribute(redirectString, "哈哈哈");
         return "redirect:/example/index3";
     }
 
@@ -93,7 +95,7 @@ public class ExampleController {
      * @param msg 获得request的 parameter
      */
     @GetMapping("/index3")
-    public String index3(ModelMap modelMap, @ModelAttribute("example") ExampleModel example, @RequestParam("testAddAttribute") String msg) {
+    public String index3(ModelMap modelMap, @ModelAttribute("example") ExampleModel example, @RequestParam(redirectString) String msg) {
         log.info("[index3] 获得跳转数据，将进行打印");
         printModelMap(modelMap);
         log.info("testAddAttribute: {}",msg);
