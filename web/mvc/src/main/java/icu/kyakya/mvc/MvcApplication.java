@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @Import(MybatisConfig.class)
-
 public class MvcApplication {
 
 	public static void main(String[] args) {

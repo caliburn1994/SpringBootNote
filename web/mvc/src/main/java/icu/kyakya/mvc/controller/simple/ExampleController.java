@@ -1,4 +1,4 @@
-package icu.kyakya.mvc.controller;
+package icu.kyakya.mvc.controller.simple;
 
 import icu.kyakya.mvc.model.ExampleModel;
 import lombok.extern.slf4j.Slf4j;
@@ -10,10 +10,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-@Controller
+@Controller("controller.simple.example")
 @RequestMapping("/example")
 @Slf4j
-public class Example {
+public class ExampleController {
 
     /**
      * Model和ModelMap的用法基本一样，没必要去纠结用哪个
@@ -91,11 +91,10 @@ public class Example {
 
     /**
      * @param msg 获得request的 parameter
-     * @return
      */
     @GetMapping("/index3")
     public String index3(ModelMap modelMap, @ModelAttribute("example") ExampleModel example, @RequestParam("testAddAttribute") String msg) {
-        log.info("[index2] 获得跳转数据，将进行打印");
+        log.info("[index3] 获得跳转数据，将进行打印");
         printModelMap(modelMap);
         log.info("testAddAttribute: {}",msg);
 
