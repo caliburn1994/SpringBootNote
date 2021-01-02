@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
-@Controller("controller.session.example2")
+@Controller("controller.session.httpSession.example")
 @Slf4j
 public class HttpSessionController {
 
@@ -24,9 +24,10 @@ public class HttpSessionController {
                     return s;
                 });
 
+        // op
         sessionModel.count = sessionModel.count + 1;
 
+        // response
         return sessionModel.count + "";
-
     }
 }
