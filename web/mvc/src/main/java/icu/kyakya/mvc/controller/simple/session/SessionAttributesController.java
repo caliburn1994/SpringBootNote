@@ -1,19 +1,22 @@
 package icu.kyakya.mvc.controller.simple.session;
 
 import icu.kyakya.mvc.model.session.SessionModel;
-import org.springframework.boot.Banner;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.StringJoiner;
 
-@Controller("controller.session.example1")
+@Controller("controller.session.SessionAttributes.example")
 @SessionAttributes("sessionModel")
-public class SessionAttributesController1 {
+public class SessionAttributesController {
 
     @ModelAttribute("sessionModel")
     public SessionModel getSessionModel(Model model) {
@@ -26,7 +29,7 @@ public class SessionAttributesController1 {
         var rsl = new StringJoiner("\n");
 
         // print content of session
-        Optional.ofNullable(Collections.list(httpSession.getAttributeNames())).filter(e->e.size()>0)
+        Optional.of(Collections.list(httpSession.getAttributeNames())).filter(e->e.size()>0)
                 .ifPresentOrElse(
                         (e) -> e.forEach(entry -> rsl.add(httpSession.getAttribute(entry).toString())),
                         () -> rsl.add("HttpSession 未添加 sessionModel"));
