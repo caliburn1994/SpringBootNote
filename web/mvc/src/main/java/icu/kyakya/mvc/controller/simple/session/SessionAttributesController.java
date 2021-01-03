@@ -32,7 +32,7 @@ public class SessionAttributesController {
         Optional.of(Collections.list(httpSession.getAttributeNames())).filter(e->e.size()>0)
                 .ifPresentOrElse(
                         (e) -> e.forEach(entry -> rsl.add(httpSession.getAttribute(entry).toString())),
-                        () -> rsl.add("HttpSession 未添加 sessionModel"));
+                        () -> rsl.add("nothing in HttpSession"));
 
 
         // op
