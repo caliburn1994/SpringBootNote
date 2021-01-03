@@ -1,9 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.0'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id 'java'
     id "io.freefair.lombok" version "5.3.0" // https://projectlombok.org/setup/gradle
-
 }
 
 group = 'icu.kyakya.orm'
@@ -19,30 +15,31 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('testcontainersVersion', "1.15.0")
-}
+
 
 dependencies {
-    implementation 'org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.2.1'
+    // mybatis
+    api 'org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.2.1'
+    api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
     implementation 'org.mybatis.generator:mybatis-generator-core:1.4.0'
 
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
+
+    // spring
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    //dev
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'mysql:mysql-connector-java'
-    runtimeOnly 'com.h2database:h2'
-
-    implementation 'org.testcontainers:mysql'
-
-
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // db
+    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.h2database:h2'
+
+
+    // test
+    implementation 'org.testcontainers:mysql'
     compileOnly 'org.testcontainers:junit-jupiter'
-
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-
 }
 
 dependencyManagement {

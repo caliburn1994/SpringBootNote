@@ -1,9 +1,4 @@
-plugins {
-	id 'org.springframework.boot' version '2.4.1'
-	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'java'
-
-}
+plugins {}
 
 group = 'icu.kyakya'
 version = '0.0.1-SNAPSHOT'
@@ -38,7 +33,7 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 
 
-	implementation 'org.slf4j:slf4j-ext:1.7.30'
+	implementation 'org.slf4j:slf4j-ext:1.7.30' // todo
 
 
 	// mybatis模块

@@ -4,18 +4,32 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/6.7.1/samples
  */
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 
-
-plugins {
-    id 'java'
-    id("java-library")
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.4.1"
+    }
 }
 
 
 allprojects {
+    apply plugin: "io.spring.dependency-management"
     apply plugin: 'eclipse'
     apply plugin: 'idea'
-    apply plugin: 'eclipse'
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: "org.springframework.boot"
+
+    ext {
+        // test
+        testcontainersVersion = "1.15.0"
+
+
+    }
 
     // 下载源码
     idea {
@@ -55,6 +69,11 @@ allprojects {
         jcenter()
         mavenCentral()
         gradlePluginPortal()
+    }
+
+
+    project.ext.dependencyStrings = {
+
     }
 
 
