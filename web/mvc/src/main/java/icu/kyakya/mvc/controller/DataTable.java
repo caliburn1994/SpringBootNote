@@ -2,10 +2,9 @@ package icu.kyakya.mvc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import icu.kyakya.mvc.model.Page;
+import icu.kyakya.mvc.service.UserService;
 import icu.kyakya.orm.mybatis.domain.User;
-import icu.kyakya.orm.mybatis.service.UserService;
 import lombok.extern.slf4j.XSlf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,14 +18,16 @@ import java.util.List;
 @XSlf4j
 public class DataTable {
 
+    final UserService userService;
+
+    public DataTable(UserService userService) {
+        this.userService = userService;
+    }
+
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public ModelAndView staticPage(@PathVariable String name) {
         return new ModelAndView("datatable/" + name);
     }
-
-
-    @Autowired
-    UserService userService;
 
     /**
      * ref: https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
