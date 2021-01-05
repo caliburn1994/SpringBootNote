@@ -2,7 +2,7 @@ package icu.kyakya.mvc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import icu.kyakya.mvc.model.Page;
-import icu.kyakya.mvc.service.UserService;
+import icu.kyakya.orm.mybatis.service.UserService;
 import icu.kyakya.orm.mybatis.domain.User;
 import lombok.extern.slf4j.XSlf4j;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * http://localhost:8888/datatable/example1
+ * http://localhost:8888/datatable/example2
+ */
 @Controller
 @RequestMapping("/datatable")
 @XSlf4j
@@ -30,6 +34,7 @@ public class DataTable {
     }
 
     /**
+     *
      * ref: https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
      */
     @ResponseBody
@@ -37,24 +42,12 @@ public class DataTable {
     public Page<User> example2(Model model) throws JsonProcessingException {
         List<User> users = userService.selectAllOrInit();
 
-
         //https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
         return new Page<>(users);
     }
 
-//    @RequestMapping("/index")
-//    public ModelAndView index(ModelMap modelMap) {
-//        return new ModelAndView("/page/datatable/index");
-//    }
-
-//    @RequestMapping("/search")
-//    public ModelAndView search(ModelMap modelMap) {
-//
-//        return new ModelAndView();
-//    }
-
     @ModelAttribute
     public void commonModelAttribute(ModelMap modelMap) {
-        //todo 若干个controller共同的ModelAttribute，此处存储静态信息。
+        // for render
     }
 }

@@ -21,14 +21,14 @@
     </tr>
     </thead>
 </table>
-<script th:inline="javascript">
-    // ...
-    var context = /*[[@{/}]]*/''
-    // ...
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    const context = /*[[@{/datatable/example2_data}]]*/'';
+    /*]]>*/
 
     $(document).ready(function () {
         $('#example').DataTable({
-            ajax: context + '/datatable/example2_data',
+            ajax: context ,
             processing: true,
             columns: [
                 {"data": "name"},
