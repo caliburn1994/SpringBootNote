@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: headerFragment">
+    <title id="pageTitle">通过Ajax发送Form数据</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/example/submit}" th:object="${example}" method="post">
+    <p>controller传进来的数据: <input type="text" th:field="*{field1}"/></p>
+    <p>校验器（最大为30）: <input type="text" th:field="*{field2}"/></p>
+    <p><input type="submit" value="Submit"/>
+</form>
+
+<span id="errs" style="color: red"></span>
+
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    const context = /*[[@{/simple/form/ajaxAction}]]*/'';
+    /*]]>*/
+    $.post(context, $('form').serializeArray(), function (result) {
+        console.log(result)
+        $("#errs").html(result)
+    });
+</script>
+</body>
+</html>
