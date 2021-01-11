@@ -15,7 +15,7 @@ $(FIRST_GOAL) ::
 	@echo "Starting make..."
 	chmod -R 777 ./
 
-all :: install_gradle install_docker
+all :: gradle docker
 
 .PHONY: gradle
 gradle::
