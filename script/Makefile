@@ -25,6 +25,11 @@ gradle::
 docker::
 	./install_docker.sh
 
+
+.PHONY: ubuntu
+ubuntu::
+	./ubuntu.sh
+
 #Postprocessing
 $(LAST_GOAL) ::
 	@echo "All done..."
