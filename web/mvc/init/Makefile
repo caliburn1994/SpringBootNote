@@ -1,3 +1,11 @@
+.PHONY : redis
+
+
+# check
+ZSH_RESULT:=$(shell zsh myscript.zsh)
+
+
+
 SHELL := /bin/bash
 PATH := $(shell dirname $(shell which java)):$(PATH)
 
@@ -26,3 +34,9 @@ initJavaProject:
 
 
 
+
+init:
+	cd
+
+redis: init
+	bash  ./redis/init.sh
