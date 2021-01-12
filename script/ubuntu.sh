@@ -11,6 +11,7 @@ sudo apt-get install -y git
 # ssh
 sudo apt install -y openssh-server
 
-# make
+# others
 sudo apt install -y make
 sudo apt-get install -y -y curl
+sudo apt-get install -y vim

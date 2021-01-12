@@ -23,7 +23,7 @@ gradle::
 
 .PHONY: docker
 docker::
-	./install_docker.sh
+	# ./install_docker.sh 稍后修改
 
 
 .PHONY: ubuntu
@@ -33,3 +33,6 @@ ubuntu::
 #Postprocessing
 $(LAST_GOAL) ::
 	@echo "All done..."
+
+
+# todo if error run another ubuntu.sh
