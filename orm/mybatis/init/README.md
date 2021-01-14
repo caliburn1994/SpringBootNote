@@ -1,4 +1,4 @@
-启动docker容器，用于提高mybatis生成map代码
+启动docker容器，用于生成mybatis生成map代码
 ```shell
 make initDocker
 ```
