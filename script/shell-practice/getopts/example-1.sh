@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# ref https://cloud.tencent.com/developer/article/1529851
+
+
 Usage() {
   echo "Usage:
     test.sh [-j S_DIR] [-m D_DIR]

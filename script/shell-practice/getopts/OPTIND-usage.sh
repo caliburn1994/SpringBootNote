@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# ref https://cloud.tencent.com/developer/article/1529851
+
 echo "$@"
 while getopts ":a:bc:" opt
 do
