@@ -16,15 +16,14 @@ upload="false"
 
 # 选项
 is_correct_usage=true
-while getopts 'h:j:m:u' OPT; do
+while getopts 'j:m:uh' OPT; do
   case $OPT in
   j) S_DIR="$OPTARG" ;;
   m) D_DIR="$OPTARG" ;;
   u) upload="true" ;;
-  h | ?)
-    echo "unknown usage"
-    usage
-    ;;
+  h) usage;;
+  ?) echo "unknown usage"
+     usage;;
   esac
 done
 
