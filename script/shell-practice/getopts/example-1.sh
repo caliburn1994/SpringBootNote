@@ -2,8 +2,7 @@
 
 # ref https://cloud.tencent.com/developer/article/1529851
 
-
-Usage() {
+usage() {
   echo "Usage:
     test.sh [-j S_DIR] [-m D_DIR]
 Description:
@@ -24,16 +23,16 @@ while getopts 'h:j:m:u' OPT; do
   u) upload="true" ;;
   h | ?)
     echo "unknown usage"
-    Usage ;;
+    usage
+    ;;
   esac
 done
 
 # 没有选项
 if [ $OPTIND -eq 1 ] || [ $is_correct_usage = false ]; then
   echo "non-option"
-  Usage
+  usage
 fi
-
 
 # 主函数
 echo $S_DIR
