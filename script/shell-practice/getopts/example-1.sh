@@ -16,7 +16,6 @@ usage() {
 upload="false"
 
 # 选项
-is_correct_usage=true
 while getopts 'j:m:uh' OPT; do
   case $OPT in
   j) S_DIR="$OPTARG" ;;
@@ -28,11 +27,11 @@ while getopts 'j:m:uh' OPT; do
 done
 
 # 没有选项
-if [ $OPTIND -eq 1 ] || [ $is_correct_usage = false ]; then
+if [ $OPTIND -eq 1 ] ; then
   usage "non-option error.\n  "
 fi
 
 # 主函数
-echo $S_DIR
-echo $D_DIR
-echo $upload
+echo "S_DIR=$S_DIR"
+echo "D_DIR=$D_DIR"
+echo "upload=$upload"
