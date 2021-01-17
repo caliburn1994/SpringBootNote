@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+. "../install/java.sh"
+
 root_dir="$(cd ../../; pwd)"
 
 . "${root_dir}/script/color.sh"
