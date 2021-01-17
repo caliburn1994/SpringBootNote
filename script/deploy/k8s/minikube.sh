@@ -20,4 +20,3 @@ fi
 
 minikube start
 kubectl get po -A
-minikube dashboard
