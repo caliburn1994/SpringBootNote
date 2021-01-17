@@ -39,24 +39,3 @@ initDocker:
 destroy:
 	docker container stop $(CONTAINER_NAME)
 	docker container rm $(CONTAINER_NAME)
-
-
-
-groupId := icu.kyakya.orm
-module_name := $(notdir $(ROOT_DIR))
-gradle_prefix := cd $(ROOT_DIR) ; $(ROOT_DIR)/gradlew
-generate_path := $(groupId).$(module_name)
-
-xml_file_path := $(ROOT_DIR)/src/test/resources/mybatis
-
-initJavaProject:
-	# https://github.com/mybatis/spring-boot-starter/wiki/Quick-Start
-	curl -s https://start.spring.io/starter.tgz\
-		   -d name=$(module_name) \
-		   -d artifactId=$(module_name) \
-		   -d groupId=$(groupId) \
-		   -d type=gradle-project \
-		   -d dependencies=lombok,devtools,configuration-processor,mysql,mybatis,testcontainers \
-		   -d baseDir=$(module_name) \
-		   | tar -xzvf - -C $(shell dirname $(ROOT_DIR))
-	sleep 2
