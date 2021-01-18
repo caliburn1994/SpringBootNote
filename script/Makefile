@@ -10,29 +10,25 @@ endif
 .PHONY: all
 all ::
 
-#Preprocessing
 $(FIRST_GOAL) ::
-	@echo "Starting make..."
+	@echo "Starting Root Makefile..."
 	chmod -R 777 ./
 
 all :: gradle docker
 
 .PHONY: gradle
 gradle::
-	./install_gradle.sh
+	./install/java.sh
 
 .PHONY: docker
 docker::
-	# ./install_docker.sh 稍后修改
-
+	./deploy/docker.sh
 
 .PHONY: ubuntu
 ubuntu::
 	./ubuntu.sh
 
-#Postprocessing
 $(LAST_GOAL) ::
-	@echo "All done..."
+	@echo "Root Makefile..."
 
 
-# todo if error run another ubuntu.sh

@@ -18,5 +18,5 @@ if ! type -p minikube &>/dev/null; then
   rm minikube_latest_amd64.deb
 fi
 
-minikube start
-kubectl get po -A
+
+
