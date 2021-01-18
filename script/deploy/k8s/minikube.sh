@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
+if [[ -z "${SpringBootNote_path}" ]]; then
+  SpringBootNote_path="$( cd "$( dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd )"
+fi
+. "${SpringBootNote_path}/script/deploy/docker.sh"
+
 # install kubectl
 if ! type -p kubectl &>/dev/null; then
 

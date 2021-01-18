@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-
-. "$(dirname "$0")"/../color.sh
 set -e
+if [[ -z "${SpringBootNote_path}" ]]; then
+  SpringBootNote_path="$( cd "$( dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd )"
+fi
+. "${SpringBootNote_path}/script/color.sh"
 green=green
 reset=reset
 
