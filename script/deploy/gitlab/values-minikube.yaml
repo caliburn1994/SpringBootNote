@@ -8,9 +8,6 @@ global:
   ingress:
     configureCertmanager: false
     class: "nginx"
-  hosts:
-    domain: 192.168.99.100.nip.io
-    externalIP: 192.168.99.100
   shell:
     # Configure the clone link in the UI to include the high-numbered NodePort
     # value from below (`gitlab.gitlab-shell.service.nodePort`)
