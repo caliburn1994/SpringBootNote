@@ -27,6 +27,11 @@ if ! type -p minikube &>/dev/null; then
   sudo dpkg -i minikube_latest_amd64.deb
   rm minikube_latest_amd64.deb
 
+  # auto completion
+  # shellcheck disable=SC1090
+  source <(minikube completion bash)
+  echo "source <(minikube completion bash)" >> ~/.bashrc
+
   minikube addons enable ingress
 fi
 
