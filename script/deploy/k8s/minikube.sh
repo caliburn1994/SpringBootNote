@@ -13,6 +13,11 @@ if ! type -p kubectl &>/dev/null; then
   chmod +x ./kubectl
   sudo mv ./kubectl /usr/local/bin/kubectl
   kubectl version --client
+
+  # auto completion
+  # shellcheck disable=SC1090
+  source <(kubectl completion bash)
+  echo "source <(kubectl completion bash)" >> ~/.bashrc
 fi
 
 # install minikube

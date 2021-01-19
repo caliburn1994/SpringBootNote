@@ -1,17 +1,19 @@
-
-
 start:
-	sudo minikube start
+	minikube start
+	minikube dashboard
 
 stop:
 	minikube stop
 	docker container ls
 
-check:
+check1:
 	docker container ls
 
+check2:
+	kubectl get po -A
+
+
 dashboard:
-	minikube dashboard
 
 bug:
 	#重新开机
