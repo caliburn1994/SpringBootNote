@@ -15,7 +15,7 @@ sudo apt install -y openssh-server
 sudo apt install -y make
 sudo apt-get install -y -y curl
 sudo apt-get install -y vim
-
+sudo snap install notepad-plus-plus  # notepad++
 
 # https://support.typora.io/Typora-on-Linux/
 wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
