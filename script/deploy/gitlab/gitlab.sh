@@ -17,10 +17,9 @@ function install() {
     --set global.hosts.externalIP="$(minikube ip)" \
     -f ./values-minikube.yaml
 
-    echo "user: root"
-    echo "password:"
-    kubectl get secret gitlab-gitlab-initial-root-password -ojsonpath='{.data.password}' | base64 --decode ; echo
+  echo "user: root
+  password: $(kubectl get secret gitlab-gitlab-initial-root-password -ojsonpath='{.data.password}' | base64 --decode ; echo)
+  site: https://gitlab.$(minikube ip).nip.io"
 }
-
 
 install
