@@ -1,4 +1,4 @@
-package icu.kyakya.mvc.controller.simple;
+package icu.kyakya.mvc.controller.html.example;
 
 import icu.kyakya.mvc.model.ExampleModel;
 import lombok.extern.slf4j.Slf4j;

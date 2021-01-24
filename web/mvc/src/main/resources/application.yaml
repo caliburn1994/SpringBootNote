@@ -1,8 +1,8 @@
 server:
   port: 8888
   address: 0.0.0.0
-#  servlet:
-#    context-path: /web
+  servlet:
+    context-path: /web
 
 # 开发时，禁止缓存，方便常看页面更新
 # https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/howto.html#howto-hotswapping
