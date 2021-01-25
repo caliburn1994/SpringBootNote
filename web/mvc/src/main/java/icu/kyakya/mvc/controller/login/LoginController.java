@@ -16,15 +16,13 @@ public class LoginController {
 
 
     @GetMapping("/login")
-    public String index(ModelMap modelMap) { // <-- ModelMap将自动传入 exampleModel() 和 commonModelAttribute(ModelMap modelMap) 数值
-        modelMap.addAttribute("message", "初始化数据");
+    public String index(ModelMap modelMap) {
         return "login";
     }
 
     @PostMapping(value = "/login",produces= MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String login(UserModel userModel) {
-
         return "login";
     }
 }

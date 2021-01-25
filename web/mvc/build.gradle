@@ -20,16 +20,21 @@ ext {
 }
 
 dependencies {
+	// web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// web+security
+	implementation 'org.apache.shiro:shiro-spring-boot-starter:1.7.0'
+
 	// html模板框架
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
+	// other
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.testcontainers:junit-jupiter'
 
 
