@@ -17,6 +17,8 @@ buildscript {
 
 
 allprojects {
+    group "icu.kyakya"
+
     apply plugin: "io.spring.dependency-management"
     apply plugin: 'eclipse'
     apply plugin: 'idea'
@@ -27,8 +29,6 @@ allprojects {
     ext {
         // test
         testcontainersVersion = "1.15.0"
-
-
     }
 
     // 下载源码
@@ -89,4 +89,13 @@ allprojects {
         failOnError = false
     }
 
+    // allow no main project
+    bootJar {
+        enabled = false
+    }
+
+    jar {
+        enabled = true
+    }
+    //
 }

@@ -52,13 +52,6 @@ test {
     useJUnitPlatform()
 }
 
-bootJar {
-    enabled = false
-}
-
-jar {
-    enabled = true
-}
 
 task mybatisGenerator(type: Test) {
     useJUnitPlatform()
