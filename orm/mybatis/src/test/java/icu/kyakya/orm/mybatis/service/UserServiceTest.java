@@ -61,24 +61,24 @@ class UserServiceTest {
     /**
      * transaction测试什么时候会回滚
      */
-    @Test
-    public void testTransaction() {
-        User userPo = new User();
-        userPo.setCreateTime(new Date());
-        try {
-            userService.insertTsTest(userPo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            userService.selectAll().forEach(user -> {
-                Date createTime = user.getCreateTime();
-                System.out.println("data in DB:"+createTime);
-                Assertions.assertNotEquals(userPo.getCreateTime().getTime(),createTime.getTime());
-            });
-            System.out.println("inserted:" + userPo.getCreateTime());
-        }
-
-    }
+//    @Test
+//    public void testTransaction() {
+//        User userPo = new User();
+//        userPo.setCreateTime(new Date());
+//        try {
+//            userService.insertTsTest(userPo);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            userService.selectAll().forEach(user -> {
+//                Date createTime = user.getCreateTime();
+//                System.out.println("data in DB:"+createTime);
+//                Assertions.assertNotEquals(userPo.getCreateTime().getTime(),createTime.getTime());
+//            });
+//            System.out.println("inserted:" + userPo.getCreateTime());
+//        }
+//
+//    }
 
 
 }
