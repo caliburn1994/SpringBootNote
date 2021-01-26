@@ -6,17 +6,18 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @EnableWebMvc
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class MvcConfig implements WebMvcConfigurer {
 
     final LocaleChangeInterceptor localeInterceptor;
 
-    public WebConfig(LocaleChangeInterceptor localeInterceptor) {
+    public MvcConfig(LocaleChangeInterceptor localeInterceptor) {
         this.localeInterceptor = localeInterceptor;
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/index");
+        registry.addViewController("/login").setViewName("login");
     }
 
 

@@ -2,9 +2,8 @@ package icu.kyakya.mvc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import icu.kyakya.mvc.model.Page;
-import icu.kyakya.orm.mybatis.service.UserService;
 import icu.kyakya.orm.mybatis.domain.User;
-import lombok.extern.slf4j.XSlf4j;
+import icu.kyakya.orm.mybatis.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -19,7 +18,6 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/datatable")
-@XSlf4j
 public class DataTable {
 
     final UserService userService;

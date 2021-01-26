@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <!-- header -->
 <head th:include="fragments/header :: headerFragment">
     <title id="page_title">Login Page</title>
@@ -17,14 +17,10 @@
         /*<![CDATA[*/
         var base_url = /*[[@{/static/css}]]*/'';
         /*]]>*/
-
         var themeName = themeSettings.themeName || '';
-        if (themeName)
-        {
+        if (themeName) {
             document.write('<link rel="stylesheet" id="theme-style" href="'+ base_url +'/app-' + themeName + '.css">');
-        }
-        else
-        {
+        } else {
             document.write('<link rel="stylesheet" id="theme-style" href="'+ base_url +'/app.css">');
         }
     </script>
@@ -48,9 +44,16 @@
                     </div> ModularAdmin
                 </h1>
             </header>
+<!--            <div th:if="${param.error}">-->
+<!--                Invalid username and password.-->
+<!--            </div>-->
+<!--            <div th:if="${param.logout}">-->
+<!--                You have been logged out.-->
+<!--            </div>-->
             <div class="auth-content">
                 <p class="text-center">LOGIN TO CONTINUE</p>
-                <form id="login-form" novalidate="">
+<!--                th:action="@{/login}" -->
+                <form id="login-form"    method='POST'>
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your email address" required>
@@ -67,7 +70,8 @@
                         <a href="reset.html" class="forgot-btn pull-right">Forgot password?</a>
                     </div>
                     <div class="form-group">
-                        <button type="button" onclick="ajax_submit('login')" class="btn btn-block btn-primary">Login</button>
+<!--                        <button type="button" onclick="ajax_submit('login')" class="btn btn-block btn-primary">Login</button>-->
+                        <button type="submit"  class="btn btn-block btn-primary">Login</button>
                     </div>
                     <div class="form-group">
                         <p class="text-muted text-center">Do not have an account? <a href="signup.html">Sign Up</a></p>
