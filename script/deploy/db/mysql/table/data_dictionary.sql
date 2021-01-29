@@ -1,5 +1,6 @@
 -- 数据字典 Data Dictionary
 -- map形式的
+-- todo key主键
 create table info
 (
     key    varchar(64)        not null comment '键',
@@ -10,6 +11,7 @@ create table info
 );
 
 -- map in map 形式
+-- todo (key,sub_key)主键
 create table info
 (
     key    varchar(64)        not null comment '键',
@@ -23,6 +25,7 @@ create table info
 
 -- 动态-1
 -- key_type 可以为json等形式，应用通过 key_type 进行初始化的判断。
+-- todo (key)主键 key_type索引
 create table info
 (
     key    varchar(64)        not null comment '键',
@@ -35,6 +38,7 @@ create table info
 
 -- 动态-2
 -- 通过 operation 可以使用">,<,in"等操作形式
+-- todo (key)主键 key_type索引，operation索引
 create table info
 (
     key    varchar(64)        not null comment '键',
@@ -45,3 +49,6 @@ create table info
     create_time timestamp     default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
     update_time timestamp     default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
 );
+
+
+-- 有必要时候，可以将各个索引拆分成表，以减少重复数据
