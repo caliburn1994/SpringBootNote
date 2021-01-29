@@ -52,3 +52,5 @@ create table info
 
 
 -- 有必要时候，可以将各个索引拆分成表，以减少重复数据
+-- 参考实例：
+-- - mysql INFORMATION_SCHEMA
