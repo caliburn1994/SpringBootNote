@@ -1,4 +1,8 @@
-plugins {}
+plugins {
+	id 'org.springframework.boot'version "${springBootVersion}"
+	id 'io.spring.dependency-management' version "${springDependencyManagement}"
+	id 'java'
+}
 
 group = 'icu.kyakya'
 version = '0.0.1-SNAPSHOT'
