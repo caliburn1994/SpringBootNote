@@ -9,22 +9,22 @@ buildscript {
         mavenCentral()
     }
 
-    dependencies {
-        classpath 'io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE'
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.4.1"
-    }
+//    dependencies {
+//        classpath 'io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE'
+//        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.4.1"
+//    }
 }
 
 
 allprojects {
     group "icu.kyakya"
 
-    apply plugin: "io.spring.dependency-management"
+//    apply plugin: "io.spring.dependency-management"
     apply plugin: 'eclipse'
     apply plugin: 'idea'
-    apply plugin: 'java'
+//    apply plugin: 'java'
     apply plugin: 'java-library'
-    apply plugin: "org.springframework.boot"
+//    apply plugin: "org.springframework.boot"
 
     ext {
         // test
@@ -79,6 +79,7 @@ allprojects {
 
     // https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper
     wrapper {
+//        jarFile =  file(System.getProperty( "user.dir") +'/gradle/wrapper/gradle-wrapper.jar')
         gradleVersion = '6.7.1'
     }
 
@@ -89,13 +90,4 @@ allprojects {
         failOnError = false
     }
 
-    // allow no main project
-    bootJar {
-        enabled = false
-    }
-
-    jar {
-        enabled = true
-    }
-    //
 }
