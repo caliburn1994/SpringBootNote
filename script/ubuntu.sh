@@ -18,9 +18,14 @@ sudo apt-get install -y vim
 sudo snap install notepad-plus-plus  # notepad++
 
 # https://support.typora.io/Typora-on-Linux/
-wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
-# add Typora's repository
-sudo add-apt-repository 'deb https://typora.io/linux ./'
-sudo apt-get update
-# install typora
-sudo apt-get install typora
+if ! type -p typora &>/dev/null; then
+  wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
+  # add Typora's repository
+  sudo add-apt-repository 'deb https://typora.io/linux ./'
+  sudo apt-get update
+  # install typora
+  sudo apt-get install typora
+fi
+
+sudo bash  ./install/java.sh
+sudo bash  ./install/microk8s.sh

@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 source "$HOME/.sdkman/bin/sdkman-init.sh"  # as login shell, because sdkman is just valid in login shell mode
 
