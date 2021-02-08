@@ -32,3 +32,8 @@ sudo bash  ./install/helm.sh
 sudo bash  ./install/microk8s.sh
 
 sudo bash ./install/db/mysql.sh
+
+
+# web
+#   front-end service
+sudo apt install npm
