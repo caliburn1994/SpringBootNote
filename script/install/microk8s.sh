@@ -23,11 +23,13 @@ if ! type -p microk8s &>/dev/null; then
       source <(helm completion bash)
       echo "source <(helm completion bash)" >>~/.bashrc
 
+      # shellcheck disable=SC2154
       helm init  || echo "${red}failed to initialize helm${reset}"
   fi
 
   # kubectl
   sudo snap alias microk8s.kubectl kubectl
+  # shellcheck disable=SC1090
   source <(kubectl completion bash)
   echo "source <(kubectl completion bash)" >>~/.bashrc
 fi

@@ -20,9 +20,15 @@ function install() {
   helm install ${container_name} bitnami/mysql --version 8.2.5 || echo "${red}fail to install mysql...${reset}"
 }
 
+if ! kubectl get service ${container_name} &>/dev/null; then
+    install
+fi
+kubectl port-forward service/${container_name} 3306:3306
 
-install
 
-echo "mysql -h my-release-mysql.default.svc.cluster.local -uroot -p my_database"
-echo "Username: root"
-echo "Password: $(kubectl get secret --namespace default ${container_name} -o jsonpath="{.data.mysql-root-password}" | base64 --decode)"
+password="$(kubectl get secret --namespace default ${container_name} -o jsonpath="{.data.mysql-root-password}" | base64 --decode)"
+cat << EOF > "${SpringBootNote_path}/config/mysql.properties"
+url=jdbc:mysql://localhost:3306
+username=root
+password=${password}
+EOF
