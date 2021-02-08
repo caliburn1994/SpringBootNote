@@ -23,7 +23,7 @@ function install() {
 if ! kubectl get service ${container_name} &>/dev/null; then
     install
 fi
-kubectl port-forward service/${container_name} 3306:3306
+kubectl port-forward service/${container_name} 3306:3306 &
 
 
 password="$(kubectl get secret --namespace default ${container_name} -o jsonpath="{.data.mysql-root-password}" | base64 --decode)"
