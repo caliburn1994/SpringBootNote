@@ -30,7 +30,7 @@ allprojects {
         // test
         testcontainersVersion = "1.15.0"
         // spring
-        springBootVersion = '2.4.1'
+        springBootVersion = '2.4.2'
         springDependencyManagement = '1.0.10.RELEASE'
     }
 
