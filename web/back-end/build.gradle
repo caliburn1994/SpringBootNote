@@ -20,6 +20,9 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// connect to mybatis
+	implementation project(':orm:mybatis')
 }
 
 test {
