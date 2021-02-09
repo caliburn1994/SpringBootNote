@@ -29,9 +29,8 @@ fi
 
 sudo bash  ./install/java.sh
 sudo bash  ./install/helm.sh
-sudo bash  ./install/microk8s.sh
 
-sudo bash ./install/db/mysql.sh
+#sudo bash ./install/db/mysql.sh
 
 
 # web

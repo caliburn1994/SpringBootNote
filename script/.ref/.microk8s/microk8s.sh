@@ -14,7 +14,8 @@ if ! type -p microk8s &>/dev/null; then
   sudo chown -f -R "${USER}" ~/.kube
 
   su ${USER} # re-login
-  microk8s enable dashboard dns registry istio helm3 # todo https://istio.io/latest/zh/docs/concepts/what-is-istio/
+  microk8s enable dashboard dns registry istio helm3 rbac ingress # todo https://istio.io/latest/zh/docs/concepts/what-is-istio/
+  microk8s enable metallb # todo
 
   # helm`
   if microk8s helm &>/dev/null; then
@@ -34,10 +35,4 @@ if ! type -p microk8s &>/dev/null; then
   echo "source <(kubectl completion bash)" >>~/.bashrc
 fi
 
-
-echo "
-${pink}Access dashboard by:
-
-    microk8s dashboard-proxy${reset}
-
-"
+microk8s dashboard-proxy &
