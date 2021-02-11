@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "installing PostgreSQL..."
+echo "Installing PostgreSQL..."
 
 
 # parameters
