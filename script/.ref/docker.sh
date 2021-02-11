@@ -7,38 +7,38 @@ fi
 green=green
 reset=reset
 
-install() {
-  if ! type -p docker &>/dev/null; then
-    echo "${green}Installing docker... ${reset}"
 
-    # https://docs.docker.com/engine/install/ubuntu/
-    sudo apt-get update
-    sudo apt-get install -y \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      gnupg-agent \
-      software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo apt-key fingerprint 0EBFCD88
+if ! type -p docker &>/dev/null; then
+  echo "${green}Installing docker... ${reset}"
 
-    sudo add-apt-repository \
-      "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-     $(lsb_release -cs) \
-     stable"
-    sudo apt-get update
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+  # https://docs.docker.com/engine/install/ubuntu/
+  sudo apt-get update
+  sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo apt-key fingerprint 0EBFCD88
 
-    # test
-    sudo docker run hello-world
-  fi
+  sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+  sudo apt-get update
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
-  if ! groups | grep docker &>/dev/null ; then
-    echo "${green}Adding current user to docker group... ${reset}"
-    # add the current user to docker group
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-  fi
+  # test
+  sudo docker run hello-world
+fi
+
+if ! groups | grep docker &>/dev/null ; then
+  echo "${green}Adding current user to docker group... ${reset}"
+  # add the current user to docker group
+  sudo groupadd docker
+  sudo usermod -aG docker "${USER}"
+fi
 
   # todo  稍后查看tcp
   # expose docker to tcp://127.0.0.1:2375
@@ -51,7 +51,3 @@ install() {
 #  sudo systemctl daemon-reload
 #  newgrp docker
 
-
-}
-
-install

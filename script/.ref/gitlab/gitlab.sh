@@ -14,7 +14,6 @@ function install() {
     --timeout 600s \
     --set global.hosts.domain="$(minikube ip).nip.io" \
     --set global.hosts.externalIP="$(minikube ip)" \
-    --set global.hosts.externalIP="$(minikube ip)" \
     -f ./values-minikube.yaml
 
   echo "user: root
