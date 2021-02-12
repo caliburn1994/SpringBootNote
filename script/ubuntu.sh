@@ -12,12 +12,13 @@ sudo apt-get install -y solaar
 sudo apt-get install -y solaar-gnome
 
 # system
-sudo apt install -y openssh-server
+sudo apt-get install -y openssh-server
 sudo apt-get install -y git
-sudo apt install -y make
+sudo apt-get install -y make
 sudo apt-get install -y -y curl
 sudo apt-get install -y vim
-sudo apt install -y net-tools
+sudo apt-get install -y net-tools
+sudo apt-get install -y jq
 
 # office
 sudo snap install notepad-plus-plus  # notepad++
