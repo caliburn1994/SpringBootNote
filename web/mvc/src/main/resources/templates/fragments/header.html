@@ -1,23 +1,17 @@
-<head th:fragment="headerFragment" xmlns:th="http://www.thymeleaf.org">
-    <title th:include=":: #page_title">Layout Generic Title </title>
-
+<div th:fragment="headerMeta" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
     <!-- meta -->
     <meta charset="UTF-8">
-    <div th:replace=":: #meta_asserts"></div>
+    <div th:replace=":: #customMeta"></div>
+</div>
 
-    <!-- datatable -->
+<div th:fragment="headerCssJs" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+    <!-- CSS and JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <div th:replace=":: #customCssJs"></div>
+</div>
 
-    <!-- css -->
-    <div th:replace=":: #css_js_asserts">
-
-    </div>
-    <!-- end -->
-</head>
-
-<div th:fragment="metadataFragment" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="MetaURL" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
     <!-- get context url-->
-    <input type="hidden" id="context_url" name="context_url" th:value="@{/}" />
+    <input type="hidden" id="context_url" name="context_url" th:value="@{/}"/>
 </div>

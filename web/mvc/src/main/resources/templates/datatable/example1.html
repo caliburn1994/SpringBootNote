@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/header :: headerFragment">
-    <title id="pageTitle">DataTable - 从文件中获取数据</title>
+<head>
+    <div th:replace="fragments/header :: headerMeta">
+        <div id="customMeta" th:remove="tag">
+            <title>DataTable - get data from a file</title>
+            <meta name="description" content="In this tutorial, we're going to render dataTable whose data is from a file">
+        </div>
+    </div>
+
+    <div th:replace="fragments/header :: headerCssJs">
+        <div id="customCssJs" th:remove="tag">
+            <!-- datatable -->
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+        </div>
+    </div>
 </head>
 <body>
+<div th:replace="fragments/header :: MetaURL"></div>
+<!-- content -->
 <table id="example" class="display" style="width:50%">
     <thead>
     <tr>
@@ -17,10 +33,11 @@
     </thead>
 </table>
 <script th:inline="javascript">
-    // ...
+    /*<![CDATA[*/
     const context = /*[[@{/}]]*/''
-    // ...
+    /*]]>*/
 
+    console.log()
     $(document).ready(function () {
         $('#example').DataTable({
             ajax: context+'static/datatable/arrays.json'
