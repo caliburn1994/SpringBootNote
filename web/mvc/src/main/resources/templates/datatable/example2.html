@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>DataTable - get data from a file</title>
+    <meta name="description" content="In this tutorial, we're going to render dataTable whose data is from a file">
 
-    <!--  datatable  -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <div th:replace="fragments/header :: headerCssJs"></div>
+    <div th:replace="fragments/header :: headerCssJs_datatable"></div>
+    <div th:replace="fragments/header :: MetaURL"></div>
 </head>
 <body>
 <table id="example" class="display" style="width:50%">
@@ -28,7 +28,7 @@
 
     $(document).ready(function () {
         $('#example').DataTable({
-            ajax: context ,
+            ajax: context,
             processing: true,
             columns: [
                 {"data": "name"},
