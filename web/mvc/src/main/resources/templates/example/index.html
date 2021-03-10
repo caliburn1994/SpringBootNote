@@ -9,11 +9,14 @@
 <p th:utext="${message2}"></p>
 
 <form action="#" th:action="@{/example/submit}" th:object="${example}" method="post">
-    <p>controller传进来的数据: <input type="text" th:field="*{field1}"/></p>
-    <p>校验器（最大为30）: <input type="text" th:field="*{field2}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
 
-    <p><input type="submit" name="redirect" value="跳转"/> </p>
+    <p><label>controller传进来的数据:
+        <input type="text" th:field="*{field1}"/></label></p>
+    <p><label>校验器（最大为30）:
+        <input type="text" th:field="*{field2}"/></label></p>
+
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    <p><input type="submit" name="redirect" value="跳转"/></p>
 
 </form>
 
