@@ -5,6 +5,35 @@
     <title>Index</title>
 </head>
 <body>
-    <a th:href="@{/datatable/example1.html}" >example1.html</a>
+<p>Get data source by a file:</p>
+<pre><code class="language-javascript" lang="javascript">$(document).ready(function () {
+    $('#example').DataTable({
+        ajax: context + 'static/datatable/arrays.json'
+    });
+});
+</code></pre>
+<p>ref:</p>
+<ul>
+    <li><a href="https://datatables.net/examples/data_sources/ajax.html" target="_blank" class="url">Example code in the
+        official site</a></li>
+    <li><a th:href="@{/datatable/example1.html}" target="_blank" class="url">Example in this project</a></li>
+</ul>
+
+<p></p>
+<p>Get data source by controller :</p>
+<pre><code class="language-javascript" lang="javascript">$(document).ready(function() {
+    $('#example').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": "scripts/server_processing.php"
+    } );
+} );
+</code></pre>
+<p>ref:</p>
+<ul>
+    <li><a href="https://datatables.net/examples/server_side/simple.html">Example code in the official site</a></li>
+    <li><a th:href="@{/datatable/example2.html}" target="_blank" class="url">Example in this project</a></li>
+</ul>
+
 </body>
 </html>

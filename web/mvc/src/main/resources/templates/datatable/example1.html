@@ -10,17 +10,7 @@
     <div th:replace="fragments/header :: MetaURL"></div>
 </head>
 <body>
-<p>You can read data source directly like this:</p>
-<pre><code class="language-javascript" lang="javascript">$(document).ready(function () {
-    $('#example').DataTable({
-        ajax: context + 'static/datatable/arrays.json'
-    });
-});
-</code></pre>
-<p>ref:</p>
-<ul>
-    <li><a href="https://datatables.net/examples/data_sources/ajax.html" target="_blank" class="url">https://datatables.net/examples/data_sources/ajax.html</a></li>
-</ul>
+
 <table id="example" class="display" style="width:50%">
     <thead>
     <tr>
