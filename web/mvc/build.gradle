@@ -19,7 +19,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	// html模板框架
+	// html template
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 	// other
@@ -33,7 +33,7 @@ dependencies {
 	implementation 'org.slf4j:slf4j-ext:1.7.30' // todo
 
 
-	// mybatis模块
+	// mybatis module
 	implementation project(':orm:mybatis')
 }
 
