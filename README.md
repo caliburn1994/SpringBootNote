@@ -1,7 +1,14 @@
-# SpringBoot
+## Github
 
+### dependabot
 
+> Dependabot creates pull requests to keep your dependencies secure and up-to-date.<sup>[[official](https://dependabot.com/)]</sup>
 
-# IDE插件
+- [how to configure dependabot?](https://dependabot.com/docs/config-file/)
+- Config file in this project: [here](./.github/dependabot.yml)
 
-- https://plugins.jetbrains.com/plugin/7125-grep-console 给控制台标上颜色，也可以进行简单的内容筛选
+# IDE plug-in
+
+[**Grep Console**](https://plugins.jetbrains.com/plugin/7125-grep-console )
+
+> use to grep everything in Console
