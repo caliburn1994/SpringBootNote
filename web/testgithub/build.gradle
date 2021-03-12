@@ -1,0 +1,17 @@
+plugins {
+	id 'org.springframework.boot'version "${springBootVersion}"
+	id 'io.spring.dependency-management' version "${springDependencyManagement}"
+	id 'java'
+}
+
+version = '0.0.1-SNAPSHOT'
+
+
+dependencies {
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.19'
+}
+
+
+test {
+	useJUnitPlatform()
+}
