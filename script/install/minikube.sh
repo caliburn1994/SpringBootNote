@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
+# set root dir
+# import color dependencies
 if [[ -z "${SpringBootNote_path}" ]]; then
   SpringBootNote_path="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd)"
 fi
 . "${SpringBootNote_path}/script/color.sh"
 
-echo "${pink}Checking minikube...${reset}"
 
+echo "${pink}Checking minikube...${reset}"
+# install docker
 if ! type -p docker &>/dev/null; then
   echo "${pink}Installing docker...${reset}"
 
@@ -71,10 +74,11 @@ if ! type -p minikube &>/dev/null; then
   echo "source <(minikube completion bash)" >>~/.bashrc
 
   minikube addons enable ingress
-fi
 
-if ! minikube status &>/dev/null; then
-  minikube start
+  # run minikube when boot up
+  envsubst < "${SpringBootNote_path}/config/minibube-custom-template.service" > "${SpringBootNote_path}/config/minibube-custom.service"
+  sudo cp "${SpringBootNote_path}/config/minibube-custom.service"  /etc/systemd/system/
+  sudo systemctl daemon-reload
+  sudo systemctl enable minibube-custom.service
+  sudo systemctl start minibube-custom.service
 fi
-
-minikube dashboard &
