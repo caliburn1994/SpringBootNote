@@ -2,7 +2,7 @@
 
 ### dependabot
 
-> Dependabot creates pull requests to keep your dependencies secure and up-to-date.<sup>[[official](https://dependabot.com/)]</sup>
+> Dependabot creates pull requests to keep your dependencies secure and up-to-date.<sup>[[official]](https://dependabot.com/)</sup>
 
 - Config file in this project: [here](./.github/dependabot.yml)
 
@@ -11,3 +11,7 @@
 [**Grep Console**](https://plugins.jetbrains.com/plugin/7125-grep-console )
 
 > use to grep everything in Console
+
+[Unit File Support (systemd)](https://plugins.jetbrains.com/plugin/11070-unit-file-support-systemd-)
+
+> for systemd
