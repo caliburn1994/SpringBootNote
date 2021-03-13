@@ -4,7 +4,6 @@
 
 > Dependabot creates pull requests to keep your dependencies secure and up-to-date.<sup>[[official](https://dependabot.com/)]</sup>
 
-- [how to configure dependabot?](https://dependabot.com/docs/config-file/)
 - Config file in this project: [here](./.github/dependabot.yml)
 
 # IDE plug-in
