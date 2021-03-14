@@ -2,10 +2,10 @@
 
 # set root dir
 # import color dependencies
-if [[ -z "${SpringBootNote_path}" ]]; then
-  SpringBootNote_path="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd)"
+if [[ -z "${PROJECT_ROOT_PATH}" ]]; then
+  PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd)"
 fi
-. "${SpringBootNote_path}/script/color.sh"
+. "${PROJECT_ROOT_PATH}/script/color.sh"
 
 
 echo "${pink}Checking minikube...${reset}"
@@ -76,8 +76,10 @@ if ! type -p minikube &>/dev/null; then
   minikube addons enable ingress
 
   # run minikube when boot up
-  envsubst < "${SpringBootNote_path}/config/minibube-custom-template.service" > "${SpringBootNote_path}/config/minibube-custom.service"
-  sudo cp "${SpringBootNote_path}/config/minibube-custom.service"  /etc/systemd/system/
+  SERVICE_CONFIG_LOCATION="${PROJECT_ROOT_PATH}/config/minibube/minibube-custom.service"
+  SERVICE_CONFIG_TEMPLATE_LOCATION="${PROJECT_ROOT_PATH}/config/minibube/minibube-custom-template.service"
+  envsubst < "${SERVICE_CONFIG_TEMPLATE_LOCATION}" > "${SERVICE_CONFIG_LOCATION}"
+  sudo cp "${SERVICE_CONFIG_LOCATION}"  /etc/systemd/system/
   sudo systemctl daemon-reload
   sudo systemctl enable minibube-custom.service
   sudo systemctl start minibube-custom.service

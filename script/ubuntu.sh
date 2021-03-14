@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # ubuntu 20
 
-if [[ -z "${SpringBootNote_path}" ]]; then
-  SpringBootNote_path="$( cd "$( dirname "${BASH_SOURCE[0]}")"/.. >/dev/null 2>&1 && pwd )"
+if [[ -z "${PROJECT_ROOT_PATH}" ]]; then
+  PROJECT_ROOT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}")"/.. >/dev/null 2>&1 && pwd )"
 fi
-. "${SpringBootNote_path}/script/color.sh"
+. "${PROJECT_ROOT_PATH}/script/color.sh"
 
 
 # desktop
@@ -38,12 +38,12 @@ sudo apt-get install -y net-tools
 sudo apt-get install -y jq
 
 # development tools
-bash  ${SpringBootNote_path}/script/install/java.sh # java
+bash  ${PROJECT_ROOT_PATH}/script/install/java.sh # java
 sudo apt install -Y npm # front-end
 
 # local cloud
-bash  ${SpringBootNote_path}/script/install/helm.sh
-bash  ${SpringBootNote_path}/script/install/minikube.sh
+bash  ${PROJECT_ROOT_PATH}/script/install/helm.sh
+bash  ${PROJECT_ROOT_PATH}/script/install/minikube.sh
 
 # db
-bash ${SpringBootNote_path}/script/install/db/mysql.sh
+bash ${PROJECT_ROOT_PATH}/script/install/db/mysql.sh

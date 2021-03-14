@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # root dir and dependencies
-if [[ -z "${SpringBootNote_path}" ]]; then
-  SpringBootNote_path="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
+if [[ -z "${PROJECT_ROOT_PATH}" ]]; then
+  PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
 fi
-. "${SpringBootNote_path}/script/color.sh"
-. "${SpringBootNote_path}/script/install/db/psql.sh"
+. "${PROJECT_ROOT_PATH}/script/color.sh"
+. "${PROJECT_ROOT_PATH}/script/install/db/psql.sh"
 
 # https://docs.gitlab.com/charts/development/minikube/
 if ! kubectl get pods | grep gitlab &>/dev/null; then
@@ -18,21 +18,16 @@ if ! kubectl get pods | grep gitlab &>/dev/null; then
   ip="$(minikube ip)"
   export ip
 
-  config_file="${SpringBootNote_path}/config/gitlab.yaml"
-  envsubst < "${SpringBootNote_path}/config/gitlab-template.yaml" > "${config_file}"
+  CONFIG_FILE_LOCATION="${PROJECT_ROOT_PATH}/config/gitlab/gitlab.yaml"
+  CONFIG_FILE_TEMPLATE_LOCATION="${PROJECT_ROOT_PATH}/config/gitlab/gitlab-template.yaml"
+  envsubst < "${CONFIG_FILE_TEMPLATE_LOCATION}" > "${CONFIG_FILE_LOCATION}"
 
   helm upgrade --install gitlab gitlab/gitlab \
     --timeout 600s \
-    -f "$config_file"
-
-  #    --set postgresql.install=false \
-  #    --set global.psql.host=${POSTGRES_K8S_SERVICE} \
-  #    --set global.psql.password.secret=${POSTGRES_K8S_SERVICE} \
-  #    --set global.psql.database.secret=postgres \
-  #    --set global.psql.password.key=postgresql-password \
+    -f "$CONFIG_FILE_LOCATION"
 
 
-  cat << EOF > "${SpringBootNote_path}/config/bin/open-gitlab.sh"
+  cat << EOF > "${PROJECT_ROOT_PATH}/config/bin/open-gitlab.sh"
 #!/usr/bin/env bash
 echo "user: root"
 echo password: $(

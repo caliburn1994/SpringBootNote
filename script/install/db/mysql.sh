@@ -4,10 +4,10 @@
 container_name="mysql-cluster"
 
 # root dir and dependencies
-if [[ -z "${SpringBootNote_path}" ]]; then
-  SpringBootNote_path="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
+if [[ -z "${PROJECT_ROOT_PATH}" ]]; then
+  PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
 fi
-. "${SpringBootNote_path}/script/color.sh"
+. "${PROJECT_ROOT_PATH}/script/color.sh"
 
 
 echo "${pink}Checking mysql...${reset}"
@@ -27,7 +27,7 @@ kubectl port-forward service/${container_name} 3306:3306 &
 
 # output result
 password="$(kubectl get secret --namespace default ${container_name} -o jsonpath="{.data.mysql-root-password}" | base64 --decode)"
-cat <<EOF > "${SpringBootNote_path}/config/mysql.properties"
+cat <<EOF > "${PROJECT_ROOT_PATH}/config/db/mysql.properties"
 url=jdbc:mysql://localhost:3306
 username=root
 password=${password}
