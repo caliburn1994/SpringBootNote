@@ -20,13 +20,20 @@ if ! kubectl get service "${POSTGRES_K8S_SERVICE}" &>/dev/null; then
   helm repo add bitnami https://charts.bitnami.com/bitnami
   helm install ${POSTGRES_K8S_BASENAME} bitnami/postgresql --version 10.2.2
 fi
-kubectl port-forward --namespace default svc/psql-cluster-postgresql 5432:5432 &
 
 # output result
 POSTGRES_PASSWORD="$(kubectl get secret --namespace default ${POSTGRES_K8S_SERVICE} -o jsonpath="{.data.postgresql-password}" | base64 --decode)"
 export POSTGRES_PASSWORD
 export POSTGRES_USERNAME="postgres"
 export POSTGRES_URL="jdbc:postgresql://localhost:5432/postgres"
+
+SERVICE_CONFIG_LOCATION="${PROJECT_ROOT_PATH}/config/db/psql-custom.service"
+envsubst < "./psql-custom-template.service" > "${SERVICE_CONFIG_LOCATION}"
+sudo cp "${SERVICE_CONFIG_LOCATION}"  /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable psql-custom.service
+sudo systemctl start psql-custom.service
+
 
 cat <<EOF >"${PROJECT_ROOT_PATH}/config/db/psql.properties"
 url=${POSTGRES_URL}
