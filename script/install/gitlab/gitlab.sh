@@ -18,8 +18,8 @@ if ! kubectl get pods | grep gitlab &>/dev/null; then
   ip="$(minikube ip)"
   export ip
 
-  CONFIG_FILE_LOCATION="${PROJECT_ROOT_PATH}/config/gitlab/gitlab.yaml"
-  CONFIG_FILE_TEMPLATE_LOCATION="${PROJECT_ROOT_PATH}/config/gitlab/gitlab-template.yaml"
+  CONFIG_FILE_LOCATION="./gitlab.yaml"
+  CONFIG_FILE_TEMPLATE_LOCATION="./gitlab-template.yaml"
   envsubst < "${CONFIG_FILE_TEMPLATE_LOCATION}" > "${CONFIG_FILE_LOCATION}"
 
   helm upgrade --install gitlab gitlab/gitlab \
