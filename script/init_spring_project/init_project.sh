@@ -5,7 +5,7 @@ set -e
 
 root_dir="$(cd ../../; pwd)"
 
-. "${root_dir}/script/color.sh"
+. "${root_dir}/script/common.sh"
 green=green
 reset=reset
 

@@ -1,42 +1,40 @@
 #!/usr/bin/env bash
-echo "Installing PostgreSQL..."
 
-# parameters
+# constant
+PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
+CURRENT_DIR=$(dirname "$0")
 POSTGRES_K8S_BASENAME="psql-cluster" && export POSTGRES_K8S_BASENAME
 POSTGRES_K8S_SERVICE="${POSTGRES_K8S_BASENAME}-postgresql" && export POSTGRES_K8S_SERVICE
+SERVICE_CONFIG_FILENAME="minikube-psql"
+SERVICE_CONFIG_TEMPLATE_LOCATION="${CURRENT_DIR}/${SERVICE_CONFIG_FILENAME}-template.service"
+SERVICE_CONFIG_LOCATION="${CURRENT_DIR}/${SERVICE_CONFIG_FILENAME}.service"
 
-# root dir and dependencies
-if [[ -z "${PROJECT_ROOT_PATH}" ]]; then
-  PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
-fi
-. "${PROJECT_ROOT_PATH}/script/color.sh"
+# dependencies
+. "${PROJECT_ROOT_PATH}/script/common.sh"
 
+echo_info "Running $(basename "$0")"
 # install
 if ! kubectl get service "${POSTGRES_K8S_SERVICE}" &>/dev/null; then
-  # shellcheck disable=SC2154
-  echo "${pink}If helm version<3.1, use => helm install ${POSTGRES_K8S_BASENAME} bitnami/postgresql --version 10.2.2 ${reset}"
-  echo "${pink}If helm version>3.1, use => helm install ${POSTGRES_K8S_BASENAME} bitnami/postgresql ${reset}"
+  echo_debug "Installing PostgreSQL..."
+  echo_debug "If helm version<3.1, use => helm install ${POSTGRES_K8S_BASENAME} bitnami/postgresql --version 10.2.2"
+  echo_debug "If helm version>3.1, use => helm install ${POSTGRES_K8S_BASENAME} bitnami/postgresql"
 
   helm repo add bitnami https://charts.bitnami.com/bitnami
   helm install ${POSTGRES_K8S_BASENAME} bitnami/postgresql --version 10.2.2
+
+  echo_debug "Installing PostgreSQL as service..."
+  envsubst <"${SERVICE_CONFIG_TEMPLATE_LOCATION}" >"${SERVICE_CONFIG_LOCATION}"
+  sudo cp "${SERVICE_CONFIG_LOCATION}" /etc/systemd/system/
+  rm "${SERVICE_CONFIG_LOCATION}"
+  sudo systemctl daemon-reload
+  sudo systemctl enable ${SERVICE_CONFIG_FILENAME}.service
+  sudo systemctl start ${SERVICE_CONFIG_FILENAME}.service
 fi
 
 # output result
 POSTGRES_PASSWORD="$(kubectl get secret --namespace default ${POSTGRES_K8S_SERVICE} -o jsonpath="{.data.postgresql-password}" | base64 --decode)"
-export POSTGRES_PASSWORD
-export POSTGRES_USERNAME="postgres"
-export POSTGRES_URL="jdbc:postgresql://localhost:5432/postgres"
-
-SERVICE_CONFIG_LOCATION="${PROJECT_ROOT_PATH}/config/db/psql-custom.service"
-envsubst < "./psql-custom-template.service" > "${SERVICE_CONFIG_LOCATION}"
-sudo cp "${SERVICE_CONFIG_LOCATION}"  /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable psql-custom.service
-sudo systemctl start psql-custom.service
-
-
 cat <<EOF >"${PROJECT_ROOT_PATH}/config/db/psql.properties"
-url=${POSTGRES_URL}
-username=${POSTGRES_USERNAME}
+url=jdbc:postgresql://localhost:5432/postgres
+username=postgres
 password=${POSTGRES_PASSWORD}
 EOF

@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
+set -e
 
-# set root dir
-# import color dependencies
-if [[ -z "${PROJECT_ROOT_PATH}" ]]; then
-  PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd)"
-fi
-. "${PROJECT_ROOT_PATH}/script/color.sh"
+# constant
+PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
+CURRENT_DIR=$(dirname "$0")
+SERVICE_CONFIG_LOCATION="${CURRENT_DIR}/minibube-custom.service"
+SERVICE_CONFIG_TEMPLATE_LOCATION="${CURRENT_DIR}/minibube-custom-template.service"
 
+# dependencies
+. "${PROJECT_ROOT_PATH}/script/common.sh"
 
-echo "${pink}Checking minikube...${reset}"
+echo_info "Running ${CURRENT_DIR}"
 # install docker
 if ! type -p docker &>/dev/null; then
-  echo "${pink}Installing docker...${reset}"
+  echo_debug "Installing docker..."
 
   # https://docs.docker.com/engine/install/ubuntu/
   sudo apt-get update
@@ -36,17 +38,18 @@ if ! type -p docker &>/dev/null; then
 fi
 
 if ! groups | grep docker &>/dev/null; then
-  echo "${green}Adding current user to docker group... ${reset}"
+  echo_debug "Adding current user to docker group... "
   # add the current user to docker group
   sudo groupadd docker
   sudo usermod -aG docker "${USER}"
 
-  echo "${green}Please reboot or re-login ${USER} ${reset}"
+  echo_debug "Refreshing current user"
+  su - "${USER}"
 fi
 
 # install kubectl
 if ! type -p kubectl &>/dev/null; then
-  echo "${pink}Installing kubectl...${reset}"
+  echo_debug "Installing kubectl..."
 
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   chmod +x ./kubectl
@@ -62,7 +65,7 @@ fi
 # install minikube
 # https://minikube.sigs.k8s.io/docs/start/
 if ! type -p minikube &>/dev/null; then
-  echo "${pink}Installing minikube...${reset}"
+  echo_debug "Installing minikube..."
 
   curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
   sudo dpkg -i minikube_latest_amd64.deb
@@ -76,10 +79,10 @@ if ! type -p minikube &>/dev/null; then
   minikube addons enable ingress
 
   # run minikube when boot up
-  SERVICE_CONFIG_LOCATION="${PROJECT_ROOT_PATH}/config/minibube/minibube-custom.service"
-  SERVICE_CONFIG_TEMPLATE_LOCATION="${PROJECT_ROOT_PATH}/config/minibube/minibube-custom-template.service"
-  envsubst < "${SERVICE_CONFIG_TEMPLATE_LOCATION}" > "${SERVICE_CONFIG_LOCATION}"
-  sudo cp "${SERVICE_CONFIG_LOCATION}"  /etc/systemd/system/
+  echo_debug "Installing minikube as service..."
+  envsubst <"${SERVICE_CONFIG_TEMPLATE_LOCATION}" >"${SERVICE_CONFIG_LOCATION}"
+  sudo cp "${SERVICE_CONFIG_LOCATION}" /etc/systemd/system/
+  rm "${SERVICE_CONFIG_LOCATION}"
   sudo systemctl daemon-reload
   sudo systemctl enable minibube-custom.service
   sudo systemctl start minibube-custom.service

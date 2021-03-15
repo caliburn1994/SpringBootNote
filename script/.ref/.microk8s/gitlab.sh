@@ -4,7 +4,7 @@
 if [[ -z "${PROJECT_ROOT_PATH}" ]]; then
   PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../.. >/dev/null 2>&1 && pwd)"
 fi
-. "${PROJECT_ROOT_PATH}/script/color.sh"
+. "${PROJECT_ROOT_PATH}/script/common.sh"
 . "${PROJECT_ROOT_PATH}/script/install/db/psql.sh"
 
 # https://docs.gitlab.com/charts/development/minikube/
