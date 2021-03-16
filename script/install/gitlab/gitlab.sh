@@ -9,8 +9,8 @@ CONFIG_FILE_TEMPLATE_LOCATION="${CURRENT_DIR}/gitlab-template.yaml"
 #  dependencies
 . "${PROJECT_ROOT_PATH}/script/common.sh"
 
-echo_info "Running $(basename "$0")"
 bash "${PROJECT_ROOT_PATH}/script/install/db/psql.sh"
+echo_info "Running ${CURRENT_DIR}"
 # https://docs.gitlab.com/charts/development/minikube/
 if ! kubectl get pods | grep gitlab &>/dev/null; then
   helm repo add gitlab https://charts.gitlab.io/

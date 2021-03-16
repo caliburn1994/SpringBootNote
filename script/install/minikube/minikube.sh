@@ -45,6 +45,7 @@ if ! groups | grep docker &>/dev/null; then
 
   echo_info "For taking effect on usermod globally,It is necessary to reboot."
   echo_info 'Reboot now? (y/n)' && read -r x && [[ "$x" == "y" ]] && /sbin/reboot;
+  exit
 fi
 
 # install kubectl
@@ -76,6 +77,7 @@ if ! type -p minikube &>/dev/null; then
   source <(minikube completion bash)
   echo "source <(minikube completion bash)" >>~/.bashrc
 
+  minikube start
   minikube addons enable ingress
 
   # run minikube when boot up

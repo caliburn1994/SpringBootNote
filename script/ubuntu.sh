@@ -18,6 +18,7 @@ function install_desktop_apps() {
   ibus restart
   # office
   sudo snap install notepad-plus-plus # notepad++
+  # typora
   # https://support.typora.io/Typora-on-Linux/
   if ! type -p typora &>/dev/null; then
     wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
