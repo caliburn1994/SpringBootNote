@@ -28,7 +28,7 @@ public class DataTable {
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     public ModelAndView staticPage(@PathVariable String name) {
-        return new ModelAndView("static/datatable/" + name);
+        return new ModelAndView("datatable/" + name);
     }
 
     /**
