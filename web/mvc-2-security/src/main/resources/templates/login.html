@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="zh"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <!-- header -->
 <head th:include="fragments/header :: headerFragment">
     <title id="page_title">Login Page</title>
 </head>
 <div th:fragment="meta_asserts" th:remove="tag">
-    <meta name="description" content="" >
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </div>
 <div th:fragment="css_js_asserts" th:remove="tag">
@@ -19,9 +21,9 @@
         /*]]>*/
         var themeName = themeSettings.themeName || '';
         if (themeName) {
-            document.write('<link rel="stylesheet" id="theme-style" href="'+ base_url +'/app-' + themeName + '.css">');
+            document.write('<link rel="stylesheet" id="theme-style" href="' + base_url + '/app-' + themeName + '.css">');
         } else {
-            document.write('<link rel="stylesheet" id="theme-style" href="'+ base_url +'/app.css">');
+            document.write('<link rel="stylesheet" id="theme-style" href="' + base_url + '/app.css">');
         }
     </script>
 </div>
@@ -41,26 +43,28 @@
                         <span class="l l3"></span>
                         <span class="l l4"></span>
                         <span class="l l5"></span>
-                    </div> ModularAdmin
+                    </div>
+                    ModularAdmin
                 </h1>
             </header>
-<!--            <div th:if="${param.error}">-->
-<!--                Invalid username and password.-->
-<!--            </div>-->
-<!--            <div th:if="${param.logout}">-->
-<!--                You have been logged out.-->
-<!--            </div>-->
+            <!--            <div th:if="${param.error}">-->
+            <!--                Invalid username and password.-->
+            <!--            </div>-->
+            <!--            <div th:if="${param.logout}">-->
+            <!--                You have been logged out.-->
+            <!--            </div>-->
             <div class="auth-content">
                 <p class="text-center">LOGIN TO CONTINUE</p>
-<!--                th:action="@{/login}" -->
-                <form id="login-form"    method='POST'>
+                <form id="login-form" th:action="@{/login}" method='post'>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="email" class="form-control underlined" name="username" id="username" placeholder="Your email address" required>
+                        <input type="email" class="form-control underlined" name="username" id="username"
+                               placeholder="Your email address" value="user@gmail.com" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control underlined" name="password" id="password" placeholder="Your password" required>
+                        <input type="password" class="form-control underlined" name="password" id="password"
+                               placeholder="Your password"  value="password" required>
                     </div>
                     <div class="form-group">
                         <label for="remember">
@@ -70,8 +74,8 @@
                         <a href="reset.html" class="forgot-btn pull-right">Forgot password?</a>
                     </div>
                     <div class="form-group">
-<!--                        <button type="button" onclick="ajax_submit('login')" class="btn btn-block btn-primary">Login</button>-->
-                        <button type="submit"  class="btn btn-block btn-primary">Login</button>
+                        <!--                        <button type="button" onclick="ajax_submit('login')" class="btn btn-block btn-primary">Login</button>-->
+                        <input type="submit" class="btn btn-block btn-primary" th:text="Login">
                     </div>
                     <div class="form-group">
                         <p class="text-muted text-center">Do not have an account? <a href="signup.html">Sign Up</a></p>
@@ -93,18 +97,17 @@
         <div class="color-secondary"></div>
     </div>
 </div>
-<script th:src="@{/static/js/vendor.js}"></script>
-<script th:src="@{/static/js/app.js}" ></script>
 <script>
-    function ajax_submit(url){
-        var context_url=$("#context_url").val()
+    function ajax_submit(url) {
+        var context_url = $("#context_url").val()
         var data = $('form').serialize();
-        $.post(context_url+url, data);
+        $.post(context_url + url, data);
     }
 
-    window.addEventListener("load", function(){
+    window.addEventListener("load", function () {
 
     });
 </script>
 </body>
 
+</html>
