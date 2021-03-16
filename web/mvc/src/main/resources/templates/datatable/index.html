@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Index</title>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>DataTable</title>
+
+    <div th:replace="fragments/header :: headerCssJs"></div>
+    <div th:replace="fragments/header :: headerCssJs_datatable"></div>
+    <div th:replace="fragments/header :: MetaURL"></div>
 </head>
 <body>
 <p>Get data source by a file:</p>
