@@ -40,11 +40,11 @@ fi
 if ! groups | grep docker &>/dev/null; then
   echo_debug "Adding current user to docker group... "
   # add the current user to docker group
-  sudo groupadd docker
+  getent group docker &>/dev/null || sudo groupadd docker
   sudo usermod -aG docker "${USER}"
 
-  echo_debug "Refreshing current user"
-  su - "${USER}"
+  echo_info "For taking effect on usermod globally,It is necessary to reboot."
+  echo_info 'Reboot now? (y/n)' && read -r x && [[ "$x" == "y" ]] && /sbin/reboot;
 fi
 
 # install kubectl
