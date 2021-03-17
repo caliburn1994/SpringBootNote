@@ -23,6 +23,9 @@ dependencies {
 
 	// connect to mybatis
 	implementation project(':orm:mybatis')
+
+	// test dependabot
+	implementation "mysql:mysql-connector-java:${mysqlConnectorJava}"
 }
 
 test {

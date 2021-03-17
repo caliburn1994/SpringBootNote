@@ -32,6 +32,7 @@ allprojects {
         // spring
         springBootVersion = '2.4.2'
         springDependencyManagement = '1.0.10.RELEASE'
+        mysqlConnectorJava = '5.1.19'
     }
 
     // 下载源码
