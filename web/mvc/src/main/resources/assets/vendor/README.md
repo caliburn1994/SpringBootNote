@@ -1,0 +1,1 @@
+This directory is used for storing third-part web resources.
