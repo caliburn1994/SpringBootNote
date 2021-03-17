@@ -1,3 +1,7 @@
+## Description
+
+This project integrates MyBatis with Spring and Spring Boot. The database is PostgreSQL, and the the data is from Gitlab, so we needn't consider anything about database design and data generation, and concentrate on application side.
+
 ## IDEA plug-in
 
 [mybatis log](https://plugins.jetbrains.com/plugin/14530-mybatis-log)
