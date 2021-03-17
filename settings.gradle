@@ -18,11 +18,13 @@
 //}
 rootProject.name = 'root'
 
-
-file("${rootDir}/orm").eachDirMatch(~/.*/) {
-    include "orm:${it.name}"
-}
-
-file("${rootDir}/web").eachDirMatch(~/.*/) {
-    include "web:${it.name}"
+println "Here are gradle modules in this project:"
+file("${rootDir}").eachDir {
+    it.eachDirMatch(~/.*/) {
+        if (it.list().contains("build.gradle")) {
+            def moduleName = "${it.parentFile.name}:${it.name}"
+            println "   ${moduleName}"
+            include moduleName
+        }
+    }
 }
