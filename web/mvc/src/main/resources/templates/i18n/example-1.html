@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: headerMeta"></div>
-    <title>HomePage</title>
+    <title>I18n</title>
     <div th:replace="fragments/header :: headerCssJs"></div>
     <div th:replace="fragments/header :: headerCssJs_datatable"></div>
     <div th:replace="fragments/header :: MetaURL"></div>
@@ -14,7 +14,17 @@
         <nav th:replace="fragments/body :: sidebar-expand"></nav>
         <div class="content">
             <div class="container-fluid">
+                <!-- content -->
+                <p style="color: red" th:text="${example.validationMsg}"></p>
+                <p>Input field message1 must be not null.</p>
+                <form action="#" th:action="@{/i18n/validate}" th:object="${example}" method="post">
+                    <p><label>message1:<input type="text" name="message1"/></label></p>
+                    <p><input type="submit" name="redirect" value="跳转"/> </p>
+                </form>
             </div>
+
+
+
         </div>
     </div>
 </div>

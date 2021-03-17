@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 @Data
 public class I18nModel {
 
-    @NotNull(message = "{notNull}")
-    String message;
+    String validationMsg;
+
+    @NotNull()
+    String message1;
 }

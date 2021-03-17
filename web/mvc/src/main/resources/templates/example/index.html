@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Index</title>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>HomePage</title>
+    <div th:replace="fragments/header :: headerCssJs"></div>
+    <div th:replace="fragments/header :: headerCssJs_datatable"></div>
+    <div th:replace="fragments/header :: MetaURL"></div>
 </head>
 <body>
-<p th:utext="${message}"></p>
-<p th:utext="${message2}"></p>
+<div class="wrapper">
+    <nav th:replace="fragments/body :: sidebar"></nav>
+    <div id="body" class="active">
+        <nav th:replace="fragments/body :: sidebar-expand"></nav>
+        <div class="content">
+            <div class="container-fluid">
 
-<form action="#" th:action="@{/example/submit}" th:object="${example}" method="post">
+                <p th:utext="${message}"></p>
+                <p th:utext="${message2}"></p>
 
-    <p><label>controller传进来的数据:
-        <input type="text" th:field="*{field1}"/></label></p>
-    <p><label>校验器（最大为30）:
-        <input type="text" th:field="*{field2}"/></label></p>
+                <form action="#" th:action="@{/example/submit}" th:object="${example}" method="post">
 
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-    <p><input type="submit" name="redirect" value="跳转"/></p>
+                    <p><label>controller传进来的数据:
+                        <input type="text" th:field="*{field1}"/></label></p>
+                    <p><label>校验器（最大为30）:
+                        <input type="text" th:field="*{field2}"/></label></p>
 
-</form>
+                    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+                    <p><input type="submit" name="redirect" value="跳转"/></p>
 
-
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/body :: bodyBottom"></div>
 </body>
 </html>
