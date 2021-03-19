@@ -18,7 +18,7 @@ public class Example3Controller {
 
     @GetMapping()
     public String index(ModelMap modelMap) {
-        return "example/3";
+        return "/example/3";
     }
 
 

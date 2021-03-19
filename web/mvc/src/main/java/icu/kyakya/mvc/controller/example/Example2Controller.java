@@ -21,13 +21,13 @@ public class Example2Controller {
         MessageModel messageModel = new MessageModel();
         messageModel.setMessage1("MessageModel.message1 is empty");
         modelMap.addAttribute("messageModel", messageModel);
-        return "example/2";
+        return "/example/2";
     }
 
     @PostMapping()
     public String submit(ModelMap modelMap, MessageModel messageModel) {
         messageModel.setMessage1("MessageModel.message1 is: " + messageModel.getMessage1());
-        return "example/2";
+        return "/example/2";
     }
 
 //    @ModelAttribute("example")

@@ -18,13 +18,13 @@ public class Example1Controller {
     @GetMapping()
     public String index(ModelMap modelMap) {
         modelMap.addAttribute("message", "Message is empty.");
-        return "example/1";
+        return "/example/1";
     }
 
     @PostMapping()
     public String submit(ModelMap modelMap, @RequestParam("message") String message) {
         modelMap.addAttribute("message", "Message is: " + message);
-        return "example/1";
+        return "/example/1";
     }
 
 

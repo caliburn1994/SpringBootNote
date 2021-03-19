@@ -21,7 +21,7 @@ public class Example4Controller {
     @GetMapping()
     public String index(ModelMap modelMap) {
         log.debug("Solving request...");
-        return "example/4";
+        return "/example/4";
     }
 
 
