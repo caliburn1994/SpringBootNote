@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: headerMeta"></div>
-    <title>HomePage</title>
+    <title>Echo message</title>
     <div th:replace="fragments/header :: headerCssJs"></div>
     <div th:replace="fragments/header :: headerCssJs_datatable"></div>
     <div th:replace="fragments/header :: MetaURL"></div>
@@ -16,18 +16,10 @@
             <div class="container-fluid col-6">
 
                 <p th:utext="${message}"></p>
-                <p th:utext="${message2}"></p>
 
-                <form action="#" th:action="@{/example/submit}" th:object="${example}" method="post">
-
-                    <p><label>controller传进来的数据:
-                        <input type="text" th:field="*{field1}"/></label></p>
-                    <p><label>校验器（最大为30）:
-                        <input type="text" th:field="*{field2}"/></label></p>
-
-                    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-                    <p><input type="submit" name="redirect" value="跳转"/></p>
-
+                <form th:action="@{/example/1}"  method="post">
+                    <p><label>Message:<input type="text" name="message"/></label></p>
+                    <p><input type="submit" name="echo" value="echo"/></p>
                 </form>
             </div>
         </div>
