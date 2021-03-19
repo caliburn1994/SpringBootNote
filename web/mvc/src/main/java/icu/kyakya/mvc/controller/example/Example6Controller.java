@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller("controller.example.6")
@@ -22,8 +24,15 @@ public class Example6Controller {
         String message1;
         String validationResult;
 
-        public boolean validateMessage1(){
-           return StringUtils.hasText(message1);
+        /**
+         * validate in Beans.
+         */
+        public List<String> validate() {
+            var rsl = new ArrayList<String>();
+            if (!StringUtils.hasText(message1)) {
+                rsl.add("Validation is passed");
+            }
+            return rsl;
         }
     }
 
@@ -38,10 +47,10 @@ public class Example6Controller {
 
 
     @PostMapping()
-    public String submit(ModelMap modelMap, @ModelAttribute("messageModel") MessageModel messageModel ) {
+    public String submit(ModelMap modelMap, @ModelAttribute("messageModel") MessageModel messageModel) {
 
         String resp = Optional.of(messageModel.getMessage1())
-                .filter(StringUtils::hasText)
+                .filter(txt -> !StringUtils.hasText(txt))
                 .map(text -> "MessageModel.message1 is: " + text)
                 .orElse("Validation is passed");
 

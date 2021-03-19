@@ -15,14 +15,11 @@
         <div class="content">
             <div class="container-fluid col-6">
                 <!-- content -->
-
                 <p th:utext="${messageModel.message1}" style="color: red"></p>
-                <p th:utext="${messageModel.validationResult}" style="color: red"></p>
-                <form th:object="${messageModel}" method="post">
-                    <p><label>Message:<input type="text" name="message1"/></label></p>
-                    <p><input type="submit" name="validate" value="validate"/></p>
+                <form   th:object="${messageModel}" method="post">
+                    <p><input type="submit" name="redirect" value="redirect"/></p>
                 </form>
-
+                    <a th:href="@{/example/7}">RESET</a>
             </div>
         </div>
     </div>

@@ -16,13 +16,13 @@
             <div class="container-fluid col-6">
                 <h2>th:field</h2>
                 <p th:utext="${messageModel.message1}"></p>
-                <form th:action="@{/example/2}"  th:object="${messageModel}" method="post">
+                <form  th:object="${messageModel}" method="post">
                     <p><label>Message:<input type="text" th:field="*{message1}"/></label></p>
                     <p><input type="submit" name="echo" value="echo"/></p>
                 </form>
                 <h2>th:name</h2>
                 <p th:utext="${messageModel.message1}"></p>
-                <form th:action="@{/example/2}"  th:object="${messageModel}" method="post">
+                <form  th:object="${messageModel}" method="post">
                     <p><label>Message:<input type="text" th:name="message1"/></label></p>
                     <p><input type="submit" name="echo" value="echo"/></p>
                 </form>

@@ -18,7 +18,7 @@
 
                 <p th:utext="${messageModel.message1}" style="color: red"></p>
                 <p th:utext="${messageModel.validationResult}" style="color: red"></p>
-                <form th:action="@{/example/5}"  th:object="${messageModel}" method="post">
+                <form th:object="${messageModel}" method="post">
                     <p><label>Message:<input type="text" name="message1"/></label></p>
                     <p><input type="submit" name="validate" value="validate"/></p>
                 </form>
