@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -45,23 +44,10 @@ public class Example5Controller {
 
 
     /**
-     * @param modelMap           modelMap包含了  commonModelAttribute()和exampleModel()的数据，
-     *                           但是由于form提交了一个ExampleModel，所以覆盖了和exampleModel()的ExampleModel
-     *                           '@Valid' 用于启动校验器
-     * @param bindingResult      用于处理校验器结果以及错误
-     *                           官方示例： https://spring.io/guides/gs/validating-form-input/
-     *                           转发错误，或者在页面展示错误： https://stackoverflow.com/questions/15778913/spring-mvc-how-to-redirect-to-a-page-with-error
-     * @param redirectAttributes 用于转发数据。
-     *                           addFlashAttribute()将可存储对象，数据将会被存在session中，数据仅存活一个request。
-     *                           addAttribute()将以为 request parameters形式存储数据，如果使用的是get，则将在url中添加 ?key=value&&key=value
-     *                           ref: https://stackoverflow.com/questions/14470111/spring-redirectattributes-addattribute-vs-addflashattribute
-     *                           <p>
-     *                           官方示例： https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/mvc/support/RedirectAttributes.html
+     * {@code @Valid} use to turn on validation feature
      */
     @PostMapping()
-    public String submit(ModelMap modelMap, @Valid @ModelAttribute("messageModel") MessageModel messageModel
-            , BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        log.info("[submit] 获得数据");
+    public String submit(ModelMap modelMap, @Valid @ModelAttribute("messageModel") MessageModel messageModel, BindingResult bindingResult) {
 
         //validation
         String resp = Optional.of(bindingResult.getAllErrors()).filter(errs -> errs.size() > 0).map(
@@ -74,7 +60,6 @@ public class Example5Controller {
         messageModel.setValidationResult(resp);
 
         return "/example/5";
-        //redirect:
     }
 
 
