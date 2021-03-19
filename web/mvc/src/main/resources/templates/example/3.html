@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <nav th:replace="fragments/body :: sidebar"></nav>
+    <nav th:replace="fragments/body :: sidebar(current_module='example')"></nav>
     <div id="body" class="active">
         <nav th:replace="fragments/body :: sidebar-expand" ></nav>
         <div class="content">
