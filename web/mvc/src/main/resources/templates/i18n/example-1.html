@@ -15,11 +15,10 @@
         <div class="content">
             <div class="container-fluid">
                 <!-- content -->
-                <p style="color: red" th:text="${example.validationMsg}"></p>
-                <p>Input field message1 must be not null.</p>
-                <form action="#" th:action="@{/i18n/validate}" th:object="${example}" method="post">
-                    <p><label>message1:<input type="text" name="message1"/></label></p>
-                    <p><input type="submit" name="redirect" value="跳转"/> </p>
+                <p style="color: red" th:text="${i18nModel.validationMsg}"></p>
+                <form th:action="@{/i18n/validate}" th:object="${i18nModel}" method="post">
+                    <p><label>Email:<input type="text" name="email"/></label></p>
+                    <p><input type="submit" name="submit" value="submit"/> </p>
                 </form>
             </div>
 

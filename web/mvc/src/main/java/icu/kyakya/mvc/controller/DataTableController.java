@@ -18,11 +18,11 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/datatable")
-public class DataTable {
+public class DataTableController {
 
     final UserService userService;
 
-    public DataTable(UserService userService) {
+    public DataTableController(UserService userService) {
         this.userService = userService;
     }
 

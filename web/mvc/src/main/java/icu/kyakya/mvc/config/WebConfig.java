@@ -6,11 +6,11 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @EnableWebMvc
 @Configuration
-public class MvcConfig implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 
     final LocaleChangeInterceptor localeInterceptor;
 
-    public MvcConfig(LocaleChangeInterceptor localeInterceptor) {
+    public WebConfig(LocaleChangeInterceptor localeInterceptor) {
         this.localeInterceptor = localeInterceptor;
     }
 

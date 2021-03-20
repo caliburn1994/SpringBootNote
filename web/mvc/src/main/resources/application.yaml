@@ -12,6 +12,8 @@ logging.level:
   icu.kyakya.orm.mybatis.mapper: debug
 
 spring:
+  mvc:
+    throwExceptionIfNoHandlerFound: true
   main:
     allow-bean-definition-overriding: true
   web:
