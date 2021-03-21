@@ -43,6 +43,18 @@ parameters:
             </ul>
         </li>
 
+
+        <li>
+            <a href="#uielementsmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down">
+                <i class="fas fa-exclamation-circle"></i> Exceptions</a>
+            <ul class="collapse list-unstyled" id="uielementsmenu">
+                <li>
+                    <a th:href="@{/no-such-page}"><i class="fas fa-exclamation"></i> 404</a>
+                </li>
+            </ul>
+        </li>
+
+
         <li><a th:href="@{/datatable/index}"><i class="fas fa-table"></i> Tables</a></li>
         <li><a th:href="@{/example/index}"><i class="fas fa-file-alt"></i>Simple</a></li>
         <li><a th:href="@{/i18n/index}"><i class="fas fa-file-alt"></i>I18n</a></li>
