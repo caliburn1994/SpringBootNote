@@ -32,6 +32,9 @@ parameters:
                     <a th:href="@{/example/5}"><i class="fas fa-file"></i> Validation by javax.validation.constraints</a>
                 </li>
                 <li>
+                    <a th:href="@{/example/9}"><i class="fas fa-file"></i> Validation by javax.validation.constraints + Ajax </a>
+                </li>
+                <li>
                     <a th:href="@{/example/6}"><i class="fas fa-file"></i> Manual Validation</a>
                 </li>
                 <li>
@@ -50,15 +53,15 @@ parameters:
             <ul class="collapse list-unstyled" id="uielementsmenu">
                 <li>
                     <a th:href="@{/no-such-page}"><i class="fas fa-exclamation"></i> 404</a>
-                    <a th:href="@{/error/1}"><i class="fas fa-exclamation"></i> 500</a>
-                    <a th:href="@{/error/2}"><i class="fas fa-exclamation"></i> Specific Exception</a>
+                    <a th:href="@{/exceptions/example/ajax404}"><i class="fas fa-exclamation"></i> 404 - when use Ajax</a>
+                    <a th:href="@{/exceptions/example/1}"><i class="fas fa-exclamation"></i> 500</a>
+                    <a th:href="@{/exceptions/example/2}"><i class="fas fa-exclamation"></i> 500 - Catch specific exception</a>
                 </li>
             </ul>
         </li>
 
 
         <li><a th:href="@{/datatable/index}"><i class="fas fa-table"></i> Tables</a></li>
-        <li><a th:href="@{/example/index}"><i class="fas fa-file-alt"></i>Simple</a></li>
         <li><a th:href="@{/i18n/index}"><i class="fas fa-file-alt"></i>I18n</a></li>
         <li><a th:href="@{/assets/vendor/alexis-luna/index.html}"><i class="fas fa-file-alt"></i>Static Pages</a></li>
     </ul>

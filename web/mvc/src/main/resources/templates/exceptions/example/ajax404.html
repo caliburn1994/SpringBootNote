@@ -15,12 +15,9 @@
         <div class="content">
             <div class="container-fluid col-6">
                 <!-- content -->
-
-                <p th:utext="${messageModel.message1}" style="color: red"></p>
-                <p th:utext="${messageModel.validationResult}" style="color: red" id="validationResult"></p>
+                <p style="color: red" id="validationResult"></p>
                 <form method="post">
-                    <p><label>Message:<input type="text" name="message1"/></label></p>
-                    <p><input type="button" name="validate" value="validate" onclick="ajax_post()"/></p>
+                    <p><input type="button" name="error" value="error" onclick="ajax_post()"/></p>
                 </form>
             </div>
         </div>
@@ -29,20 +26,18 @@
 <div th:replace="fragments/body :: bodyBottom"></div>
 <script type="text/javascript" th:inline="javascript">
     function ajax_post() {
-        /*<![CDATA[*/
-        const url = /*[[@{/example/9}]]*/'';
-        /*]]>*/
-        $.post(url, $('form').serializeArray()).done(function (data, textStatus, jqXHR) {
+        let contextPath = $("#context_url").val();
+        $.post(contextPath + 'not-found', $('form').serializeArray()).done(function (data, textStatus, jqXHR) {
             // if it succeeds,
-            console.log(data)
-            if (data.length === 0) {
-                data = "Validation is passed"
-            }
+            console.log("Request succeeds")
             $("#validationResult").html(data);
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            // if it fails,
-            console.log("Url " + url + " get a failed status code")
-            console.log(data)
+        }).fail(function (data, jqXHR, textStatus, errorThrown) {
+            if (data.status === 404 ) {
+                location.href = contextPath + '404';
+            } else  {
+                location.href = contextPath + '500';
+            }
+
         });
     }
 </script>
