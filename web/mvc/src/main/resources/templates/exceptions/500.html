@@ -1,21 +1,12 @@
 <!doctype html>
-<!-- 
-* Bootstrap Simple Admin Template
-* Version: 2.1
-* Author: Alexis Luna
-* Website: https://github.com/alexis-luna/bootstrap-simple-admin-template
--->
-<html lang="en">
-
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <div th:replace="fragments/header :: headerMeta"></div>
     <title>500 | Internal Server Error!</title>
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/error.css" rel="stylesheet">
+    <div th:replace="fragments/header :: headerCssJs"></div>
+    <link th:href="@{/assets/vendor/alexis-luna/css/error.css}" rel="stylesheet">
+    <div th:replace="fragments/header :: MetaURL"></div>
 </head>
-
 <body>
     <div class="wrapper">
         <div class="page vertical-align text-center">
@@ -25,15 +16,12 @@
                     <p>Internal Server Error !</p>
                 </header>
                 <p class="error-advise">Whoopps, something went wrong.</p>
-                <a class="btn btn-primary btn-round mb-5" href="dashboard.html">GO TO HOME PAGE</a>
-                <footer class="page-copyright">
-                    <p>© 2020. All RIGHT RESERVED.</p>
-                </footer>
+                <a class="btn btn-primary btn-round mb-5" th:href="@{/}">GO TO HOME PAGE</a>
             </div>
         </div>
     </div>
-    <script src="../jquery/jquery.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <div th:replace="fragments/body :: bodyBottom"></div>
+
 </body>
 
 </html>
