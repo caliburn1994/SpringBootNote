@@ -1,6 +1,14 @@
-## security
+## workflow
 
-安全方便，有两个框架可以选择：
-
-1. shiro
-2. spring security
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Server
+    Browser->>Server: Get request
+    Server->>Filter: 
+    Filter->>Controller: 
+    Controller-->>Controller: validate
+    Controller-->>Controller: business logic
+    Controller-->>Controller: render
+    Controller-->>Browser: 
+```
