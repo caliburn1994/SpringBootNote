@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>Example for validation</title>
+    <div th:replace="fragments/header :: headerCssJs"></div>
+    <div th:replace="fragments/header :: MetaURL"></div>
+</head>
+<body>
+<div class="wrapper">
+    <nav th:replace="fragments/body :: sidebar(current_module='example')"></nav>
+    <div id="body" class="active">
+        <nav th:replace="fragments/body :: sidebar-expand"></nav>
+        <div class="content">
+            <div class="container-fluid col-6">
+                <!-- content -->
+                <p th:utext="${messageModel.message1}" style="color: red"></p>
+                <p th:utext="${messageModel.validationResult}" style="color: red"></p>
+
+                <form th:object="${messageModel}" method="post">
+                    <p><label>Message:<input type="text" name="message1"/></label></p>
+                    <label for="lang">Choose language</label>
+                    <select name="lang" id="lang">
+                        <option value="zh">Chinese</option>
+                        <option value="ja" selected="selected">Japanese</option>
+                        <option value="en">English</option>
+                    </select>
+                    <p><input type="submit" name="switch" value="switch"></p>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/body :: bodyBottom"></div>
+</body>
+</html>

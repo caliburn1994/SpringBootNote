@@ -10,10 +10,11 @@ spring.thymeleaf.cache: false
 
 logging.level:
   icu.kyakya.orm.mybatis.mapper: debug
+  web: debug
 
 spring:
   mvc:
-    throwExceptionIfNoHandlerFound: true
+    throwExceptionIfNoHandlerFound: true # if page not found, it will throw error, and then ControllerAdvice will catch the error.
   main:
     allow-bean-definition-overriding: true
   web:

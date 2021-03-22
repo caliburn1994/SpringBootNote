@@ -41,7 +41,7 @@ class GlobalControllerExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public String handle500(HttpServletRequest req, Exception ex) {
-        log.warn(ex.getMessage());
+        log.warn("Redirect to 500 page.",ex);
         return "/exceptions/500";
     }
 

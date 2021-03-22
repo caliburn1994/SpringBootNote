@@ -9,24 +9,26 @@
 </head>
 <body>
 <div class="wrapper">
-    <nav th:replace="fragments/body :: sidebar"></nav>
+    <nav th:replace="fragments/body :: sidebar(current_module='i18n')"></nav>
     <div id="body" class="active">
         <nav th:replace="fragments/body :: sidebar-expand"></nav>
         <div class="content">
             <div class="container-fluid">
                 <!-- content -->
-                <p style="color: red" th:text="${i18nModel.validationMsg}"></p>
-                <form th:action="@{/i18n/validate}" th:object="${i18nModel}" method="post">
-                    <p><label>Email:<input type="text" name="email"/></label></p>
-                    <p><input type="submit" name="submit" value="submit"/> </p>
-                </form>
+                <p th:utext="#{hello}"></p>
+                <button type="button" onclick="switch_lang('zh')" >Chinese</button>
+                <button type="button" onclick="switch_lang('ja')" >Japanese</button>
+                <button type="button" onclick="switch_lang('en')" >English</button>
             </div>
-
-
-
         </div>
     </div>
 </div>
 <div th:replace="fragments/body :: bodyBottom"></div>
+<script type="text/javascript" th:inline="javascript">
+    function switch_lang(lang) {
+        let contextPath = $("#context_url").val();
+        location.href = contextPath + 'i18n/example/1?lang=' + lang;
+    }
+</script>
 </body>
 </html>

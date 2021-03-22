@@ -60,9 +60,21 @@ parameters:
             </ul>
         </li>
 
-
         <li><a th:href="@{/datatable/index}"><i class="fas fa-table"></i> Tables</a></li>
-        <li><a th:href="@{/i18n/index}"><i class="fas fa-file-alt"></i>I18n</a></li>
+
+        <li>
+            <a href="#i18n-menu" data-toggle="collapse" th:aria-expanded="${current_module == 'i18n'} ? true : false"
+               th:class="${current_module == 'i18n'} ? 'dropdown-toggle no-caret-down' : 'dropdown-toggle no-caret-down collapsed'">
+                <i class="fas fa-copy"></i> I18n</a>
+            <ul th:class="${current_module == 'i18n'} ? 'list-unstyled collapse show' : 'collapse list-unstyled'" id="i18n-menu">
+                <li>
+                    <a th:href="@{/i18n/example/1}"><i class="fas fa-file"></i> Example 1</a>
+                    <a th:href="@{/i18n/example/2}"><i class="fas fa-file"></i> Example 2</a>
+                    <a th:href="@{/i18n/example/3}"><i class="fas fa-file"></i> Example for validation</a>
+                </li>
+            </ul>
+        </li>
+
         <li><a th:href="@{/assets/vendor/alexis-luna/index.html}"><i class="fas fa-file-alt"></i>Static Pages</a></li>
     </ul>
 </nav>
