@@ -62,15 +62,29 @@ parameters:
 
         <li><a th:href="@{/datatable/index}"><i class="fas fa-table"></i> Tables</a></li>
 
+        <!-- i18n -->
         <li>
             <a href="#i18n-menu" data-toggle="collapse" th:aria-expanded="${current_module == 'i18n'} ? true : false"
                th:class="${current_module == 'i18n'} ? 'dropdown-toggle no-caret-down' : 'dropdown-toggle no-caret-down collapsed'">
-                <i class="fas fa-copy"></i> I18n</a>
+                <i class="fas fa-globe"></i> I18n</a>
             <ul th:class="${current_module == 'i18n'} ? 'list-unstyled collapse show' : 'collapse list-unstyled'" id="i18n-menu">
                 <li>
-                    <a th:href="@{/i18n/example/1}"><i class="fas fa-file"></i> Example 1</a>
-                    <a th:href="@{/i18n/example/2}"><i class="fas fa-file"></i> Example 2</a>
-                    <a th:href="@{/i18n/example/3}"><i class="fas fa-file"></i> Example for validation</a>
+                    <a th:href="@{/i18n/example/1}"><i class="fas fa-flag"></i> Example 1</a>
+                    <a th:href="@{/i18n/example/2}"><i class="fas fa-flag"></i> Example 2</a>
+                    <a th:href="@{/i18n/example/3}"><i class="fas fa-flag"></i> Example for validation</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- session -->
+        <li>
+            <a href="#session-menu" data-toggle="collapse" th:aria-expanded="${current_module == 'session'} ? true : false"
+               th:class="${current_module == 'session'} ? 'dropdown-toggle no-caret-down' : 'dropdown-toggle no-caret-down collapsed'">
+                <i class="fas fa-comments"></i> Session</a>
+            <ul th:class="${current_module == 'session'} ? 'list-unstyled collapse show' : 'collapse list-unstyled'" id="session-menu">
+                <li>
+                    <a th:href="@{/session/example/1}"><i class="fas fa-comment"></i> HttpSession</a>
+                    <a th:href="@{/session/example/2}"><i class="fas fa-comment"></i> SessionAttributes</a>
                 </li>
             </ul>
         </li>

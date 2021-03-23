@@ -30,10 +30,5 @@ public class Example2Controller {
         return "/example/2";
     }
 
-//    @ModelAttribute("example")
-//    public ExampleModel exampleModel() {
-//        ExampleModel exampleModel = new ExampleModel();
-//        exampleModel.setField1("页面初始化时，我传入了一个数据");
-//        return exampleModel;
-//    }
+
 }
