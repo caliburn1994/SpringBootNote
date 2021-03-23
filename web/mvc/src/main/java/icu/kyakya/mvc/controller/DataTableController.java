@@ -1,9 +1,8 @@
 package icu.kyakya.mvc.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import icu.kyakya.mvc.model.Page;
-import icu.kyakya.orm.mybatis.domain.User;
-import icu.kyakya.orm.mybatis.service.UserService;
+import icu.kyakya.orm.mybatis.domain.Users;
+import icu.kyakya.orm.mybatis.service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -20,10 +19,10 @@ import java.util.List;
 @RequestMapping("/datatable")
 public class DataTableController {
 
-    final UserService userService;
+    final UsersService usersService;
 
-    public DataTableController(UserService userService) {
-        this.userService = userService;
+    public DataTableController(UsersService usersService) {
+        this.usersService = usersService;
     }
 
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
@@ -36,10 +35,9 @@ public class DataTableController {
      * ref: https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
      */
     @ResponseBody
-    @RequestMapping(value = "/example2_data") //produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public Page<User> example2(Model model) throws JsonProcessingException {
-        List<User> users = userService.selectAllOrInit();
-
+    @RequestMapping(value = "/example2_data")
+    public Page<Users> example2(Model model) {
+        List<Users> users = usersService.selectAll();
         //https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-datatable
         return new Page<>(users);
     }

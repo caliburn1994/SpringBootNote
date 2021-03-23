@@ -13,28 +13,23 @@
 <table id="example" class="display" style="width:50%">
     <thead>
     <tr>
+        <th>email</th>
         <th>name</th>
-        <th>gender</th>
-        <th>height</th>
-        <th>Age</th>
-        <th>createTime</th>
     </tr>
     </thead>
 </table>
+<div th:replace="fragments/body :: bodyBottom"></div>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" th:inline="javascript">
-    /*<![CDATA[*/
-    const context = /*[[@{/datatable/example2_data}]]*/'';
-    /*]]>*/
+    const context = $("#context_url").val() + '/datatable/example2_data'
 
     $(document).ready(function () {
         $('#example').DataTable({
             ajax: context,
             processing: true,
             columns: [
+                {"data": "email"},
                 {"data": "name"},
-                {"data": "gender"},
-                {"data": "height"},
-                {"data": "createTime"}
             ]
         });
     });
