@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>HomePage</title>
+    <div th:replace="fragments/header :: headerCssJs"></div>
+    <div th:replace="fragments/header :: headerCssJs_datatable"></div>
+    <div th:replace="fragments/header :: MetaURL"></div>
 </head>
 <body>
-<ul>
-    <li><a th:href="@{/datatable/index.html}">DataTables example</a></li>
-</ul>
+<div class="wrapper">
+    <nav th:replace="fragments/body :: sidebar"></nav>
+    <div id="body" class="active">
+        <nav th:replace="fragments/body :: sidebar-expand"></nav>
+        <div class="content">
+            <div class="container-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/body :: bodyBottom"></div>
 </body>
 </html>

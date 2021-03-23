@@ -13,7 +13,7 @@ import java.util.Optional;
 @Slf4j
 public class HttpSessionController {
 
-    @GetMapping("/session/httpSession/count")
+    @GetMapping("/session/example/1")
     @ResponseBody
     public String index(HttpSession httpSession) {
         // create
@@ -28,6 +28,6 @@ public class HttpSessionController {
         sessionModel.count = sessionModel.count + 1;
 
         // response
-        return sessionModel.count + "";
+        return sessionModel + "";
     }
 }

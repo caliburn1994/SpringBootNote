@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>javax.validation.constraints + Ajax</title>
+    <div th:replace="fragments/header :: headerCssJs"></div>
+
+    <div th:replace="fragments/header :: MetaURL"></div>
+</head>
+<body>
+<div class="wrapper">
+    <nav th:replace="fragments/body :: sidebar(current_module='example')"></nav>
+    <div id="body" class="active">
+        <nav th:replace="fragments/body :: sidebar-expand"></nav>
+        <div class="content">
+            <div class="container-fluid col-6">
+                <!-- content -->
+                <p style="color: red" id="validationResult"></p>
+                <form method="post">
+                    <p><input type="button" name="error" value="error" onclick="ajax_post()"/></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/body :: bodyBottom"></div>
+<script type="text/javascript" th:inline="javascript">
+    function ajax_post() {
+        let contextPath = $("#context_url").val();
+        $.post(contextPath + 'not-found', $('form').serializeArray()).done(function (data, textStatus, jqXHR) {
+            // if it succeeds,
+            console.log("Request succeeds")
+            $("#validationResult").html(data);
+        }).fail(function (data, jqXHR, textStatus, errorThrown) {
+            if (data.status === 404 ) {
+                location.href = contextPath + '404';
+            } else  {
+                location.href = contextPath + '500';
+            }
+
+        });
+    }
+</script>
+</body>
+</html>

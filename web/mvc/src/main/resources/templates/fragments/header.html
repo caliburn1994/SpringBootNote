@@ -1,17 +1,24 @@
 <div th:fragment="headerMeta" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
     <!-- meta -->
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </div>
 
 <div th:fragment="headerCssJs" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
     <!-- CSS and JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link th:href="@{/assets/vendor/fontawesome/css/fontawesome.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/fontawesome/css/solid.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/fontawesome/css/brands.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/alexis-luna/css/master.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/chartsjs/Chart.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/flagiconcss/css/flag-icon.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/github.css}" rel="stylesheet">
 </div>
 
 <div th:fragment="headerCssJs_datatable" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
     <!-- datatable -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 </div>

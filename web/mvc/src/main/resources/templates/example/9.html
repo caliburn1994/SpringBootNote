@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>javax.validation.constraints + Ajax</title>
+    <div th:replace="fragments/header :: headerCssJs"></div>
+
+    <div th:replace="fragments/header :: MetaURL"></div>
+</head>
+<body>
+<div class="wrapper">
+    <nav th:replace="fragments/body :: sidebar(current_module='example')"></nav>
+    <div id="body" class="active">
+        <nav th:replace="fragments/body :: sidebar-expand"></nav>
+        <div class="content">
+            <div class="container-fluid col-6">
+                <!-- content -->
+
+                <p th:utext="${messageModel.message1}" style="color: red"></p>
+                <p th:utext="${messageModel.validationResult}" style="color: red" id="validationResult"></p>
+                <form method="post">
+                    <p><label>Message:<input type="text" name="message1"/></label></p>
+                    <p><input type="button" name="validate" value="validate" onclick="ajax_post()"/></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/body :: bodyBottom"></div>
+<script type="text/javascript" th:inline="javascript">
+    function ajax_post() {
+        /*<![CDATA[*/
+        const url = /*[[@{/example/9}]]*/'';
+        /*]]>*/
+        $.post(url, $('form').serializeArray()).done(function (data, textStatus, jqXHR) {
+            // if it succeeds,
+            console.log(data)
+            if (data.length === 0) {
+                data = "Validation is passed"
+            }
+            $("#validationResult").html(data);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            // if it fails,
+            console.log("Url " + url + " get a failed status code")
+            console.log(data)
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!--
+parameters:
+    current_module
+-->
+<nav th:fragment="sidebar" xmlns:th="http://www.thymeleaf.org" id="sidebar" class>
+    <!-- sidebar -->
+    <div class="sidebar-header">
+        <img th:src="@{/assets/vendor/alexis-luna/img/bootstraper-logo.png}" alt="bootraper logo" class="app-logo">
+    </div>
+    <ul class="list-unstyled components text-secondary">
+        <li><a th:href="@{/index}"><i class="fas fa-home"></i> Index</a></li>
+
+        <!-- Examples -->
+        <li>
+            <a href="#example-menu" data-toggle="collapse" th:aria-expanded="${current_module == 'example'} ? true : false"
+               th:class="${current_module == 'example'} ? 'dropdown-toggle no-caret-down' : 'dropdown-toggle no-caret-down collapsed'">
+                <i class="fas fa-copy"></i> Examples</a>
+            <ul th:class="${current_module == 'example'} ? 'list-unstyled collapse show' : 'collapse list-unstyled'" id="example-menu">
+                <li>
+                    <a th:href="@{/example/1}"><i class="fas fa-file"></i> Echo Example - without model</a>
+                </li>
+                <li>
+                    <a th:href="@{/example/2}"><i class="fas fa-file"></i> Echo Example - with model</a>
+                </li>
+                <li>
+                    <a th:href="@{/example/3}"><i class="fas fa-file"></i> Render all requests by @ModelAttribute (1)</a>
+                </li>
+                <li>
+                    <a th:href="@{/example/4}"><i class="fas fa-file"></i> Render all requests by @ModelAttribute (2)</a>
+                </li>
+                <li>
+                    <a th:href="@{/example/5}"><i class="fas fa-file"></i> Validation by javax.validation.constraints</a>
+                </li>
+                <li>
+                    <a th:href="@{/example/9}"><i class="fas fa-file"></i> Validation by javax.validation.constraints + Ajax </a>
+                </li>
+                <li>
+                    <a th:href="@{/example/6}"><i class="fas fa-file"></i> Manual Validation</a>
+                </li>
+                <li>
+                    <a th:href="@{/example/7}"><i class="fas fa-file"></i> Redirect responses by memory</a>
+                </li>
+                <li>
+                    <a th:href="@{/example/8}"><i class="fas fa-file"></i> Redirect responses by URL</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="#uielementsmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle no-caret-down">
+                <i class="fas fa-exclamation-circle"></i> Exceptions</a>
+            <ul class="collapse list-unstyled" id="uielementsmenu">
+                <li>
+                    <a th:href="@{/no-such-page}"><i class="fas fa-exclamation"></i> 404</a>
+                    <a th:href="@{/exceptions/example/ajax404}"><i class="fas fa-exclamation"></i> 404 - when use Ajax</a>
+                    <a th:href="@{/exceptions/example/1}"><i class="fas fa-exclamation"></i> 500</a>
+                    <a th:href="@{/exceptions/example/2}"><i class="fas fa-exclamation"></i> 500 - Catch specific exception</a>
+                </li>
+            </ul>
+        </li>
+
+        <li><a th:href="@{/datatable/index}"><i class="fas fa-table"></i> Tables</a></li>
+
+        <!-- i18n -->
+        <li>
+            <a href="#i18n-menu" data-toggle="collapse" th:aria-expanded="${current_module == 'i18n'} ? true : false"
+               th:class="${current_module == 'i18n'} ? 'dropdown-toggle no-caret-down' : 'dropdown-toggle no-caret-down collapsed'">
+                <i class="fas fa-globe"></i> I18n</a>
+            <ul th:class="${current_module == 'i18n'} ? 'list-unstyled collapse show' : 'collapse list-unstyled'" id="i18n-menu">
+                <li>
+                    <a th:href="@{/i18n/example/1}"><i class="fas fa-flag"></i> Example 1</a>
+                    <a th:href="@{/i18n/example/2}"><i class="fas fa-flag"></i> Example 2</a>
+                    <a th:href="@{/i18n/example/3}"><i class="fas fa-flag"></i> Example for validation</a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- session -->
+        <li>
+            <a href="#session-menu" data-toggle="collapse" th:aria-expanded="${current_module == 'session'} ? true : false"
+               th:class="${current_module == 'session'} ? 'dropdown-toggle no-caret-down' : 'dropdown-toggle no-caret-down collapsed'">
+                <i class="fas fa-comments"></i> Session</a>
+            <ul th:class="${current_module == 'session'} ? 'list-unstyled collapse show' : 'collapse list-unstyled'" id="session-menu">
+                <li>
+                    <a th:href="@{/session/example/1}"><i class="fas fa-comment"></i> HttpSession</a>
+                    <a th:href="@{/session/example/2}"><i class="fas fa-comment"></i> SessionAttributes</a>
+                </li>
+            </ul>
+        </li>
+
+        <li><a th:href="@{/assets/vendor/alexis-luna/index.html}"><i class="fas fa-file-alt"></i>Static Pages</a></li>
+    </ul>
+</nav>
+
+
+<nav th:fragment="sidebar-expand" xmlns:th="http://www.thymeleaf.org" class="navbar navbar-expand-lg navbar-white bg-white">
+    <!-- button for expanding sidebar -->
+    <button type="button" id="sidebarCollapse" class="btn btn-light"><i class="fas fa-bars"></i><span></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <div class="nav-dropdown">
+                    <a href="" class="nav-item nav-link dropdown-toggle text-secondary" data-toggle="dropdown"><i class="fas fa-link"></i> <span>Quick Links</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right nav-link-menu">
+                        <ul class="nav-list">
+                            <li><a href="" class="dropdown-item"><i class="fas fa-list"></i> Access Logs</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="" class="dropdown-item"><i class="fas fa-database"></i> Back ups</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="" class="dropdown-item"><i class="fas fa-cloud-download-alt"></i> Updates</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="" class="dropdown-item"><i class="fas fa-user-shield"></i> Roles</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <div class="nav-dropdown">
+                    <a href="" class="nav-item nav-link dropdown-toggle text-secondary" data-toggle="dropdown"><i class="fas fa-user"></i> <span>John Doe</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right nav-link-menu">
+                        <ul class="nav-list">
+                            <li><a href="" class="dropdown-item"><i class="fas fa-address-card"></i> Profile</a></li>
+                            <li><a href="" class="dropdown-item"><i class="fas fa-envelope"></i> Messages</a></li>
+                            <li><a href="" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a></li>
+                            <div class="dropdown-divider"></div>
+                            <li><a href="" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div th:fragment="bodyBottom" xmlns:th="http://www.thymeleaf.org" th:remove="tag">
+    <!-- bottom of body tag -->
+    <script th:src="@{/assets/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/assets/vendor/alexis-luna/js/script.js}"></script>
+</div>

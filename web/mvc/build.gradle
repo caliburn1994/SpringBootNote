@@ -30,9 +30,6 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 
 
-	implementation 'org.slf4j:slf4j-ext:1.7.30' // todo
-
-
 	// mybatis module
 	implementation project(':orm:mybatis')
 }

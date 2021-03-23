@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>Echo message without model</title>
+    <div th:replace="fragments/header :: headerCssJs"></div>
+
+    <div th:replace="fragments/header :: MetaURL"></div>
+</head>
+<body>
+<div class="wrapper">
+    <nav th:replace="fragments/body :: sidebar(current_module='example')"></nav>
+    <div id="body" class="active">
+        <nav th:replace="fragments/body :: sidebar-expand"></nav>
+        <div class="content">
+            <div class="container-fluid col-6">
+
+                <p th:utext="${message}"></p>
+
+                <form method="post">
+                    <p><label>Message:<input type="text" name="message"/></label></p>
+                    <p><input type="submit" name="echo" value="echo"/></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/body :: bodyBottom"></div>
+</body>
+</html>

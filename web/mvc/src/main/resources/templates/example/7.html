@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: headerMeta"></div>
+    <title>Redirect responses by memory</title>
+    <div th:replace="fragments/header :: headerCssJs"></div>
+    <div th:replace="fragments/header :: MetaURL"></div>
+</head>
+<body>
+<div class="wrapper">
+    <nav th:replace="fragments/body :: sidebar(current_module='example')"></nav>
+    <div id="body" class="active">
+        <nav th:replace="fragments/body :: sidebar-expand"></nav>
+        <div class="content">
+            <div class="container-fluid col-6">
+                <!-- content -->
+                <p th:utext="${messageModel.message1}" style="color: red"></p>
+                <form   th:object="${messageModel}" method="post">
+                    <p><input type="submit" name="redirect" value="redirect"/></p>
+                </form>
+                    <a th:href="@{/example/7}">RESET</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/body :: bodyBottom"></div>
+</body>
+</html>
