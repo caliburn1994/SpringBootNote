@@ -23,10 +23,10 @@
     </tr>
     </thead>
 </table>
+<div th:replace="fragments/body :: bodyBottom"></div>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script th:inline="javascript">
-    /*<![CDATA[*/
-    const context = /*[[@{/}]]*/''
-    /*]]>*/
+    const context = $("#context_url").val()
 
     console.log()
     $(document).ready(function () {

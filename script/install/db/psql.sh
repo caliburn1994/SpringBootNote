@@ -38,3 +38,11 @@ url=jdbc:postgresql://localhost:5432/postgres
 username=postgres
 password=${POSTGRES_PASSWORD}
 EOF
+
+# mybatis
+cat <<EOF >"${PROJECT_ROOT_PATH}/orm/mybatis/src/main/resources/mybatis/application-psql.properties"
+spring.datasource.url= jdbc:postgresql://localhost:5432/postgres
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.username=postgres
+spring.datasource.password=MFEmWwdVow
+EOF

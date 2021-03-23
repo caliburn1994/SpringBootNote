@@ -2,6 +2,7 @@ package icu.kyakya.orm.mybatis.generator;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.exception.InvalidConfigurationException;
@@ -17,9 +18,9 @@ import java.util.List;
 @Profile("generator")
 @Component
 @Slf4j
-public class MyBatisGenerator {
+public class GeneratorRunner {
 
-    public MyBatisGenerator(Context context) {
+    public GeneratorRunner(Context context) {
         this.context = context;
     }
 
@@ -27,20 +28,20 @@ public class MyBatisGenerator {
 
     public void run() throws InvalidConfigurationException, InterruptedException, SQLException, IOException {
         List<String> warnings = new ArrayList<>();
-        boolean overwrite = true;
         Configuration config = new Configuration();
 
         config.addContext(context);
 
-        DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+        DefaultShellCallback callback = new DefaultShellCallback(true);
         org.mybatis.generator.api.MyBatisGenerator myBatisGenerator;
         try {
-            myBatisGenerator = new org.mybatis.generator.api.MyBatisGenerator(config, callback, warnings);
+            myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
         } catch (InvalidConfigurationException e) {
-            log.error("配置出现错误");
+            log.error("errors happened");
             throw e;
         }
         myBatisGenerator.generate(null);
+        warnings.forEach(log::warn);
     }
 
 

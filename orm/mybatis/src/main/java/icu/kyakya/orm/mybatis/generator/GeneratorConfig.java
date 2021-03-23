@@ -9,7 +9,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 /**
@@ -28,10 +33,31 @@ public class GeneratorConfig {
     @ConfigurationProperties(prefix = "mybatis.generator")
     @Data
     static class Config {
+        private String moduleName;
         private String modelTargetPackage;
         private String clientTargetPackage;
         @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
         private Optional<String[]> tables=Optional.empty();
+
+
+        public String getAbsolutePath(String... dirs) {
+            // get absolute path
+            String[] split = moduleName.split("\\.");
+            File file = new File("");
+            String path= file.getAbsolutePath();
+            for (String s : split) {
+                if (!file.getAbsolutePath().contains(s)) {
+                    path = Paths.get(path, s).toString();
+                }
+            }
+
+            // join dirs on the absolute path
+            for (String dir : dirs) {
+                path = Paths.get(path, dir).toString();
+            }
+
+            return path;
+        }
     }
 
 
@@ -60,7 +86,7 @@ public class GeneratorConfig {
     @Bean
     public JavaModelGeneratorConfiguration javaModelGenerator(Config config) {
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
-        javaModelGeneratorConfiguration.setTargetProject("src/main/java");
+        javaModelGeneratorConfiguration.setTargetProject(config.getAbsolutePath("src","main","java"));
         javaModelGeneratorConfiguration.setTargetPackage(config.modelTargetPackage);
         return javaModelGeneratorConfiguration;
     }
@@ -68,10 +94,17 @@ public class GeneratorConfig {
     @Bean
     public JavaClientGeneratorConfiguration javaClientGenerator(Config config) {
         JavaClientGeneratorConfiguration javaModelGeneratorConfiguration = new JavaClientGeneratorConfiguration();
-        javaModelGeneratorConfiguration.setTargetProject("src/main/java");
+        javaModelGeneratorConfiguration.setTargetProject(config.getAbsolutePath("src","main","java"));
         javaModelGeneratorConfiguration.setTargetPackage(config.clientTargetPackage);
         javaModelGeneratorConfiguration.setConfigurationType("MIXEDMAPPER");
         return javaModelGeneratorConfiguration;
+    }
+
+    @Bean
+    public CommentGeneratorConfiguration commentGeneratorConfiguration(Config config) {
+        CommentGeneratorConfiguration cgc = new CommentGeneratorConfiguration();
+        cgc.addProperty("suppressDate","true");
+        return cgc;
     }
 
 
@@ -79,6 +112,7 @@ public class GeneratorConfig {
     Context context(JDBCConnectionConfiguration jdbcConnectionConfiguration
             , JavaModelGeneratorConfiguration javaModelGeneratorConfiguration
             , JavaClientGeneratorConfiguration javaClientGeneratorConfiguration
+            , CommentGeneratorConfiguration commentGeneratorConfiguration
             , Config config) {
         Context context = new Context(ModelType.CONDITIONAL);
         context.setId("dsql");
@@ -87,6 +121,7 @@ public class GeneratorConfig {
         context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
         context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
         context.setJavaClientGeneratorConfiguration(javaClientGeneratorConfiguration);
+        context.setCommentGeneratorConfiguration(commentGeneratorConfiguration);
         setTables(context, config);
 
         return context;
