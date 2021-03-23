@@ -38,6 +38,7 @@ dependencies {
     // db
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
 
 
     // test

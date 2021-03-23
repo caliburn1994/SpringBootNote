@@ -1,9 +1,9 @@
 package icu.kyakya.orm.mybatis;
 
+import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
+import org.springframework.boot.context.TypeExcludeFilter;
+import org.springframework.context.annotation.*;
 
 @SpringBootApplication
 @PropertySources({
@@ -11,7 +11,10 @@ import org.springframework.context.annotation.PropertySources;
         @PropertySource("/mybatis/application-${mybatis.custom.dbType}.properties"),
         @PropertySource("/mybatis/application-${mybatis.custom.appType}.properties"),
 })
-@EnableAspectJAutoProxy // 启动CGLIB proxyTargetClass = true  todo 什么是CGLIB
+@ComponentScan(excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {CodeGenerateApp.class})
+})
+@EnableAspectJAutoProxy // if enable CGLIB, use proxyTargetClass = true
 public class MybatisConfig {
 
 }

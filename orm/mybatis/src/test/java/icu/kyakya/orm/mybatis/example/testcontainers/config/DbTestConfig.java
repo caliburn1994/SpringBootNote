@@ -1,4 +1,4 @@
-package icu.kyakya.orm.mybatis.mybatis.config;
+package icu.kyakya.orm.mybatis.example.testcontainers.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -11,7 +11,7 @@ import org.testcontainers.containers.MySQLContainer;
 
 import javax.sql.DataSource;
 
-@TestConfiguration
+//@TestConfiguration
 @Slf4j
 public class DbTestConfig {
 

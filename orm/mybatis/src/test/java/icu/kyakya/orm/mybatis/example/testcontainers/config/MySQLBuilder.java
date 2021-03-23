@@ -1,4 +1,4 @@
-package icu.kyakya.orm.mybatis.mybatis.config;
+package icu.kyakya.orm.mybatis.example.testcontainers.config;
 
 import org.testcontainers.containers.MySQLContainer;
 
@@ -18,7 +18,6 @@ public class MySQLBuilder {
                             "--collation-server=utf8_general_ci " +
                             "--lower_case_table_names=1 " + // 大小写insensitive
                             "--sql_mode=ALLOW_INVALID_DATES");// 允许日期非法
-            ;
             container.start();
         }
 
