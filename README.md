@@ -17,6 +17,12 @@
 
 > for systemd
 
+## Branch Management - Git
+todo
+
+- [What are some examples of commonly used practices for naming git branches? [closed]](https://stackoverflow.com/questions/273695/what-are-some-examples-of-commonly-used-practices-for-naming-git-branches)
+- [When do you use Git rebase instead of Git merge? [closed]](https://stackoverflow.com/questions/804115/when-do-you-use-git-rebase-instead-of-git-merge)
+
 
 ## Others
 
