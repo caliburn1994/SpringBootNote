@@ -11,10 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-/**
- * http://localhost:8888/datatable/example1
- * http://localhost:8888/datatable/example2
- */
+
 @Controller
 @RequestMapping("/datatable")
 public class DataTableController {
