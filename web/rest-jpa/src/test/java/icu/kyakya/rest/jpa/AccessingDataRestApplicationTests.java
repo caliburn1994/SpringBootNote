@@ -16,6 +16,7 @@
 
 package icu.kyakya.rest.jpa;
 
+import icu.kyakya.rest.jpa.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

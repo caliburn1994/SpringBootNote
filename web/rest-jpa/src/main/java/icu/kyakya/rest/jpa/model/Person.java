@@ -1,9 +1,6 @@
-package icu.kyakya.rest.jpa;
+package icu.kyakya.rest.jpa.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Person {
@@ -14,6 +11,10 @@ public class Person {
 
 	private String firstName;
 	private String lastName;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn
+	private Address address;
 
 	public String getFirstName() {
 		return firstName;

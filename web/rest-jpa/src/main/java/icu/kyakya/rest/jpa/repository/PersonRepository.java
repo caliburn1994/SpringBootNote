@@ -1,7 +1,8 @@
-package icu.kyakya.rest.jpa;
+package icu.kyakya.rest.jpa.repository;
 
 import java.util.List;
 
+import icu.kyakya.rest.jpa.model.Person;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
