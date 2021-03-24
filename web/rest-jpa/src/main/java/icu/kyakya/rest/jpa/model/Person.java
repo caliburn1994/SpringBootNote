@@ -1,8 +1,12 @@
 package icu.kyakya.rest.jpa.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Data
 public class Person {
 
 	@Id
@@ -12,23 +16,7 @@ public class Person {
 	private String firstName;
 	private String lastName;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn
-	private Address address;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Address> address;
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 }

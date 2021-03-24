@@ -11,8 +11,6 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    private Person user;
 
     private String country;
     private String city;

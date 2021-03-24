@@ -21,9 +21,22 @@ ref: https://stackoverflow.com/questions/40902280/what-is-the-recommended-projec
 ## How to define tables? 
 
 - [ ] table
+
 - [ ] field type. how long? big large?
+
 - [ ] 外键
-- [ ] join sentence
+
+- [ ] SQL语句
+
+  - [ ] join sentence
+
+- [ ] 事务
+
+- [ ] ```
+  _links
+  ```
+
+  
 
 
 
