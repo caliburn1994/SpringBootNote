@@ -100,7 +100,7 @@ public class GeneratorConfig {
     }
 
     @Bean
-    public CommentGeneratorConfiguration commentGeneratorConfiguration(Config config) {
+    public CommentGeneratorConfiguration commentGeneratorConfiguration() {
         CommentGeneratorConfiguration cgc = new CommentGeneratorConfiguration();
         cgc.addProperty("suppressDate","true");
         return cgc;
