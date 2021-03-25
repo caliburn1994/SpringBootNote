@@ -9,10 +9,6 @@ curl -i -H "Content-Type:application/json" \
 -d '{
 "firstName": "Frodo",
 "lastName": "Baggins",
-"address": [
-  { "country" : "Japan" },
-  { "country" : "China" }
-]
 }' \
 http://localhost:8080/people
 

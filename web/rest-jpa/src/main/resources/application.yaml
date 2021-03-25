@@ -2,10 +2,5 @@
 #  database-platform: com.springboot.sqlite.SQLDialect
 #  hibernate.ddl-auto: update
 
-#spring.datasource:
-#  platform: h2
-#  url: jdbc:h2:file:C:/Users/q2455/h2test.db #;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
-#  driver-class-name: org.h2.Driver
-#  username:
-#  password:
-#  jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+# todo 引用另外一个yaml，然后脚步就可以简单的覆盖了.
