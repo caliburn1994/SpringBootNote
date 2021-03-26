@@ -11,6 +11,10 @@ spring.jpa:
         action: create
         create-source: metadata
         create-target: web/rest-jpa/create.sql
+    hibernate.hbm2ddl.delimiter: ;
+
+
+
 
 # show SQL
 # https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
