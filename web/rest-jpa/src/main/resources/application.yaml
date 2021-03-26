@@ -1,6 +1,8 @@
-#spring.jpa:
-#  database-platform: com.springboot.sqlite.SQLDialect
-#  hibernate.ddl-auto: update
-
-
-# todo 引用另外一个yaml，然后脚步就可以简单的覆盖了.
+# https://www.baeldung.com/spring-data-jpa-generate-db-schema
+# create SQL script by Java code.
+spring.jpa.properties:
+  javax.persistence.schema-generation:
+    scripts:
+      action: create
+      create-source: metadata
+      create-target: create.sql
