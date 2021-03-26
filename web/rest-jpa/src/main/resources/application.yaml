@@ -1,8 +1,19 @@
-# https://www.baeldung.com/spring-data-jpa-generate-db-schema
-# create SQL script by Java code.
-spring.jpa.properties:
-  javax.persistence.schema-generation:
-    scripts:
-      action: create
-      create-source: metadata
-      create-target: create.sql
+# About how to show log ,see here: https://www.baeldung.com/sql-logging-spring-boot
+#
+
+
+spring.jpa:
+  # https://www.baeldung.com/spring-data-jpa-generate-db-schema
+  # create SQL script by Java code.
+  properties:
+    javax.persistence.schema-generation:
+      scripts:
+        action: create
+        create-source: metadata
+        create-target: web/rest-jpa/create.sql
+
+# show SQL
+# https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type: TRACE
+spring.jpa.properties.hibernate.format_sql: true
