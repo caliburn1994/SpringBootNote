@@ -1,21 +1,16 @@
-
-Example from: https://spring.io/guides/gs/accessing-data-rest/
+- [ ]Example from: https://spring.io/guides/gs/accessing-data-rest/
 
 
 ## what is JPA
 
 ## Default JPA provider
 
-**todo**
+It's Hibernate. You can check [here](./src/main/resources/application.yaml) .
 
-May be Hibernate.
+## project structure
 
-ref: https://stackoverflow.com/questions/41902856/spring-boot-jpa-hibernate-as-default
-
-
-## Recommended project structure 
-
-ref: https://stackoverflow.com/questions/40902280/what-is-the-recommended-project-structure-for-spring-boot-rest-projects
+This is discussion about recommended project
+structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended-project-structure-for-spring-boot-rest-projects
 
 
 ## How to define tables? 
@@ -24,11 +19,15 @@ ref: https://stackoverflow.com/questions/40902280/what-is-the-recommended-projec
 
 - [ ] field type. how long? big large?
 
-- [ ] 外键
+- [ ] foreign key
+
+  - [x] create
+  - [ ] query
 
 - [ ] SQL语句
 
   - [ ] join sentence
+  - [ ] 翻页查询
 
 - [ ] 事务
 
@@ -36,19 +35,21 @@ ref: https://stackoverflow.com/questions/40902280/what-is-the-recommended-projec
   _links
   ```
 
-  
+- [x] Show SQL in log file.
 
+- [ ] primary key? what's difference every type
 
+### ID
+
+```java
+@GeneratedValue(strategy = GenerationType.AUTO)
+```
 
 ## Annotation
 
 **@Table**
 
 Because no `@Table` annotation exists, it is assumed that this entity is mapped to a table named `Customer`
-
-
-
-
 
 ## Other wiki
 

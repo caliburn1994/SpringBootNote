@@ -46,3 +46,11 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.username=postgres
 spring.datasource.password=MFEmWwdVow
 EOF
+
+# rest-jpa
+cat <<EOF >"${PROJECT_ROOT_PATH}/orm/mybatis/src/main/resources/db/db-dev.properties"
+spring.datasource.url= jdbc:postgresql://localhost:5432/testdb
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.username=postgres
+spring.datasource.password=MFEmWwdVow
+EOF

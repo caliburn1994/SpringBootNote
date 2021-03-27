@@ -1,24 +1,6 @@
-spring.jpa:
-  # auto create table when startup, delete when shutdown app.
-  # below config doesn't work when with javax.persistence.schema-generation.
-  generate-ddl: true
-  hibernate.ddl-auto: create-drop
+# about how to config Multi-profile
+# https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-file-activation-properties
 
-# https://www.baeldung.com/spring-data-jpa-generate-db-schema
-# generate SQL script by Java code.
-#  properties:
-#    javax.persistence.schema-generation:
-#      scripts:
-#        action: create
-#        create-source: metadata
-#        create-target: web/rest-jpa/create.sql
-#    hibernate.hbm2ddl.delimiter: ;
-
-
-
-
-# show SQL
-# https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot
-logging.level.org.hibernate.SQL: DEBUG
-logging.level.org.hibernate.type: TRACE
-spring.jpa.properties.hibernate.format_sql: true
+# about how to config profile specific files
+# https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-files-profile-specific
+spring.profiles.active: dev

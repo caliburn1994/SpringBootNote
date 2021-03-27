@@ -4,9 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.env.YamlPropertySourceLoader;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,10 +13,8 @@ import java.nio.file.Files;
 import java.util.List;
 
 @SpringBootApplication
-@PropertySources({
-        @PropertySource("/db.properties"),
-})
 @Slf4j
+@EnableJpaAuditing
 public class JPARestApplication {
 
     public static void main(String[] args) throws IOException {

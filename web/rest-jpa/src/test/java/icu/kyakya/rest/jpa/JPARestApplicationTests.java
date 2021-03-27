@@ -19,21 +19,20 @@ package icu.kyakya.rest.jpa;
 import icu.kyakya.rest.jpa.repository.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AccessingDataRestApplicationTests {
+public class JPARestApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -48,14 +47,12 @@ public class AccessingDataRestApplicationTests {
 
 	@Test
 	public void shouldReturnRepositoryIndex() throws Exception {
-
 		mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk()).andExpect(
 				jsonPath("$._links.people").exists());
 	}
 
 	@Test
 	public void shouldCreateEntity() throws Exception {
-
 		mockMvc.perform(post("/people").content(
 				"{\"firstName\": \"Frodo\", \"lastName\":\"Baggins\"}")).andExpect(
 						status().isCreated()).andExpect(
