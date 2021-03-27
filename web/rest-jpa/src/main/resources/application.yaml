@@ -1,17 +1,18 @@
-# About how to show log ,see here: https://www.baeldung.com/sql-logging-spring-boot
-#
-
-
 spring.jpa:
-  # https://www.baeldung.com/spring-data-jpa-generate-db-schema
-  # create SQL script by Java code.
-  properties:
-    javax.persistence.schema-generation:
-      scripts:
-        action: create
-        create-source: metadata
-        create-target: web/rest-jpa/create.sql
-    hibernate.hbm2ddl.delimiter: ;
+  # auto create table when startup, delete when shutdown app.
+  # below config doesn't work when with javax.persistence.schema-generation.
+  generate-ddl: true
+  hibernate.ddl-auto: create-drop
+
+# https://www.baeldung.com/spring-data-jpa-generate-db-schema
+# generate SQL script by Java code.
+#  properties:
+#    javax.persistence.schema-generation:
+#      scripts:
+#        action: create
+#        create-source: metadata
+#        create-target: web/rest-jpa/create.sql
+#    hibernate.hbm2ddl.delimiter: ;
 
 
 
