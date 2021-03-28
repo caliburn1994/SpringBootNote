@@ -15,7 +15,10 @@ import java.util.List;
 public class Person extends AuditMetadata {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "person_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "person_seq")
     private long id;
     private String firstName;
     private String lastName;

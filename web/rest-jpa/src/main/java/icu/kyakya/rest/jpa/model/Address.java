@@ -4,17 +4,17 @@ import icu.kyakya.rest.jpa.model.audit.AuditMetadata;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 public class Address extends AuditMetadata {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "address_seq",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "address_seq")
     private Long id;
 
 
