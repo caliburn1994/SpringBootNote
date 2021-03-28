@@ -1,16 +1,18 @@
 package icu.kyakya.rest.jpa.model;
 
+import icu.kyakya.rest.jpa.model.audit.AuditMetadata;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.EqualsAndHashCode;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Data
-public class Person {
+public class Person extends AuditMetadata {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,10 +22,5 @@ public class Person {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Address> address;
-
-    @CreatedDate
-    private Date createdAt;
-    @LastModifiedDate
-    private Date updateAt;
 
 }
