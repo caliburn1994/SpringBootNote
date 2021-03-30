@@ -4,8 +4,8 @@ set -e
 # constant
 PROJECT_ROOT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"/../../.. >/dev/null 2>&1 && pwd)"
 CURRENT_DIR=$(dirname "$0")
-SERVICE_CONFIG_LOCATION="${CURRENT_DIR}/minibube-custom.service"
-SERVICE_CONFIG_TEMPLATE_LOCATION="${CURRENT_DIR}/minibube-custom-template.service"
+SERVICE_CONFIG_LOCATION="${CURRENT_DIR}/minikube-custom.service"
+SERVICE_CONFIG_TEMPLATE_LOCATION="${CURRENT_DIR}/minikube-custom-template.service"
 
 # dependencies
 . "${PROJECT_ROOT_PATH}/script/common.sh"
@@ -86,6 +86,6 @@ if ! type -p minikube &>/dev/null; then
   sudo cp "${SERVICE_CONFIG_LOCATION}" /etc/systemd/system/
   rm "${SERVICE_CONFIG_LOCATION}"
   sudo systemctl daemon-reload
-  sudo systemctl enable minibube-custom.service
-  sudo systemctl start minibube-custom.service
+  sudo systemctl enable minikube-custom.service
+  sudo systemctl start minikube-custom.service
 fi
