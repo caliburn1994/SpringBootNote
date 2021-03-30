@@ -22,12 +22,9 @@ public class CodeGenerateApp implements ApplicationRunner {
         SimpleCommandLinePropertySource source = new SimpleCommandLinePropertySource(args);
         if (!source.containsProperty("spring.profiles.active") &&
                 !System.getenv().containsKey("SPRING_PROFILES_ACTIVE")) {
-
             app.setAdditionalProfiles("generator");
         }
         app.run();
-//        System.setProperty("spring.profiles.default", "generator");
-//        SpringApplication.run(MybatisConfig.class, args);
     }
 
     @Override
