@@ -1,4 +1,4 @@
-- [ ]Example from: https://spring.io/guides/gs/accessing-data-rest/
+Example from: https://spring.io/guides/gs/accessing-data-rest/
 
 
 ## what is JPA
@@ -14,6 +14,15 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 
 
 ## How to define tables? 
+
+- [ ] database
+
+  - [x] [field] updated at && created at
+
+- [ ] CRUD
+
+  - [ ] update
+  - [ ] update if not found
 
 - [ ] table
 
@@ -44,6 +53,8 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 ```java
 @GeneratedValue(strategy = GenerationType.AUTO)
 ```
+
+- [ ] `allocationSize` how large should I set
 
 ## Annotation
 

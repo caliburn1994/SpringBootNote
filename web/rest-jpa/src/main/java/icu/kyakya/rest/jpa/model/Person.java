@@ -16,7 +16,7 @@ public class Person extends AuditMetadata {
 
     @Id
     @SequenceGenerator(name = "person_seq",
-            allocationSize = 1)
+            allocationSize = 50)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "person_seq")
     private long id;

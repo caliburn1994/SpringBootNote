@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Address extends AuditMetadata {
     @Id
     @SequenceGenerator(name = "address_seq",
-            allocationSize = 1)
+            allocationSize = 50)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "address_seq")
     private Long id;
