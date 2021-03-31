@@ -30,7 +30,6 @@ if ! kubectl get service "${POSTGRES_K8S_SERVICE}" &>/dev/null; then
   sudo systemctl enable ${SERVICE_CONFIG_FILENAME}.service
   sudo systemctl start ${SERVICE_CONFIG_FILENAME}.service
 
-
 fi
 
 # output result
@@ -41,12 +40,10 @@ if ! kubectl get service "${POSTGRES_K8S_SERVICE}" &>/dev/null; then
   sudo apt-get install -y postgresql-client-common
   sudo apt-get install -y postgresql-client
 
-
   echo_info "For creating a new custom database,you should input this password: ${POSTGRES_PASSWORD}"
   # create new database
   createdb -h localhost -p 5432 -U postgres testdb
 fi
-
 
 cat <<EOF >"${PROJECT_ROOT_PATH}/config/db/psql.properties"
 # custom
@@ -57,7 +54,6 @@ username=postgres
 password=${POSTGRES_PASSWORD}
 EOF
 
-
 # mybatis
 cat <<EOF >"${PROJECT_ROOT_PATH}/orm/mybatis/src/main/resources/mybatis/application-psql.properties"
 spring.datasource.url= jdbc:postgresql://localhost:5432/postgres
@@ -67,8 +63,8 @@ spring.datasource.password=MFEmWwdVow
 EOF
 
 # rest-jpa
-cat <<EOF >"${PROJECT_ROOT_PATH}/orm/mybatis/src/main/resources/db/db-dev.properties"
-spring.datasource.url= jdbc:postgresql://localhost:5432/testdb
+cat <<EOF >"${PROJECT_ROOT_PATH}/web/rest-jpa/src/main/resources/db/db-dev.properties"
+spring.datasource.url=jdbc:postgresql://localhost:5432/testdb
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.username=postgres
 spring.datasource.password=MFEmWwdVow

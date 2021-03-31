@@ -1,0 +1,10 @@
+/build/
+/orm/build/
+/web/build/
+/web/mvc/.gradle/
+/web/mvc/build/
+/web/rest-jpa/build/
+/web/rest-jpa/create.sql
+/.gradle/
+/.idea/
+/config/db/psql.properties
