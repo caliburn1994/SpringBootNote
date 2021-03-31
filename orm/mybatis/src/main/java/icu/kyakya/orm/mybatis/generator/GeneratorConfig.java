@@ -9,13 +9,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 /**
  * <pre>
@@ -41,22 +38,24 @@ public class GeneratorConfig {
 
 
         public String getAbsolutePath(String... dirs) {
+
+            StringJoiner joiner = new StringJoiner(File.separator);
+
             // get absolute path
-            String[] split = moduleName.split("\\.");
-            File file = new File("");
-            String path= file.getAbsolutePath();
-            for (String s : split) {
-                if (!file.getAbsolutePath().contains(s)) {
-                    path = Paths.get(path, s).toString();
-                }
+            // if multiple module, the root path is the path of root project, not the path of submodule.
+            // so we should make submodule path manually.
+            String moduleRelativePath = moduleName.replace(".",File.separator);
+            String rootAbsolutePath= new File("").getAbsolutePath();
+            if (!rootAbsolutePath.contains(moduleRelativePath)){
+                joiner.add(rootAbsolutePath).add(moduleRelativePath);
             }
 
-            // join dirs on the absolute path
+            // absolute path of the target dir
             for (String dir : dirs) {
-                path = Paths.get(path, dir).toString();
+                joiner.add(dir);
             }
 
-            return path;
+            return joiner.toString();
         }
     }
 
@@ -101,7 +100,7 @@ public class GeneratorConfig {
     }
 
     @Bean
-    public CommentGeneratorConfiguration commentGeneratorConfiguration(Config config) {
+    public CommentGeneratorConfiguration commentGeneratorConfiguration() {
         CommentGeneratorConfiguration cgc = new CommentGeneratorConfiguration();
         cgc.addProperty("suppressDate","true");
         return cgc;
