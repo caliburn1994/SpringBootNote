@@ -48,6 +48,8 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 
 - [ ] primary key? what's difference every type
 
+- [x] api version 1 version 2
+
 ### ID
 
 ```java
