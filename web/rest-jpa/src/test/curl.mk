@@ -13,8 +13,9 @@ address_1:
 	curl http://localhost:8080/api/v1/address/1
 
 foreign-key_create:
-	curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "tokyo" }'   http://localhost:8080/api/v1/address
-	curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "osaka" }'   http://localhost:8080/api/v1/address
+	curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "tokyo" }'   		http://localhost:8080/api/v1/address
+	curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "osaka" }'   		http://localhost:8080/api/v1/address
+	curl -i -H "Content-Type:application/json" -d '  { "country" : "China" , "city" : "guangzhou" }'    http://localhost:8080/api/v1/address
 	curl -i -H "Content-Type:application/json" \
 	-d '  { "country" : "China" }' \
 	http://localhost:8080/api/v1/address

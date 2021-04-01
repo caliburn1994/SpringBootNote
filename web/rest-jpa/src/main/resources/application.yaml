@@ -11,7 +11,7 @@ spring:
 app.version.address:
     v1:
       - address
-      - person
+      - people
     v2:
       - address
-      - person
+      - people

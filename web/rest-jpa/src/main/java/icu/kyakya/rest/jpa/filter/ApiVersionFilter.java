@@ -1,10 +1,10 @@
-package icu.kyakya.rest.jpa.config;
+package icu.kyakya.rest.jpa.filter;
 
+import icu.kyakya.rest.jpa.config.ApiVersionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
