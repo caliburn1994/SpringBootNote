@@ -52,6 +52,10 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 
 - [ ] page
 
+- [ ] batch insert by post
+
+- [ ] batch update by put
+
 ### ID
 
 ```java
@@ -71,3 +75,9 @@ Because no `@Table` annotation exists, it is assumed that this entity is mapped 
 ### Hypermedia API && [HATEOAS](http://en.wikipedia.org/wiki/HATEOAS)
 
 ref: http://www.ruanyifeng.com/blog/2014/05/restful_api.html
+
+## Links
+
+There are a lot of things need to improve in spring-data-rest.
+
+- https://github.com/spring-projects/spring-data-rest/labels/type%3A%20enhancement

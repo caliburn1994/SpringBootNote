@@ -1,6 +1,7 @@
 package icu.kyakya.rest.jpa.repository;
 
 import icu.kyakya.rest.jpa.model.Address;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -21,6 +22,11 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
         curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Tokyo" }'   		http://localhost:8080/api/v1/address
         curl -i -H "Content-Type:application/json" -d '  { "country" : "Japan" , "city" : "Osaka" }'   		http://localhost:8080/api/v1/address
         curl -i -H "Content-Type:application/json" -d '  { "country" : "China" , "city" : "Guangzhou" }'    http://localhost:8080/api/v1/address
+
+
+        curl -i -H "Content-Type:application/json" -d '  [{ "country" : "Japan" , "city" : "Tokyo" },{ "country" : "Japan" , "city" : "Osaka" }]'   \
+        		http://localhost:8080/api/v1/address
+
      */
 
 
@@ -46,6 +52,7 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
      */
 
     /**
+     *  delete with query style
      *  by condition:
      *      http://localhost:8080/api/address/search/removeAddressByCity?city=Guangzhou
      */
@@ -54,7 +61,7 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
 
     //  haven't tested it
     //  @Modifying
-    //  @Query("delete from address b where b.city=:city")
+    //  @Query("delete ...")
     Long deleteAllByCity(String city);
 
     /*
@@ -63,4 +70,13 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
     update selectively
         curl -X PUT -H "Content-Type:application/json" -d '{"postalCode": "555235", "city": "New York" , "country" : "America"}' http://localhost:8080/api/address/2
     */
+
+    /**
+     * update with query style
+     */
+    @Transactional
+    @Modifying
+    @Query("update Address set PostalCode= :postalCode ")
+    void updateAllPostalCode(@Param("postalCode") String postalCode);
+
 }
