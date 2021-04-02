@@ -83,3 +83,7 @@ ref: http://www.ruanyifeng.com/blog/2014/05/restful_api.html
 There are a lot of things need to improve in spring-data-rest.
 
 - https://github.com/spring-projects/spring-data-rest/labels/type%3A%20enhancement
+
+document:
+
+- https://docs.spring.io/spring-hateoas/docs/current/reference/html

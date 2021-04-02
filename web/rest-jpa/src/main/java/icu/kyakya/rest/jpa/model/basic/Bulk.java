@@ -1,4 +1,4 @@
-package icu.kyakya.rest.jpa.model;
+package icu.kyakya.rest.jpa.model.basic;
 
 import lombok.Data;
 

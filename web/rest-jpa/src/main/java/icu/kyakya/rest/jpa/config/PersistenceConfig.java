@@ -14,6 +14,10 @@ import static org.springframework.hateoas.Link.of;
 @EnableJpaAuditing
 public class PersistenceConfig {
 
+
+    // https://docs.spring.io/spring-hateoas/docs/current/reference/html/#server.processors
+
+
 //    @Bean
 //    public RepresentationModelProcessor<EntityModel<Person>> personProcessor() {
 //
