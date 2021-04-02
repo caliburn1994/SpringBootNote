@@ -10,6 +10,7 @@ import org.springframework.data.rest.webmvc.support.RepositoryEntityLinks;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.LinkRelation;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,7 +69,7 @@ public class AddressController {
 
         ArrayList<EntityModel<Address>> models = new ArrayList<>();
         addresses.forEach(i->{
-            Link link = entityLinks.linkToItemResource(Address.class, i.getId());
+            Link link = entityLinks.linkToItemResource(Address.class, i.getId()).withRel("self");
             models.add(EntityModel.of(i).add(link));
         });
         return new ResponseEntity<>(CollectionModel.of(models),HttpStatus.CREATED);
