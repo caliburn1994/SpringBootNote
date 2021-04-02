@@ -87,3 +87,4 @@ There are a lot of things need to improve in spring-data-rest.
 document:
 
 - https://docs.spring.io/spring-hateoas/docs/current/reference/html
+- https://docs.spring.io/spring-data/rest/docs/current/reference/html
