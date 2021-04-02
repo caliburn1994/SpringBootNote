@@ -62,6 +62,7 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
     //  haven't tested it
     //  @Modifying
     //  @Query("delete ...")
+    @Transactional
     Long deleteAllByCity(String city);
 
     /*
