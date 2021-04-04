@@ -17,14 +17,12 @@ structure : https://stackoverflow.com/questions/40902280/what-is-the-recommended
 
 - [ ] database
 
+  - [ ] table
   - [x] [field] updated at && created at
+  - [ ] CRUD
 
-- [ ] CRUD
-
-  - [ ] update
-  - [ ] update if not found
-
-- [ ] table
+    - [ ] update
+    - [ ] update if not found
 
 - [ ] field type. how long? big large?
 

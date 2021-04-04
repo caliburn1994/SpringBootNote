@@ -5,7 +5,7 @@ spring:
     # auto create table when startup, delete when shutdown app.
     # below config doesn't work when with javax.persistence.schema-generation.
     generate-ddl: true
-    hibernate.ddl-auto: create-drop
+    hibernate.ddl-auto: create
 
 # show SQL
 # https://stackoverflow.com/questions/30118683/how-to-log-sql-statements-in-spring-boot

@@ -1,22 +1,9 @@
-package icu.kyakya.rest.jpa.controller;
+package icu.kyakya.rest.jpa.module.person;
 
-import icu.kyakya.rest.jpa.model.Person;
-import icu.kyakya.rest.jpa.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.ExposesResourceFor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 /*

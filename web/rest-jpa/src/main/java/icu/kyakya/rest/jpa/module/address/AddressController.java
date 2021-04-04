@@ -1,8 +1,6 @@
-package icu.kyakya.rest.jpa.controller;
+package icu.kyakya.rest.jpa.module.address;
 
-import icu.kyakya.rest.jpa.model.Address;
 import icu.kyakya.rest.jpa.model.basic.Bulk;
-import icu.kyakya.rest.jpa.repository.AddressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
@@ -13,7 +11,6 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.ExposesResourceFor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -75,15 +72,5 @@ public class AddressController {
         return new ResponseEntity<>(CollectionModel.of(models),HttpStatus.CREATED);
     }
 
-
-
-
-    // todo
-    @PostMapping("/address/saveAll")
-    @Transactional
-    public ResponseEntity saveAllWithPersonID(@RequestBody EntityModel<Bulk<Address>> bulk) {
-//
-        return new ResponseEntity(CollectionModel.of(""),HttpStatus.CREATED);
-    }
 
 }

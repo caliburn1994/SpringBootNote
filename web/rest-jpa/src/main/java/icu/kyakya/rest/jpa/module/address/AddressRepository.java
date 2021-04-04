@@ -1,6 +1,5 @@
-package icu.kyakya.rest.jpa.repository;
+package icu.kyakya.rest.jpa.module.address;
 
-import icu.kyakya.rest.jpa.model.Address;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
