@@ -8,3 +8,5 @@
 /.gradle/
 /.idea/
 /config/db/psql.properties
+/web/rest-jpa/.gradle/
+/config/db/.psql.properties.swp
